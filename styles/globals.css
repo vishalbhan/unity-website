@@ -17,11 +17,32 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #FFFEF9;
+  color: #000;
+  font-family: "Archivo";
+  font-weight: 400;
+  transition: background-color 0.3s ease;
+}
+
+p,
+.builder-paragraph,
+.css-1qggkls > p {
+  font-size: 18px;
+  color: rgba(0,0,0,0.8)
+}
+
+h2 {
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 72px; /* 116.667% */
+  letter-spacing: 0.9px;
+}
+
+h5 {
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 123.077% */
+  letter-spacing: 0.26px;
 }
