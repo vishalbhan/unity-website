@@ -19,7 +19,7 @@ export default function ColorChangingSection({ beforeColor, bgColor, text }) {
           gsap.to(bgRef.current, { scaleX: 2, scaleY: 4, ease: "power1.inOut", duration: 0.5 })
           document.body.style.backgroundColor = bgColor;
         },
-        onLeaveBack: () => {
+        onEnterBack: () => {
           gsap.to(bgRef.current, { scaleX: 1, scaleY: 1, ease: "power1.inOut", duration: 0.5 })
           document.body.style.backgroundColor = beforeColor;
         }

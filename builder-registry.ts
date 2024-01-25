@@ -2,6 +2,64 @@ import { Builder } from "@builder.io/react";
 import dynamic from "next/dynamic";
 
 Builder.registerComponent(
+  dynamic(() => import("./components/Button")),
+  {
+    name: "Button",
+    friendlyName: "Button",
+    inputs: [
+      {
+        name: "text",
+        type: "string",
+        friendlyName: "Text",
+        required: true,
+        defaultValue: "Click Me",
+      },
+      {
+        name: "type",
+        type: "string",
+        friendlyName: "Type",
+        required: true,
+        defaultValue: "primary",
+        enum: [
+          {
+            label: "Primary",
+            value: "primary",
+          },
+          {
+            label: "Secondary",
+            value: "secondary",
+          },
+        ],
+      },
+      {
+        name: "href",
+        type: "string",
+        friendlyName: "Link",
+        required: true,
+        defaultValue: "/",
+      },
+      {
+        name: "icon",
+        type: "string",
+        friendlyName: "Icon",
+        required: false,
+        defaultValue: "arrow-right",
+        enum: [
+          {
+            label: "None",
+            value: "",
+          },
+          {
+            label: "Arrow Right",
+            value: "arrow-right",
+          },
+        ],
+      }
+    ],
+  }
+);
+
+Builder.registerComponent(
   dynamic(() => import("./components/ColorChangingSection")),
   {
     name: "ColorChangingSection",
