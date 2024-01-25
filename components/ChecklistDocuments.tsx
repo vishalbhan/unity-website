@@ -16,13 +16,15 @@ export default function ChecklistDocuments({ checklistItems }: ChecklistItem) {
 
   return (
     <div className='grid grid-cols-1 lg:grid-cols-2'>
-      <div className='flex flex-col gap-8'>
+      <div className='flex flex-col gap-4'>
         {
           checklistItems.map((item: any, index: number) => (
+            <div className={`inline-block w-max py-3 pl-6 pr-10 rounded-lg ${index === selected ? 'bg-[rgba(0,0,0,0.03)]' : ''}`}>
             <a key={index} className='cursor-pointer flex gap-4' onClick={() => setSelected(index)}>
               <Check color="#008207" className='mr-2 mt-1' />
               <p className='text-lg font-semibold'>{item.title}</p>
             </a>
+            </div>
           ))
         }
       </div>

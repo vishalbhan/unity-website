@@ -15,15 +15,14 @@ export default function ColorChangingSection({ beforeColor, bgColor, text }) {
         start: "top 50%",
         end: "bottom 50%",
         scrub: true,
-        onEnterBack: () => {
+        onEnter: () => {
+          gsap.to(bgRef.current, { scaleX: 2, scaleY: 4, ease: "power1.inOut", duration: 0.5 })
+          document.body.style.backgroundColor = bgColor;
+        },
+        onLeaveBack: () => {
+          gsap.to(bgRef.current, { scaleX: 1, scaleY: 1, ease: "power1.inOut", duration: 0.5 })
           document.body.style.backgroundColor = beforeColor;
         }
-      },
-      ease: "power1.inOut",
-      scaleX: 2,
-      scaleY: 4,
-      onComplete: () => {
-        document.body.style.backgroundColor = bgColor;
       },
     });
   }, [bgRef.current]);
