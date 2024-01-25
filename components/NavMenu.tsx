@@ -18,11 +18,11 @@ const navItems = {
       href: '/savings-account',
       icon: <SavingsAccount />
     },
-    {
-      title: 'Current Account',
-      href: '/current-account',
-      icon: <PersonalCurrentAccount />
-    },
+    // {
+    //   title: 'Current Account',
+    //   href: '/current-account',
+    //   icon: <PersonalCurrentAccount />
+    // },
     {
       title: 'Fixed Deposit',
       href: '/fixed-deposit',
