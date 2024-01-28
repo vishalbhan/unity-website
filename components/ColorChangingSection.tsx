@@ -5,7 +5,13 @@ import styled from "styled-components";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ColorChangingSection({ beforeColor, bgColor, text }) {
+type Props = {
+  beforeColor: string;
+  bgColor: string;
+  text: string;
+}
+
+export default function ColorChangingSection({ beforeColor, bgColor, text }: Props) {
   const bgRef = React.useRef(null);
 
   useEffect(() => {
