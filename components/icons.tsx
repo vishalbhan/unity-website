@@ -1,14 +1,14 @@
-export const Logo = () => (
+export const Logo = ({ style = "light" }: { style: string }) => (
   <svg width={114} height={38} viewBox="0 0 114 38" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fillRule="evenodd" clipRule="evenodd" d="M1 25.0691H7.99735V20.6553H1V25.0691Z" fill="#ECBA35" />
     <path fillRule="evenodd" clipRule="evenodd" d="M23.8008 15.138H30.7982V10.7241H23.8008V15.138Z" fill="#ECBA35" />
     <path fillRule="evenodd" clipRule="evenodd" d="M13.1383 15.1382H18.6557V19.9287H23.0696V3H18.6557V10.7244H13.1383V3H8.72443V10.7244H1V15.1382H8.72443H13.1383Z" fill="#ECBA35" />
     <path fillRule="evenodd" clipRule="evenodd" d="M13.1405 30.5862H18.6578V25.069H13.1405V30.5862ZM18.6578 20.6548H13.1405V15.8643H8.72656V30.5862V31.1379L12.5888 35.0001H19.2095L23.0717 31.1379V30.5862V25.0687H30.7961V20.6548H23.0717H18.6578Z" fill="#ECBA35" />
-    <path fillRule="evenodd" clipRule="evenodd" d="M65.2339 19.2511L60.1679 9.0708H58.2524V28.9286H61.4717L61.4721 17.8986L66.5698 28.9286H68.4577V9.0708H65.2339V19.2511Z" fill="#2A3238" />
-    <path fillRule="evenodd" clipRule="evenodd" d="M49.7849 9.0708V25.8168H46.019V9.0708H42.7993V26.0888L45.639 28.9289H50.1648L53.0045 26.0888V9.0708H49.7849Z" fill="#2A3238" />
-    <path fillRule="evenodd" clipRule="evenodd" d="M81.7529 12.1825V9.0708H79.0697H75.85H73.1665V12.1825H75.85V25.8168H73.1665V28.9286H81.7529V25.8168H79.0697V12.1825H81.7529Z" fill="#2A3238" />
-    <path fillRule="evenodd" clipRule="evenodd" d="M96.9496 9.0708H93.078H89.8584H85.9868V12.1825H89.8584V28.9286H93.078V12.1825H96.9496V9.0708Z" fill="#2A3238" />
-    <path fillRule="evenodd" clipRule="evenodd" d="M108.825 9.0708L106.015 17.7583L103.205 9.0708H99.8774L104.405 21.5914V28.9286H107.625V21.5914L112.152 9.0708H108.825Z" fill="#2A3238" />
+    <path fillRule="evenodd" clipRule="evenodd" d="M65.2339 19.2511L60.1679 9.0708H58.2524V28.9286H61.4717L61.4721 17.8986L66.5698 28.9286H68.4577V9.0708H65.2339V19.2511Z" fill={style === "dark" ? "#FFF" : "#2A3238"} />
+    <path fillRule="evenodd" clipRule="evenodd" d="M49.7849 9.0708V25.8168H46.019V9.0708H42.7993V26.0888L45.639 28.9289H50.1648L53.0045 26.0888V9.0708H49.7849Z" fill={style === "dark" ? "#FFF" : "#2A3238"} />
+    <path fillRule="evenodd" clipRule="evenodd" d="M81.7529 12.1825V9.0708H79.0697H75.85H73.1665V12.1825H75.85V25.8168H73.1665V28.9286H81.7529V25.8168H79.0697V12.1825H81.7529Z" fill={style === "dark" ? "#FFF" : "#2A3238"} />
+    <path fillRule="evenodd" clipRule="evenodd" d="M96.9496 9.0708H93.078H89.8584H85.9868V12.1825H89.8584V28.9286H93.078V12.1825H96.9496V9.0708Z" fill={style === "dark" ? "#FFF" : "#2A3238"} />
+    <path fillRule="evenodd" clipRule="evenodd" d="M108.825 9.0708L106.015 17.7583L103.205 9.0708H99.8774L104.405 21.5914V28.9286H107.625V21.5914L112.152 9.0708H108.825Z" fill={style === "dark" ? "#FFF" : "#2A3238"} />
   </svg>
 )
 

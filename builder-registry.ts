@@ -94,9 +94,36 @@ Builder.registerComponent(
     friendlyName: "Checklist Documents",
     inputs: [
       {
+        name: 'theme',
+        type: 'string',
+        friendlyName: 'Theme',
+        enum: [
+          {
+            label: 'Light',
+            value: 'light'
+          },
+          {
+            label: 'Dark',
+            value: 'dark'
+          }
+        ],
+        required: true,
+        defaultValue: 'light',
+      },
+      {
         name: "checklistItems",
         type: "list",
         required: true,
+        defaultValue: [
+          {
+            title: "Checklist Item",
+            documents: [
+              {
+                title: "Name of Document",
+              },
+            ],
+          },
+        ],
         subFields: [
           {
             name: "title",
@@ -129,6 +156,23 @@ Builder.registerComponent(
     name: "FAQs",
     friendlyName: "FAQs",
     inputs: [
+      {
+        name: "theme",
+        type: "string",
+        friendlyName: "Theme",
+        enum: [
+          {
+            label: "Light",
+            value: "light",
+          },
+          {
+            label: "Dark",
+            value: "dark",
+          },
+        ],
+        required: true,
+        defaultValue: "light",
+      },
       {
         name: "faqs",
         type: "list",
@@ -199,5 +243,13 @@ Builder.registerComponent(
         ],
       },
     ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/Typewriter")),
+  {
+    name: "Typewriter",
+    friendlyName: "Typewriter",
   }
 );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { BuilderComponent, builder, useIsPreviewing } from "@builder.io/react";
 import DefaultErrorPage from "next/error";
@@ -6,6 +6,7 @@ import Head from "next/head";
 import { BuilderContent } from "@builder.io/sdk";
 import { GetStaticProps } from "next";
 import "../builder-registry";
+import Navbar from "@/components/Navbar";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -52,8 +53,14 @@ export async function getStaticPaths() {
 
 // Define the Page component
 export default function Page({ page }: { page: BuilderContent | null }) {
-  const router = useRouter();
   const isPreviewing = useIsPreviewing();
+
+  useEffect(() => {
+    console.log(page?.data?.backgroundColor)
+    if (page?.data?.backgroundColor) {
+      document.body.style.backgroundColor = page.data.backgroundColor;
+    }
+  }, [page])
 
   // If the page content is not available
   // and not in preview mode, show a 404 error page
@@ -69,7 +76,11 @@ export default function Page({ page }: { page: BuilderContent | null }) {
         <title>{page?.data?.title}</title>
       </Head>
       {/* Render the Builder page */}
-      <BuilderComponent model="page" content={page || undefined} />
+      <Navbar color={page?.data?.navigationStyle} />
+      <BuilderComponent 
+        model="page"
+        content={page || undefined} 
+      />
     </>
   );
 }

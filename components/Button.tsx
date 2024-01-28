@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 type ButtonProps = {
   text: string
-  type: "primary" | "secondary",
+  type: "primary" | "secondary" | "tertiary",
   href: string,
   icon?: "arrow-right"
 }
@@ -31,7 +31,11 @@ export default function Button({ text, type, href, icon }: ButtonProps) {
 
 const ButtonContainer = styled.button<{ type: string }>`
   padding: 12px 19px 12px 20px;
-  background: ${props => props.type === 'primary' ? '#FFCD1E' : '#fff'};
+  background: ${props => (
+    props.type === 'primary' && '#FFCD1E' ||
+    props.type === 'secondary' && '#FFF' ||
+    props.type === 'tertiary' && '#F3F3F3'
+  )};
   border-radius: 99px;
   font-weight: 600;
   transition: all 0.3s ease;

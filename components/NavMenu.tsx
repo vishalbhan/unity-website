@@ -73,12 +73,12 @@ const navItems = {
   ]
 }
 
-export function NavMenu() {
+export function NavMenu({ style }: { style: string; }) {
   return (
     <NavigationMenu>
-      <NavigationMenuList className="gap-6">
+      <NavigationMenuList className="gap-2 xl:gap-6">
         <NavigationMenuItem className="relative">
-          <NavigationMenuTrigger>Personal</NavigationMenuTrigger>
+          <NavigationMenuTrigger style={{color: style === "light" ? "#000" : "#FFF"}}>Personal</NavigationMenuTrigger>
           <NavigationMenuContent className="p-10 rounded-xl shadow-lg bg-white">
             <h6 className="mb-8">Personal banking</h6>
             <ul className="grid grid-cols-2 w-[600px] gap-6">
@@ -96,8 +96,8 @@ export function NavMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem className="relative">
-          <NavigationMenuTrigger>Business</NavigationMenuTrigger>
-          {/* <NavigationMenuContent className="p-10 rounded-xl shadow-lg bg-white">
+          <NavigationMenuTrigger style={{color: style === "light" ? "#000" : "#FFF"}}>Business</NavigationMenuTrigger>
+          <NavigationMenuContent className="p-10 rounded-xl shadow-lg bg-white">
             <h6 className="mb-8">Business banking</h6>
             <ul className="grid grid-cols-2 w-[600px] gap-6">
               {navItems.business.map((item) => (
@@ -111,22 +111,17 @@ export function NavMenu() {
                 </li>
               ))}
             </ul>
-          </NavigationMenuContent> */}
-          <NavigationMenuContent>
-            <ul className="grid place-items-center w-[600px] gap-6 p-24 rounded-xl shadow-lg bg-white">
-              <p className="text-sm">In Progress</p>
-            </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Link href="/inclusive" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()} style={{color: style === "light" ? "#000" : "#FFF"}}>
               Inclusive
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem className="left-12">
-          <NavigationMenuTrigger>Company</NavigationMenuTrigger>
+          <NavigationMenuTrigger style={{color: style === "light" ? "#000" : "#FFF"}}>Company</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid place-items-center w-[600px] gap-6 p-24 rounded-xl shadow-lg bg-white">
               <p className="text-sm">In Progress</p>
@@ -135,7 +130,7 @@ export function NavMenu() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <Link href="/contact-us" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}  style={{color: style === "light" ? "#000" : "#FFF"}}>
               Contact Us
             </NavigationMenuLink>
           </Link>

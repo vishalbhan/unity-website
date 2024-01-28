@@ -5,26 +5,28 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import styled from 'styled-components';
 
 
 type FAQs = {
+  theme: string;
   faqs: {
     question: string
     answer: string
   }[]
 }
 
-export default function FAQs({ faqs }: FAQs) {
+export default function FAQs({ theme = "light", faqs }: FAQs) {
   return (
-    <div>
+    <FAQContainer theme={theme}>
       <Accordion type="single" collapsible>
         {
           faqs.map((faq, index) => {
             return (
               <div key={index}>
                 <AccordionItem value={index.toString()} className='max-w-4xl mx-auto py-8'>
-                  <AccordionTrigger>
-                    <div className='text-xl'>{faq.question}</div>
+                  <AccordionTrigger className='text-left'>
+                    <p className='text-xl pr-8'>{faq.question}</p>
                   </AccordionTrigger>
                   <AccordionContent>
                     <p>{faq.answer}</p>
@@ -35,6 +37,14 @@ export default function FAQs({ faqs }: FAQs) {
           })
         }
       </Accordion>
-    </div>
+    </FAQContainer>
   )
 }
+
+const FAQContainer = styled.div<{theme:string;}>`
+  color: ${props => props.theme === "dark" ? "white" : "black"};
+
+  & p {
+    color: ${props => props.theme === "dark" ? "white" : "black"};
+  }
+`
