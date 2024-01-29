@@ -7,13 +7,14 @@ type ButtonProps = {
   text: string
   type: "primary" | "secondary" | "tertiary",
   href: string,
-  icon?: "arrow-right"
+  icon?: "arrow-right",
+  width?: string
 }
 
-export default function Button({ text, type, href, icon }: ButtonProps) {
+export default function Button({ text, type, href, icon, width = "auto" }: ButtonProps) {
   return (
     <Link href={href}>
-      <ButtonContainer type={type} className='flex items-center'>
+      <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : ''}`}>
         {text}
         {
           icon &&

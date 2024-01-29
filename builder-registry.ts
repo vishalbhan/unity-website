@@ -253,3 +253,11 @@ Builder.registerComponent(
     friendlyName: "Typewriter",
   }
 );
+
+Builder.registerComponent(
+  dynamic(() => import("./components/EMICalculator")),
+  {
+    name: "EMICalculator",
+    friendlyName: "EMI Calculator",
+  }
+);
