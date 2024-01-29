@@ -21,9 +21,13 @@ body {
   color: #000000;
   font-family: "Archivo";
   font-weight: 400;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.5s ease;
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+nav {
+  transition: all 0.5s ease;
 }
 
 p {
@@ -52,6 +56,14 @@ h2 {
   font-weight: 700;
   line-height: 120%;
   letter-spacing: 0.9px;
+}
+
+h3 {
+  font-size: clamp(1.875rem, 1.2786rem + 1.9084vw, 2.5rem);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 125%;
+  letter-spacing: 0.28px;
 }
 
 h5 {
@@ -102,4 +114,16 @@ h6 {
   color: #2C9BFC;
   font-size: 12px;
   font-weight: 700;
+}
+
+.checklist-ul ul {
+  font-size: 16px;
+  color: rgba(255,255,255,0.8);
+  margin-left: 16px;
+  list-style-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM1MGMyNTYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jaGVjayI+PHBhdGggZD0iTTIwIDYgOSAxN2wtNS01Ii8+PC9zdmc+");
+
+  li {
+    margin-bottom: 12px;
+    padding-left: 12px;
+  }
 }

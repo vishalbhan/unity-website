@@ -66,8 +66,8 @@ const navItems = {
       icon: <DigitalLending />
     },
     {
-      title: 'Social Infrastructure',
-      href: '/business/social-infrastructure',
+      title: 'Social Infra Finance',
+      href: '/business/social-infra-finance',
       icon: <SocialInfrastructure />
     }
   ]

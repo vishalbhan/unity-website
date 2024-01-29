@@ -7,6 +7,7 @@ import { BuilderContent } from "@builder.io/sdk";
 import { GetStaticProps } from "next";
 import "../builder-registry";
 import Navbar from "@/components/Navbar";
+import { usePathname } from "next/navigation";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -54,13 +55,14 @@ export async function getStaticPaths() {
 // Define the Page component
 export default function Page({ page }: { page: BuilderContent | null }) {
   const isPreviewing = useIsPreviewing();
+  const pathname = usePathname()
 
   useEffect(() => {
     console.log(page?.data?.backgroundColor)
     if (page?.data?.backgroundColor) {
       document.body.style.backgroundColor = page.data.backgroundColor;
     }
-  }, [page])
+  }, [page, pathname])
 
   // If the page content is not available
   // and not in preview mode, show a 404 error page
