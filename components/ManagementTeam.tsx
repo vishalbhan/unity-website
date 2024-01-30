@@ -11,11 +11,11 @@ import { builder } from '@builder.io/react';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
-export default function BoardOfDirectors() {
+export default function ManagementTeam() {
   const [data, setData] = React.useState<any>(null);
 
   React.useEffect(() => {
-    builder.getAll('board-of-directors').then((data) => {
+    builder.getAll('management-team').then((data) => {
       setData(data);
     })
   }, []);

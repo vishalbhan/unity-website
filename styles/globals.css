@@ -126,4 +126,8 @@ h6 {
     margin-bottom: 12px;
     padding-left: 12px;
   }
+
+  strong {
+    color: #fff;
+  }
 }

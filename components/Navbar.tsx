@@ -12,14 +12,14 @@ const Navbar = ({ color } : { color: string; }) => {
   }, []);
 
   return (
-    <nav id="nav" className='py-6'>
+    <nav id="nav" className='px-6 py-4 md:py-6'>
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-10 xl:space-x-20">
             <Link href="/"><Logo style={color} /></Link>
             <NavMenu style={color} />
           </div>
-          <div className="flex items-center space-x-8">
+          <div className="flex items-center space-x-4 md:space-x-8">
             <Gift style={{color: color === "light" ? "#000" : "#FFF"}} />
             <Button text="Login" type="tertiary" href="/" />
           </div>

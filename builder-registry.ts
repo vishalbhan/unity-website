@@ -29,6 +29,10 @@ Builder.registerComponent(
             label: "Secondary",
             value: "secondary",
           },
+          {
+            label: "Tertiary",
+            value: "tertiary",
+          },
         ],
       },
       {
@@ -54,7 +58,7 @@ Builder.registerComponent(
             value: "arrow-right",
           },
         ],
-      }
+      },
     ],
   }
 );
@@ -65,10 +69,13 @@ Builder.registerComponent(
     name: "ColorChangingSection",
     friendlyName: "Color Changing Section",
     defaultChildren: [
-      { 
-        '@type': '@builder.io/sdk:Element',
-        component: { name: 'Text', options: { text: 'I am child text block!' } }
-      }
+      {
+        "@type": "@builder.io/sdk:Element",
+        component: {
+          name: "Text",
+          options: { text: "I am child text block!" },
+        },
+      },
     ],
     inputs: [
       {
@@ -99,21 +106,21 @@ Builder.registerComponent(
     friendlyName: "Checklist Documents",
     inputs: [
       {
-        name: 'theme',
-        type: 'string',
-        friendlyName: 'Theme',
+        name: "theme",
+        type: "string",
+        friendlyName: "Theme",
         enum: [
           {
-            label: 'Light',
-            value: 'light'
+            label: "Light",
+            value: "light",
           },
           {
-            label: 'Dark',
-            value: 'dark'
-          }
+            label: "Dark",
+            value: "dark",
+          },
         ],
         required: true,
-        defaultValue: 'light',
+        defaultValue: "light",
       },
       {
         name: "checklistItems",
@@ -134,7 +141,7 @@ Builder.registerComponent(
             name: "title",
             type: "text",
             required: true,
-            defaultValue: "Checklist Item"
+            defaultValue: "Checklist Item",
           },
           {
             name: "documents",
@@ -145,7 +152,7 @@ Builder.registerComponent(
                 name: "title",
                 type: "string",
                 required: true,
-                defaultValue: "Document Title"
+                defaultValue: "Document Title",
               },
             ],
           },
@@ -187,13 +194,13 @@ Builder.registerComponent(
             name: "question",
             type: "string",
             required: true,
-            defaultValue: "Question"
+            defaultValue: "Question",
           },
           {
             name: "answer",
             type: "text",
             required: true,
-            defaultValue: "Answer"
+            defaultValue: "Answer",
           },
         ],
       },
@@ -224,7 +231,7 @@ Builder.registerComponent(
             name: "title",
             type: "text",
             required: true,
-            defaultValue: "Section Name"
+            defaultValue: "Section Name",
           },
           {
             name: "cards",
@@ -235,14 +242,14 @@ Builder.registerComponent(
                 name: "content",
                 type: "richText",
                 required: true,
-                defaultValue: "Card Content"
+                defaultValue: "Card Content",
               },
               {
                 name: "illustration",
                 type: "code",
                 required: true,
-                defaultValue: "<svg>...</svg>"
-              }
+                defaultValue: "<svg>...</svg>",
+              },
             ],
           },
         ],
@@ -264,5 +271,19 @@ Builder.registerComponent(
   {
     name: "EMICalculator",
     friendlyName: "EMI Calculator",
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/BoardOfDirectors")),
+  {
+    name: "BoardOfDirectors",
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/ManagementTeam")),
+  {
+    name: "ManagementTeam",
   }
 );
