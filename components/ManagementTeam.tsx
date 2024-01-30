@@ -26,9 +26,9 @@ export default function ManagementTeam() {
         {
           data?.map((item: any) => {
             return (
-              <Dialog>
+              <Dialog key={item.id}>
                 <DialogTrigger className='cursor-pointer' asChild>
-                  <TeamItem key={item.id}>
+                  <TeamItem>
                     <div className='bg-gray-200'>
                       <img src={item.data.image} alt={item.data.name} className='object-cover' />
                     </div>
