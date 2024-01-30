@@ -64,6 +64,12 @@ Builder.registerComponent(
   {
     name: "ColorChangingSection",
     friendlyName: "Color Changing Section",
+    defaultChildren: [
+      { 
+        '@type': '@builder.io/sdk:Element',
+        component: { name: 'Text', options: { text: 'I am child text block!' } }
+      }
+    ],
     inputs: [
       {
         name: "beforeColor",
@@ -81,7 +87,6 @@ Builder.registerComponent(
         name: "text",
         type: "richText",
         friendlyName: "Text",
-        required: true,
       },
     ],
   }

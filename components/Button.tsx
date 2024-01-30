@@ -8,13 +8,13 @@ type ButtonProps = {
   type: "primary" | "secondary" | "tertiary",
   href: string,
   icon?: "arrow-right",
-  width?: string
+  width?: "full" | "fit"
 }
 
-export default function Button({ text, type, href, icon, width = "auto" }: ButtonProps) {
+export default function Button({ text, type, href, icon, width = "fit" }: ButtonProps) {
   return (
     <Link href={href}>
-      <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : ''}`}>
+      <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
         {text}
         {
           icon &&

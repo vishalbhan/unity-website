@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import styled from "styled-components";
+import { withChildren } from "@builder.io/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,23 +10,24 @@ type Props = {
   beforeColor: string;
   bgColor: string;
   text: string;
+  children: any;
 }
 
-export default function ColorChangingSection({ beforeColor, bgColor, text }: Props) {
+const ColorChangingSectionComponent = ({ beforeColor, bgColor, text, children }: Props) => {
   const bgRef = React.useRef(null);
 
   useEffect(() => {
     gsap.to(bgRef.current, {
       scrollTrigger: {
         trigger: bgRef.current,
-        start: "top 50%",
+        start: "top 40%",
         end: "bottom 50%",
         scrub: true,
         onEnter: () => {
           gsap.to(bgRef.current, { scaleX: 2, scaleY: 4, ease: "power1.inOut", duration: 0.5 })
           document.body.style.backgroundColor = bgColor;
         },
-        onEnterBack: () => {
+        onLeaveBack: () => {
           gsap.to(bgRef.current, { scaleX: 1, scaleY: 1, ease: "power1.inOut", duration: 0.5 })
           document.body.style.backgroundColor = beforeColor;
         }
@@ -35,21 +37,31 @@ export default function ColorChangingSection({ beforeColor, bgColor, text }: Pro
 
   return (
     <div className="my-20">
-      <div className="relative grid place-items-center h-96">
+      <div className="relative">
         <Background 
           style={{backgroundColor: bgColor}}
           ref={bgRef}
         />
-        <Text
-          className="absolute inset-0 w-80"
-          dangerouslySetInnerHTML={{ __html: text }}
-        />
+        {
+          text &&
+          <div className="h-96 grid place-items-center">
+            <Text
+              className="absolute inset-0 w-80"
+              dangerouslySetInnerHTML={{ __html: text }}
+            />
+          </div>
+        }
+        {children}
       </div>
     </div>
   );
 }
 
+const ColorChangingSection = withChildren(ColorChangingSectionComponent);
+export default ColorChangingSection
+
 const Background = styled.div`
+  z-index: -1;
   position: absolute;
   top: 50%;
   left: 50%;

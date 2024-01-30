@@ -9,7 +9,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { PersonalCurrentAccount, FixedDeposit, Lockers, RecurringDeposit, SavingsAccount, MSMELoans, BusinessCurrentAccount, BusinessOverview, SupplyChainFinancing, DigitalLending, SocialInfrastructure } from "./icons"
+import { PersonalCurrentAccount, FixedDeposit, Lockers, RecurringDeposit, SavingsAccount, MSMELoans, BusinessCurrentAccount, BusinessOverview, SupplyChainFinancing, DigitalLending, SocialInfrastructure, AboutUnity, TreasuryServices, OurTeam, CommunicationCentre, Careers, PMCBankSchemes, Investors, RegulatoryDisclosures } from "./icons"
 
 const navItems = {
   personal: [
@@ -70,12 +70,54 @@ const navItems = {
       href: '/business/social-infra-finance',
       icon: <SocialInfrastructure />
     }
+  ],
+  company: [
+    {
+      title: 'About Unity',
+      href: '/about-us',
+      icon: <AboutUnity />
+    },
+    {
+      title: 'Treasury Services',
+      href: '/treasury-services',
+      icon: <TreasuryServices />
+    },
+    {
+      title: 'Our Team',
+      href: '/team',
+      icon: <OurTeam />
+    },
+    {
+      title: 'Communication centre',
+      href: '/communication-centre',
+      icon: <CommunicationCentre />
+    },
+    {
+      title: 'Careers',
+      href: '/careers',
+      icon: <Careers />
+    },
+    {
+      title: 'PMC Bank Schemes',
+      href: '/pmc-bank-schemes',
+      icon: <PMCBankSchemes />
+    },
+    {
+      title: 'Investors',
+      href: '/investors',
+      icon: <Investors />
+    },
+    {
+      title: 'Regulatory disclosures',
+      href: '/regulatory-disclosures',
+      icon: <RegulatoryDisclosures />
+    },
   ]
 }
 
 export function NavMenu({ style }: { style: string; }) {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="hidden md:block">
       <NavigationMenuList className="gap-2 xl:gap-6">
         <NavigationMenuItem className="relative">
           <NavigationMenuTrigger style={{color: style === "light" ? "#000" : "#FFF"}}>Personal</NavigationMenuTrigger>
@@ -122,9 +164,18 @@ export function NavMenu({ style }: { style: string; }) {
         </NavigationMenuItem>
         <NavigationMenuItem className="left-12">
           <NavigationMenuTrigger style={{color: style === "light" ? "#000" : "#FFF"}}>Company</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid place-items-center w-[600px] gap-6 p-24 rounded-xl shadow-lg bg-white">
-              <p className="text-sm">In Progress</p>
+          <NavigationMenuContent className="p-10 rounded-xl shadow-lg bg-white">
+            <ul className="grid grid-cols-2 w-[600px] gap-6">
+              {navItems.company.map((item) => (
+                <li key={item.href}>
+                  <NavigationMenuLink asChild href={item.href}>
+                    <a className="flex items-center space-x-6">
+                      {item.icon}
+                      <p className="text-sm font-medium">{item.title}</p>
+                    </a>
+                  </NavigationMenuLink>
+                </li>
+              ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
