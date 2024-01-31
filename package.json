@@ -32,7 +32,8 @@
     "react-dom": "^18",
     "styled-components": "^6.1.7",
     "tailwind-merge": "^2.2.1",
-    "typewriter-effect": "^2.21.0"
+    "typewriter-effect": "^2.21.0",
+    "vaul": "^0.8.9"
   },
   "devDependencies": {
     "@types/gsap": "^3.0.0",

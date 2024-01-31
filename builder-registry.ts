@@ -33,6 +33,10 @@ Builder.registerComponent(
             label: "Tertiary",
             value: "tertiary",
           },
+          {
+            label: "Link",
+            value: "link",
+          }
         ],
       },
       {

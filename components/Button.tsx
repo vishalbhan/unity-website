@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 type ButtonProps = {
   text: string
-  type: "primary" | "secondary" | "tertiary",
+  type: "primary" | "secondary" | "tertiary" | "link",
   href: string,
   icon?: "arrow-right",
   width?: "full" | "fit"
@@ -31,11 +31,12 @@ export default function Button({ text, type, href, icon, width = "fit" }: Button
 }
 
 const ButtonContainer = styled.button<{ type: string }>`
-  padding: 12px 19px 12px 20px;
+  padding: ${props => props.type === "link" ? "4px" : "12px 19px 12px 20px"};
   background: ${props => (
     props.type === 'primary' && '#FFCD1E' ||
     props.type === 'secondary' && '#FFF' ||
-    props.type === 'tertiary' && '#F3F3F3'
+    props.type === 'tertiary' && '#F3F3F3' ||
+    props.type === 'link' && 'transparent' 
   )};
   border-radius: 99px;
   font-weight: 600;
