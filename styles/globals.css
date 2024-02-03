@@ -126,16 +126,11 @@ h6 {
 
 .checklist-ul ul {
   font-size: 16px;
-  color: rgba(255,255,255,0.8);
   margin-left: 16px;
   list-style-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM1MGMyNTYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jaGVjayI+PHBhdGggZD0iTTIwIDYgOSAxN2wtNS01Ii8+PC9zdmc+");
 
   li {
     margin-bottom: 12px;
     padding-left: 12px;
-  }
-
-  strong {
-    color: #fff;
   }
 }

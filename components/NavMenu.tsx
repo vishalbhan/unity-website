@@ -15,27 +15,27 @@ const navItems = {
   personal: [
     {
       title: 'Savings Account',
-      href: '/savings-account',
+      href: '/personal/savings-account',
       icon: <SavingsAccount />
     },
-    // {
-    //   title: 'Current Account',
-    //   href: '/current-account',
-    //   icon: <PersonalCurrentAccount />
-    // },
+    {
+      title: 'Current Account',
+      href: '/personal/current-account',
+      icon: <PersonalCurrentAccount />
+    },
     {
       title: 'Fixed Deposit',
-      href: '/fixed-deposit',
+      href: '/personal/fixed-deposit',
       icon: <FixedDeposit />
     },
     {
       title: 'Recurring Deposit',
-      href: '/recurring-deposit',
+      href: '/personal/recurring-deposit',
       icon: <RecurringDeposit />
     },
     {
       title: 'Lockers',
-      href: '/lockers',
+      href: '/personal/lockers',
       icon: <Lockers />
     }
   ],
