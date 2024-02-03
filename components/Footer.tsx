@@ -34,9 +34,9 @@ export default function Footer() {
         <div className='flex flex-col gap-2 mb-6'>
           <Link href="/business/current-account">Current Account</Link>
           <Link href="/business/loans">Loans</Link>
-          <Link href="/personal/msme-loans">MSME Loans</Link>
-          <Link href="/personal/lockers">Lockers</Link>
-          <Link href="/personal/nri-banking">NRI Banking</Link>
+          <Link href="/business/msme-loans">MSME Loans</Link>
+          <Link href="/business/lockers">Lockers</Link>
+          <Link href="/business/nri-banking">NRI Banking</Link>
         </div>
         <div className="text-lg font-semibold mb-6">Inclusive</div>
         <div className="text-lg font-semibold mb-6">Calculators</div>
