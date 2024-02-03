@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Logo } from './icons'
 import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -10,7 +11,7 @@ export default function Footer() {
       
       <div>
         <div className="text-lg font-semibold mb-6">Personal</div>
-        <div className='flex flex-col gap-2 mb-6'>
+        <div className='flex flex-col gap-3 mb-6'>
           <div className='font-semibold'>Save</div>
           <Link href="/personal/savings-account">Savings Account</Link>
           <Link href="/personal/current-account">Current Account</Link>
@@ -19,28 +20,32 @@ export default function Footer() {
           <Link href="/personal/lockers">Lockers</Link>
           <Link href="/personal/nri-banking">NRI Banking</Link>
         </div>
-        <div className='flex flex-col gap-2 mb-6'>
+        <div className='flex flex-col gap-3 mb-6'>
           <div className='font-semibold'>Borrow</div>
           <Link href="/personal/loans">Personal Loans</Link>
         </div>
-        <div className='flex flex-col gap-2 mb-6'>
+        <div className='flex flex-col gap-3 mb-6'>
           <div className='font-semibold'>Insure</div>
           <Link href="/personal/insurance">General/Health Insurance</Link>
         </div>
       </div>
 
       <div>
-        <div className="text-lg font-semibold mb-6">Business</div>
-        <div className='flex flex-col gap-2 mb-6'>
+        <Link href="/business">
+          <div className="text-lg font-semibold text-white mb-6">Business <ChevronRight size={18} className='inline mb-[2px]' /></div>
+        </Link>
+        <div className='flex flex-col gap-3 mb-6'>
           <Link href="/business/current-account">Current Account</Link>
           <Link href="/business/loans">Loans</Link>
           <Link href="/business/msme-loans">MSME Loans</Link>
           <Link href="/business/lockers">Lockers</Link>
           <Link href="/business/nri-banking">NRI Banking</Link>
         </div>
-        <div className="text-lg font-semibold mb-6">Inclusive</div>
+        <Link href="/inclusive">
+          <div className="text-lg font-semibold text-white mb-6">Inclusive <ChevronRight size={18} className='inline mb-[2px]' /></div>
+        </Link>
         <div className="text-lg font-semibold mb-6">Calculators</div>
-        <div className='flex flex-col gap-2 mb-6'>
+        <div className='flex flex-col gap-3 mb-6'>
           <Link href="/">FD Calculator</Link>
           <Link href="/">RD Calculator</Link>
           <Link href="/">EMI Calculator</Link>
@@ -49,7 +54,7 @@ export default function Footer() {
 
       <div>
         <div className="text-lg font-semibold mb-6">Company</div>
-        <div className='flex flex-col gap-2 mb-6'>
+        <div className='flex flex-col gap-3 mb-6'>
           <Link href="/about-us">About Unity</Link>
           <Link href="/treasury-services">Treasury Services</Link>
           <Link href="/team">Our Team</Link>
@@ -63,25 +68,25 @@ export default function Footer() {
 
       <div>
         <div className="text-lg font-semibold mb-6">Useful Links</div>
-        <div className='flex flex-col gap-2 mb-6'>
-        <Link href="/">Important Documents</Link>
-        <Link href="/">Download Forms</Link>
-        <Link href="/">Terms & Conditions</Link>
-        <Link href="/">Privacy Policy</Link>
-        <Link href="/">FAQs</Link>
-        <Link href="/">Blogs</Link>
-        <Link href="/">General Disclaimer</Link>
-        <Link href="/">RBI Disclaimer</Link>
-        <Link href="/">GSTIN</Link>
+        <div className='flex flex-col gap-3 mb-6'>
+        <Link href="/important-documents">Important Documents</Link>
+        <Link href="/download-forms">Download Forms</Link>
+        <Link href="/terms-and-conditions">Terms & Conditions</Link>
+        <Link href="/privacy-policy">Privacy Policy</Link>
+        <Link href="/faqs">FAQs</Link>
+        <Link href="/blog">Blogs</Link>
+        <Link href="/general-disclaimer">General Disclaimer</Link>
+        <Link href="/rbi-disclaimer">RBI Disclaimer</Link>
+        <Link href="/gstin">GSTIN</Link>
         </div>
       </div>
       
       <div>
         <div className="text-lg font-semibold mb-6">Connect with us</div>
-        <div className='flex flex-col gap-2 mb-6'>
-          <Link href="/">Contact Us</Link>
-          <Link href="/">Media Centres</Link>
-          <Link href="/">Feedback Form</Link>
+        <div className='flex flex-col gap-3 mb-6'>
+          <Link href="/contact-us">Contact Us</Link>
+          <Link href="/media-centres">Media Centres</Link>
+          <Link href="/feedback-form">Feedback Form</Link>
         </div>
       </div>
 
@@ -93,11 +98,16 @@ const FooterContainer = styled.footer`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 24px;
-  padding: 60px 24px;
+  padding: 60px;
   background-color: #080808;
   color: #fff;
 
   & a {
-    color: rgba(255,255,255,0.8);
+    width: fit-content;
+    color: rgba(255,255,255,0.7);
+  }
+
+  & a:hover {
+    color: rgba(255,255,255,0.85);
   }
 `
