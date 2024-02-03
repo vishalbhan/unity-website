@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogPortal,
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { builder } from '@builder.io/react';

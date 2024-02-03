@@ -66,7 +66,7 @@ const Background = styled.div`
   top: 50%;
   left: 50%;
   translate: -50% -50%;
-  width: 1000px;
+  width: 100%;
   border-radius: 32px;
   height: 100%;
 `

@@ -36,7 +36,7 @@ Builder.registerComponent(
           {
             label: "Link",
             value: "link",
-          }
+          },
         ],
       },
       {
@@ -289,5 +289,96 @@ Builder.registerComponent(
   dynamic(() => import("./components/ManagementTeam")),
   {
     name: "ManagementTeam",
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/RegulatoryDisclosures")),
+  {
+    name: "RegulatoryDisclosures",
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/CTACarousel")),
+  {
+    name: "CTACarousel",
+    inputs: [
+      {
+        name: "items",
+        type: "list",
+        required: true,
+        subFields: [
+          {
+            name: "title",
+            type: "string",
+            required: true,
+            defaultValue: "Title",
+          },
+          {
+            name: "description",
+            type: "text",
+            required: true,
+            defaultValue: "Description",
+          },
+          {
+            name: "illustration",
+            type: "code",
+            required: true,
+          },
+          {
+            name: "href",
+            type: "string",
+            required: true,
+            defaultValue: "/",
+          },
+        ],
+      },
+    ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/PDFList")),
+  {
+    name: "PDFList",
+    inputs: [
+      {
+        name: "hasFilter",
+        type: "boolean",
+        required: true,
+      },
+      {
+        name: "name",
+        type: "string",
+        required: true,
+      },
+      {
+        name: "pdfs",
+        type: "list",
+        required: true,
+        subFields: [
+          {
+            name: "title",
+            type: "string",
+            required: true,
+            defaultValue: "Title",
+          },
+          {
+            name: "file",
+            type: "file",
+            required: true,
+          },
+          {
+            name: "date",
+            type: "date",
+          },
+          {
+            name: "description",
+            type: "text",
+          }
+        ],
+      },
+    ],
   }
 );

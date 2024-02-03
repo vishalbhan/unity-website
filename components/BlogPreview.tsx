@@ -7,6 +7,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import styled from 'styled-components'
+import Button from './Button'
 
 type Blogs = {
   blogs: {
@@ -15,9 +16,10 @@ type Blogs = {
     image: string
     date: string | Date
     type: "blog" | "story"
-    category: string[]
+    categories: string[]
     excerpt: string
-    readtime: number
+    readTime: number
+    featured: boolean
   }[]
 }
 
@@ -28,9 +30,10 @@ const blogs = [
     image: 'https://picsum.photos/400/300',
     type: 'blog',
     date: '2024-01-01',
-    category: ['Finance', 'Saving'],
+    categories: ['Finance', 'Saving'],
     excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    readtime: 5,
+    readTime: 5,
+    featured: true
   },
   {
     title: 'How to save your money efficiently in your life?',
@@ -38,9 +41,10 @@ const blogs = [
     image: 'https://picsum.photos/400/300',
     type: 'story',
     date: '2024-01-01',
-    category: ['Finance', 'Saving'],
+    categories: ['Finance', 'Saving'],
     excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    readtime: 5,
+    readTime: 5,
+    featured: true
   },
   {
     title: 'How to save your money efficiently in your life?',
@@ -48,9 +52,10 @@ const blogs = [
     image: 'https://picsum.photos/400/300',
     type: 'blog',
     date: '2024-01-01',
-    category: ['Finance', 'Saving'],
+    categories: ['Finance', 'Saving'],
     excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    readtime: 5,
+    readTime: 5,
+    featured: true
   },
   {
     title: 'How to save your money efficiently in your life?',
@@ -58,9 +63,10 @@ const blogs = [
     image: 'https://picsum.photos/400/300',
     type: 'story',
     date: '2024-01-01',
-    category: ['Finance', 'Saving'],
+    categories: ['Finance', 'Saving'],
     excerpt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    readtime: 5,
+    readTime: 5,
+    featured: true
   },
 ]
 
@@ -86,14 +92,24 @@ export default function BlogPreview() {
                 </div>
                 <div className='p-6'>
                   <h6 className='mb-6'>{_.title}</h6>
-                  <p className='text-sm text-gray-500 mb-6'>{_.readtime} min read | 1 day ago</p>
+                  <div className='text-gray-500 mb-6'>{_.readTime} min read | 1 day ago</div>
                 </div>
               </BlogCard>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <div className="flex items-end justify-between mt-20">
+          <div>
+            <CarouselPrevious className='mr-4' />
+            <CarouselNext />
+          </div>
+          <Button
+            text="View All"
+            href="/"
+            type="link"
+            icon="arrow-right"
+          />
+        </div>
       </Carousel>
     </div>
   )

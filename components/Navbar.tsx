@@ -4,15 +4,13 @@ import { NavMenu } from './NavMenu';
 import Link from 'next/link';
 import Button from './Button';
 import { Gift } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 const Navbar = ({ color } : { color: string; }) => {
-  // log color when it changes
-  useEffect(() => {
-    console.log(color);
-  }, []);
+  const pathname = usePathname()
 
   return (
-    <nav id="nav" className='px-6 py-4 md:py-6'>
+    <nav id="nav" className='px-6 py-4 md:py-6' style={{background: pathname === '/business' ? '#080808' : 'transparent'}}>
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-10 xl:space-x-20">
