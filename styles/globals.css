@@ -21,7 +21,7 @@ body {
   color: #000000;
   font-family: "Archivo";
   font-weight: 400;
-  transition: all 0.5s ease;
+  transition: all 0.5s ease 0.2s;
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -53,7 +53,7 @@ h1 {
 h2 {
   font-size: clamp(1.875rem, 0.086rem + 5.725vw, 3.75rem);
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 120%;
   letter-spacing: 0.9px;
 }

@@ -6,8 +6,10 @@ import { ChevronRight } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <FooterContainer>
-      <div><Logo style="dark" /></div>
+    <FooterContainer className='p-8 md:p-16 grid-cols-2 md:grid-cols-6'>
+      <div className='col-span-2 md:col-span-1 grid place-items-center md:block mb-8 md:mb-0'>
+        <Logo style="dark" />
+      </div>
       
       <div>
         <div className="text-lg font-semibold mb-6">Personal</div>
@@ -96,9 +98,7 @@ export default function Footer() {
 
 const FooterContainer = styled.footer`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
   grid-gap: 24px;
-  padding: 60px;
   background-color: #080808;
   color: #fff;
 
