@@ -15,18 +15,17 @@ type Props = {
   }[]
 }
 
-export default function PDFList({name, hasFilter, pdfs}: Props) {
-  const [data, setData] = React.useState([]);
+export default function PDFList({name, hasFilter}: Props) {
+  const [data, setData] = React.useState<any>(null);
   const [page, setPage] = React.useState(1);
   const [limit, setLimit] = React.useState(10);
   const [offset, setOffset] = React.useState(0);
 
   React.useEffect(() => {
-    fetchData();
+    // fetchData();
   }, [page]);
 
   const fetchData = async () => {
-    // Make your API request with the query and pagination parameters
     const response = await fetch(`/api/query?limit=${limit}&offset=${offset}`);
     const newData = await response.json();
     setData(newData);
@@ -43,8 +42,14 @@ export default function PDFList({name, hasFilter, pdfs}: Props) {
   };
 
   React.useEffect(() => {
-    builder.get('pdf-list').promise().then(( data: any ) => {
-      console.log(data.data.pdfs)
+    builder.get('pdf-list',{
+      query: {
+        data: {
+          listName: name
+        }
+      }
+    }).promise().then(( data: any ) => {
+      if (data.data) setData(data.data)
     })
   }, [])
 
@@ -52,7 +57,7 @@ export default function PDFList({name, hasFilter, pdfs}: Props) {
     <>
       <h3 className='mb-6'>{name}</h3>
       {
-        pdfs?.map((pdf, index) => (
+        data?.pdfs?.map((pdf: any, index: number) => (
           <PDFCard key={index} className='mb-4'>
             <a href={pdf.file} target='_blank' rel='noopener noreferrer'>
               <h6>{pdf.title}</h6>
@@ -67,7 +72,12 @@ export default function PDFList({name, hasFilter, pdfs}: Props) {
 }
 
 const PDFCard = styled.div`
-  padding: 12px;
+  padding: 20px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
+
+  & h6 {
+    font-size: 16px;
+    font-weight: 500;
+  }
 `

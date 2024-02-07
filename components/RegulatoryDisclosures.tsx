@@ -13,7 +13,7 @@ const navItems = [
     title: 'E-Auction',
   },
   {
-    title: 'Other disclosures',
+    title: 'Other Disclosures',
   },
 ]
 
@@ -21,7 +21,7 @@ export default function RegulatoryDisclosures() {
   const [page, setPage] = React.useState(0)
 
   return (
-    <div className='grid grid-cols-4'>
+    <div className='grid grid-cols-4 p-10'>
 
       {/* Menu */}
       <div className='flex flex-col gap-6'>
@@ -33,7 +33,7 @@ export default function RegulatoryDisclosures() {
               className={`cursor-pointer w-fit px-5 py-3 rounded-full ${page === i ? 'bg-black text-white' : ''}`}
             >
               <div>{_.title}</div>
-            </a>           
+            </a>
           ))
         }
       </div>
@@ -54,7 +54,6 @@ export default function RegulatoryDisclosures() {
             <PDFList
               name="Policies"
               hasFilter={false}
-              pdfs={[]}
             />
           )
         }
@@ -65,7 +64,6 @@ export default function RegulatoryDisclosures() {
             <PDFList
               name="E-Auction"
               hasFilter={true}
-              pdfs={[]}
             />
           )
         }
@@ -74,9 +72,8 @@ export default function RegulatoryDisclosures() {
         {
           page === 3 && (
             <PDFList
-              name="Other disclosures"
+              name="Other Disclosures"
               hasFilter={false}
-              pdfs={[]}
             />
           )
         }
