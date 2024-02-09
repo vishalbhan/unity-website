@@ -51,30 +51,39 @@ export default function RegulatoryDisclosures() {
         {/* Policies */}
         {
           page === 1 && (
-            <PDFList
-              name="Policies"
-              hasFilter={false}
-            />
+            <>
+              <h3 className='mb-6'>Policies</h3>
+              <PDFList
+                name="Policies"
+                hasFilter={false}
+              />
+            </>
           )
         }
 
         {/* E-Auction */}
         {
           page === 2 && (
-            <PDFList
-              name="E-Auction"
-              hasFilter={true}
-            />
+            <>
+              <h3 className='mb-6'>E-Auction</h3>
+              <PDFList
+                name="E-Auction"
+                hasFilter={false}
+              />
+            </>
           )
         }
 
         {/* Other disclosures */}
         {
           page === 3 && (
-            <PDFList
-              name="Other Disclosures"
-              hasFilter={false}
-            />
+            <>
+              <h3 className='mb-6'>Other Disclosures</h3>
+              <PDFList
+                name="Other Disclosures"
+                hasFilter={false}
+              />
+            </>
           )
         }
 

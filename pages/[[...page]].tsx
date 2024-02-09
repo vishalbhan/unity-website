@@ -59,7 +59,6 @@ export default function Page({ page }: { page: BuilderContent | null }) {
   const pathname = usePathname()
 
   useEffect(() => {
-    console.log(page?.data?.backgroundColor)
     if (page?.data?.backgroundColor) {
       document.body.style.backgroundColor = page.data.backgroundColor;
     }

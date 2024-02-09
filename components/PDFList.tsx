@@ -55,7 +55,6 @@ export default function PDFList({name, hasFilter}: Props) {
 
   return (
     <>
-      <h3 className='mb-6'>{name}</h3>
       {
         data?.pdfs?.map((pdf: any, index: number) => (
           <PDFCard key={index} className='mb-4'>

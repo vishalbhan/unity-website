@@ -1,12 +1,18 @@
 import React from 'react'
-import Rive from '@rive-app/react-canvas';
+import { useRive } from '@rive-app/react-canvas';
 
 export default function RiveAnimation({ rivFile }: { rivFile: string }) {
+  const { rive, RiveComponent } = useRive({
+    src: rivFile,
+    stateMachines: "bumpy",
+    autoplay: false,
+  });
+
   return (
-    <div>
-      <Rive
-        src={rivFile}
-        stateMachines="bumpy"
+    <div className='h-96'>
+      <RiveComponent 
+        onMouseEnter={() => rive && rive.play()}
+        onMouseLeave={() => rive && rive.pause()}
       />
     </div>
   )

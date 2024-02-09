@@ -353,32 +353,6 @@ Builder.registerComponent(
         type: "string",
         required: true,
       },
-      {
-        name: "pdfs",
-        type: "list",
-        required: true,
-        subFields: [
-          {
-            name: "title",
-            type: "string",
-            required: true,
-            defaultValue: "Title",
-          },
-          {
-            name: "file",
-            type: "file",
-            required: true,
-          },
-          {
-            name: "date",
-            type: "date",
-          },
-          {
-            name: "description",
-            type: "text",
-          },
-        ],
-      },
     ],
   }
 );
