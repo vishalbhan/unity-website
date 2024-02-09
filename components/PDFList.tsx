@@ -21,16 +21,6 @@ export default function PDFList({name, hasFilter}: Props) {
   const [limit, setLimit] = React.useState(10);
   const [offset, setOffset] = React.useState(0);
 
-  React.useEffect(() => {
-    // fetchData();
-  }, [page]);
-
-  const fetchData = async () => {
-    const response = await fetch(`/api/query?limit=${limit}&offset=${offset}`);
-    const newData = await response.json();
-    setData(newData);
-  };
-
   const nextPage = () => {
     setPage(page + 1);
   };

@@ -371,3 +371,10 @@ Builder.registerComponent(
     ],
   }
 );
+
+Builder.registerComponent(
+  dynamic(() => import("./components/GSTINTable")),
+  {
+    name: "GSTINTable",
+  }
+);

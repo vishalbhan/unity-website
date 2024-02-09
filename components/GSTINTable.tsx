@@ -1,0 +1,39 @@
+import React from 'react'
+import { builder } from '@builder.io/react';
+
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
+
+export default function GSTINTable() {
+  const [data, setData] = React.useState<any>(null);
+
+  React.useEffect(() => {
+    builder.getAll('gstin').then((data) => {
+      setData(data);
+    })
+  }, []);
+
+  return (
+    <div className="overflow-hidden">
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>State</th>
+            <th>GSTIN</th>
+            <th>Principal of Business</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data?.map((item: any, index: number) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{item.data.state}</td>
+              <td>{item.data.gstin}</td>
+              <td>{item.data.principalOfBusiness}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
