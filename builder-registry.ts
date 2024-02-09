@@ -170,7 +170,7 @@ Builder.registerComponent(
   dynamic(() => import("./components/FAQs")),
   {
     name: "FAQs",
-    friendlyName: "FAQs",
+    friendlyName: "FAQ Section",
     inputs: [
       {
         name: "theme",
@@ -376,5 +376,12 @@ Builder.registerComponent(
   dynamic(() => import("./components/GSTINTable")),
   {
     name: "GSTINTable",
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/FullFAQs")),
+  {
+    name: "FullFAQs",
   }
 );
