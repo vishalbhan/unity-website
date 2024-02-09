@@ -156,7 +156,7 @@ export function NavMenu({ style }: { style: string; }) {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/inclusive" legacyBehavior passHref>
+          <Link href="/inclusive-banking" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()} style={{color: style === "light" ? "#000" : "#FFF"}}>
               Inclusive
             </NavigationMenuLink>

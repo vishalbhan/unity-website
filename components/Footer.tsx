@@ -43,7 +43,7 @@ export default function Footer() {
           <Link href="/business/lockers">Lockers</Link>
           <Link href="/business/nri-banking">NRI Banking</Link>
         </div>
-        <Link href="/inclusive">
+        <Link href="/inclusive-banking">
           <div className="text-lg font-semibold text-white mb-6">Inclusive <ChevronRight size={18} className='inline mb-[2px]' /></div>
         </Link>
         <div className="text-lg font-semibold mb-6">Calculators</div>

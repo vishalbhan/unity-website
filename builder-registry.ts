@@ -376,8 +376,23 @@ Builder.registerComponent(
           {
             name: "description",
             type: "text",
-          }
+          },
         ],
+      },
+    ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/RiveAnimation")),
+  {
+    name: "RiveAnimation",
+    inputs: [
+      {
+        name: "rivFile",
+        friendlyName: "Rive File Link",
+        type: "string",
+        required: true,
       },
     ],
   }

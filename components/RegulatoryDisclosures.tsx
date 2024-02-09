@@ -21,7 +21,7 @@ export default function RegulatoryDisclosures() {
   const [page, setPage] = React.useState(0)
 
   return (
-    <div className='grid grid-cols-4 p-10'>
+    <div className='md:grid grid-cols-4 p-10'>
 
       {/* Menu */}
       <div className='flex flex-col gap-6'>
