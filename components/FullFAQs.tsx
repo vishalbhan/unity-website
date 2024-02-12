@@ -15,20 +15,28 @@ export default function FullFAQs() {
   }, []);
   
   return (
-    <div className='grid grid-cols-3'>
+    <div className='grid grid-cols-4'>
       <div className="flex flex-col gap-6">
         {
           data?.map((item: any, index: number) => {
             return (
-              <a key={item.id} onClick={() => setSelectedCategory(index)}>
-                <p>{item.data.category}</p>
+              <a 
+                key={item.id} 
+                onClick={() => setSelectedCategory(index)}
+                className={`w-fit cursor-pointer p-4 rounded-full ${selectedCatgeory === index ? 'bg-black text-white' : ''}`}
+              >
+                {item.data.category}
               </a>
             )
           })
         }
       </div>
-      <div className="col-span-2">
-        { data && <FAQs theme="light" faqs={data[selectedCatgeory].data.questions} /> }
+      <div className="col-span-3">
+        { data && 
+          <div className='-mt-10'>
+            <FAQs theme="light" faqs={data[selectedCatgeory].data.questions} /> 
+          </div>
+        }
       </div>
     </div>
   )

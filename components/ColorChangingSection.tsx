@@ -33,6 +33,12 @@ const ColorChangingSectionComponent = ({ beforeColor, bgColor, text, children }:
         }
       },
     });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => {
+        trigger.kill();
+      });
+    }
   }, [bgRef.current]);
 
   return (

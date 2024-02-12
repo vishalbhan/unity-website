@@ -47,9 +47,9 @@ export default function PDFList({name, hasFilter}: Props) {
     <>
       {
         data?.pdfs?.map((pdf: any, index: number) => (
-          <PDFCard key={index} className='mb-4'>
+          <PDFCard key={index} className='sm mb-4'>
             <a href={pdf.file} target='_blank' rel='noopener noreferrer'>
-              <h6>{pdf.title}</h6>
+              <p>{pdf.title}</p>
               { pdf.description && <p className='text-gray-500 text-sm mt-4'>{pdf.description}</p> }
               { pdf.date && <p className='text-gray-500 text-sm mt-4'>{pdf.date}</p> }
             </a>
@@ -61,7 +61,7 @@ export default function PDFList({name, hasFilter}: Props) {
 }
 
 const PDFCard = styled.div`
-  padding: 20px;
+  padding: 24px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
 

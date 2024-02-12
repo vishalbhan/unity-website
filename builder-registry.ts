@@ -385,3 +385,10 @@ Builder.registerComponent(
     name: "FullFAQs",
   }
 );
+
+Builder.registerComponent(
+  dynamic(() => import("./components/InvestorsDisclosures")),
+  {
+    name: "InvestorsDisclosures",
+  }
+);

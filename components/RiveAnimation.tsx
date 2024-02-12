@@ -3,9 +3,9 @@ import { useRive } from '@rive-app/react-canvas';
 
 export default function RiveAnimation({ rivFile }: { rivFile: string }) {
   const { rive, RiveComponent } = useRive({
-    src: rivFile,
+    src: '/rive/savings.riv',
     stateMachines: "bumpy",
-    autoplay: false,
+    autoplay: true,
   });
 
   return (
