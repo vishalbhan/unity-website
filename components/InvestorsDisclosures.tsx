@@ -29,7 +29,7 @@ export default function InvestorsDisclosures() {
   const [page, setPage] = React.useState(0)
 
   return (
-    <div className='md:grid grid-cols-3 gap-8 p-10'>
+    <div className='md:grid grid-cols-3 gap-8 p-14'>
 
       {/* Menu */}
       <div className='flex flex-col gap-6'>

@@ -392,3 +392,17 @@ Builder.registerComponent(
     name: "InvestorsDisclosures",
   }
 );
+
+Builder.registerComponent(
+  dynamic(() => import("./components/FundRaisingProducts")),
+  {
+    name: "FundRaisingProducts",
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/FixedIncomeProducts")),
+  {
+    name: "FixedIncomeProducts",
+  }
+);
