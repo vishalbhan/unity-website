@@ -57,7 +57,7 @@ const navItems = {
     },
     {
       title: 'Supply Chain Financing',
-      href: '/business/supply-chain-financing',
+      href: '/business/supply-chain-finance',
       icon: <SupplyChainFinancing />
     },
     {

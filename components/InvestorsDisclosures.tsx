@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PDFList from './PDFList'
+import { builder } from '@builder.io/react';
+
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
 const navItems = [
   {
@@ -27,6 +30,29 @@ const navItems = [
 
 export default function InvestorsDisclosures() {
   const [page, setPage] = React.useState(0)
+  const [data, setData] = React.useState<any>([]) 
+
+  useEffect(() => {
+    if (page === 4) {
+      builder.get('contact-person', {
+        query: {
+          name: "Registrar and Share Transfer Agent"
+        }
+      }).promise().then(( data: any ) => {
+        if (data) setData(data.data)
+      })
+    }
+
+    if (page === 5) {
+      builder.get('contact-person', {
+        query: {
+          name: "Investor Grievances"
+        }
+      }).promise().then(( data: any ) => {
+        if (data) setData(data.data)
+      })
+    }
+  }, [page])
 
   return (
     <div className='md:grid grid-cols-3 gap-8 p-14'>
@@ -116,6 +142,7 @@ export default function InvestorsDisclosures() {
           page === 4 && (
             <>
               <h3 className='mb-6'>Registrar and Share Transfer Agent</h3>
+              <div className="transparent-card" dangerouslySetInnerHTML={{__html:data.content}} />
             </>
           )
         }
@@ -125,6 +152,7 @@ export default function InvestorsDisclosures() {
           page === 5 && (
             <>
               <h3 className='mb-6'>Investor Grievances</h3>
+              <div className="transparent-card" dangerouslySetInnerHTML={{__html:data.content}} />
             </>
           )
         }
