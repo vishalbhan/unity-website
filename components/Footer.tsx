@@ -88,7 +88,7 @@ export default function Footer() {
         <div className='flex flex-col gap-3 mb-6'>
           <Link href="/contact-us">Contact Us</Link>
           <Link href="/media-centres">Media Centres</Link>
-          <Link href="/feedback-form">Feedback Form</Link>
+          <Link href="/forms">Feedback Form</Link>
         </div>
       </div>
 
