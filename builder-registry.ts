@@ -406,3 +406,10 @@ Builder.registerComponent(
     name: "FixedIncomeProducts",
   }
 );
+
+Builder.registerComponent(
+  dynamic(() => import("./components/AppreciationForm")),
+  {
+    name: "AppreciationForm",
+  }
+);
