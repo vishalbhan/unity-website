@@ -413,3 +413,10 @@ Builder.registerComponent(
     name: "AppreciationForm",
   }
 );
+
+Builder.registerComponent(
+  dynamic(() => import("./components/MediaCentres")),
+  {
+    name: "MediaCentres",
+  }
+);
