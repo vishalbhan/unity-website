@@ -5,15 +5,9 @@ import { builder } from '@builder.io/react';
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
 const navItems = [
-  {
-    title: 'Short Term',
-  },
-  {
-    title: 'Medium Term',
-  },
-  {
-    title: 'Long Term',
-  },
+  { title: 'Short Term' },
+  { title: 'Medium Term'},
+  { title: 'Long Term' },
 ]
 
 type Service = {

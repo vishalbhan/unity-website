@@ -8,6 +8,9 @@ import {
 } from "@/components/ui/carousel"
 import styled from 'styled-components'
 import Button from './Button'
+import { builder } from '@builder.io/react';
+
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
 type Blogs = {
   blogs: {
@@ -23,7 +26,7 @@ type Blogs = {
   }[]
 }
 
-const blogs = [
+const blogsSeed = [
   {
     title: 'How to save your money efficiently in your life?',
     slug: 'how-to-save-your-money-efficiently-in-your-life',
@@ -70,7 +73,7 @@ const blogs = [
   },
 ]
 
-export default function BlogPreview() {
+export default function BlogPreview({ blogs }: any) {
   return (
     <div className='my-20 max-w-full'>
       <h2 className='mb-16'>Our blogs and stories</h2>
@@ -81,31 +84,49 @@ export default function BlogPreview() {
         className="w-full pb-20"
       >
         <CarouselContent className='items-stretch'>
-          {blogs.map((_, index) => (
-            <CarouselItem key={index} className={`${_.type === 'story' ? 'md:basis-1/2' : 'md:basis-1/3'}`}>
+          {
+            blogsSeed.map((_: any, index: number) => (
+              <CarouselItem key={index} className={`${_.type === 'story' ? 'md:basis-1/2' : 'md:basis-1/3'}`}>
+                <BlogCard className='h-full'>
+                  <div 
+                    style={{backgroundImage: `url(${_.image})`}}
+                    className={`relative bg-cover bg-center w-full h-72 ${_.type === 'blog' ? 'aspect-square' : 'aspect-video'}`}
+                  >
+                    <Badge className='absolute top-4 left-4'>{_.type.toUpperCase()}</Badge>
+                  </div>
+                  <div className='p-6'>
+                    <h6 className='mb-6'>{_.title}</h6>
+                    <div className='text-gray-500 mb-6'>{_.readTime} min read | 1 day ago</div>
+                  </div>
+                </BlogCard>
+              </CarouselItem>
+            ))
+          }
+          {/* {blogs.length > 0 && blogs.map((_: any, index: number) => (
+            <CarouselItem key={index} className={`${_.article.value.data.type === 'story' ? 'md:basis-1/2' : 'md:basis-1/3'}`}>
               <BlogCard className='h-full'>
                 <div 
-                  style={{backgroundImage: `url(${_.image})`}}
-                  className={`relative bg-cover bg-center w-full h-72 ${_.type === 'blog' ? '' : 'aspect-video'}`}
+                  style={{backgroundImage: `url(${_.article.value.data.image})`}}
+                  className={`relative bg-cover bg-center w-full h-72 ${_.article.value.data.type === 'blog' ? 'aspect-square' : 'aspect-video'}`}
                 >
-                  <Badge className='absolute top-4 left-4'>{_.type.toUpperCase()}</Badge>
+                  <Badge className='absolute top-4 left-4'>{_.article.value.data.type.toUpperCase()}</Badge>
                 </div>
                 <div className='p-6'>
-                  <h6 className='mb-6'>{_.title}</h6>
-                  <div className='text-gray-500 mb-6'>{_.readTime} min read | 1 day ago</div>
+                  <h6 className='mb-6'>{_.article.value.data.title}</h6>
+                  <div className='text-gray-500 mb-6'>{_.article.value.data.readTime} min read | 1 day ago</div>
                 </div>
               </BlogCard>
             </CarouselItem>
-          ))}
+          ))} */}
         </CarouselContent>
         <div className="flex items-end justify-between mt-20">
           <div>
             <CarouselPrevious className='mr-4' />
             <CarouselNext />
-          </div>
+          </div>"
           <Button
             text="View All"
-            href="/"
+            href="/blog"
             type="link"
             icon="arrow-right"
           />

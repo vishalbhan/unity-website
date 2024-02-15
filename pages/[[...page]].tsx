@@ -21,6 +21,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       userAttributes: {
         urlPath: "/" + ((params?.page as string[])?.join("/") || ""),
       },
+      options: {
+        enrich: true
+      }
     })
     .toPromise();
 
@@ -41,7 +44,7 @@ export async function getStaticPaths() {
   const pages = await builder.getAll("page", {
     // We only need the URL field
     fields: "data.url",
-    options: { noTargeting: true },
+    options: { noTargeting: true, enrich: true },
   });
 
   // Generate the static paths for all pages in Builder

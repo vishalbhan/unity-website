@@ -217,6 +217,19 @@ Builder.registerComponent(
   {
     name: "BlogPreview",
     friendlyName: "Blog Preview",
+    inputs: [
+      {
+        name: "blogs",
+        type: "list",
+        subFields: [
+          {
+            name: "article",
+            type: "reference",
+            model: "blog-articles",
+          }
+        ]
+      }
+    ]
   }
 );
 
