@@ -49,7 +49,7 @@ export default function ManagementTeam() {
                     </div>
                   </TeamItem>
                 </DialogTrigger>
-                <DialogPortal>
+                <DialogPortal container={document.querySelector("main")}>
                   <DialogContent className='bg-white' style={{maxWidth:'860px'}}>
                     <div className="grid grid-cols-3">
                       <div className='border-r-2 p-6'>

@@ -1,4 +1,3 @@
-// pages/blog/[handle].jsx
 import {
   builder,
   BuilderComponent,
@@ -11,6 +10,7 @@ import DefaultErrorPage from "next/error";
 import { EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import Navbar from "@/components/Navbar";
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY);
 
@@ -45,47 +45,46 @@ function BlogArticle({ article }) {
               <meta name="og:image" content={data?.image} />
             </Head>
 
-            <section className="text-white bg-cover" style={{backgroundImage:`url(${data?.image})`}}>
-              <div className="container mx-auto">
-                <div className="flex py-32 md:py-64 lg:py-0 h-auto lg:h-screen">
-                  <div className="w-screen m-auto">
-                    <div className="max-w-[420px]">
-                      <h1 className="mb-4">{data?.title}</h1>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
+            <Navbar color="light" />
 
             <section>
               <div className="container mx-auto">
 
-                <BlogContent className="my-12">
-                  {/* Render the Builder drag/drop'd content */}
-                  <BuilderComponent
-                    model="blog-articles"
-                    content={fullContent}
-                  />
-                </BlogContent>
+                <img src={data?.image} alt={data?.title} className="w-full object-cover rounded-x mb-12" />
 
-                <div className="my-8 p-6 rounded-md">
-                  <h4 className='text-center text-sm uppercase mb-6'>Share this article</h4>
-                  <div className="flex flex-row flex-wrap justify-center gap-4 sm:gap-12">
-                    <EmailShareButton url={shareUrl}>
-                      <EmailIcon size={32} round />
-                    </EmailShareButton>
-                    <FacebookShareButton url={shareUrl}>
-                      <FacebookIcon size={32} round />
-                    </FacebookShareButton>
-                    <LinkedinShareButton url={shareUrl}>
-                      <LinkedinIcon size={32} round />
-                    </LinkedinShareButton>
-                    <TwitterShareButton url={shareUrl}>
-                      <TwitterIcon size={32} round />
-                    </TwitterShareButton>
-                    <WhatsappShareButton url={shareUrl}>
-                      <WhatsappIcon size={32} round />
-                    </WhatsappShareButton>
+                <div className="grid grid-cols-3 gap-8">
+                  <div className="col-span-2">
+                    <h2 className="mb-4">{data?.title}</h2>
+                    <p className='text-gray-500'>{data?.readTime} min read | 1 day ago</p>
+                    <hr className="mt-4 mb-8" />
+                    <BlogContent className="mb-12">
+                      {/* Render the Builder drag/drop'd content */}
+                      <BuilderComponent
+                        model="blog-articles"
+                        content={fullContent}
+                      />
+                    </BlogContent>
+                  </div>
+                  {/* Sidebar */}
+                  <div>
+                    <h5 className='text-sm mb-6'>Share this article</h5>
+                    <div className="flex flex-wrap gap-2">
+                      <EmailShareButton url={shareUrl}>
+                        <EmailIcon size={32} round />
+                      </EmailShareButton>
+                      <FacebookShareButton url={shareUrl}>
+                        <FacebookIcon size={32} round />
+                      </FacebookShareButton>
+                      <LinkedinShareButton url={shareUrl}>
+                        <LinkedinIcon size={32} round />
+                      </LinkedinShareButton>
+                      <TwitterShareButton url={shareUrl}>
+                        <TwitterIcon size={32} round />
+                      </TwitterShareButton>
+                      <WhatsappShareButton url={shareUrl}>
+                        <WhatsappIcon size={32} round />
+                      </WhatsappShareButton>
+                    </div>
                   </div>
                 </div>
 
