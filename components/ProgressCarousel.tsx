@@ -43,11 +43,11 @@ export default function ProgressCarousel({ sections }: { sections: Sections }) {
       <div className='max-w-2xl mx-auto mb-12'>
       <Progress.Root
         className="relative overflow-hidden bg-white rounded-full w-full h-[15px]"
-        style={{
-          // Fix overflow clipping in Safari
-          // https://gist.github.com/domske/b66047671c780a238b51c51ffde8d3a0
-          transform: 'translateZ(0)',
-        }}
+        // style={{
+        //   // Fix overflow clipping in Safari
+        //   // https://gist.github.com/domske/b66047671c780a238b51c51ffde8d3a0
+        //   transform: 'translateZ(0)',
+        // }}
         value={progress}
       >
         <Progress.Indicator
@@ -58,7 +58,13 @@ export default function ProgressCarousel({ sections }: { sections: Sections }) {
         <div className="flex items-center justify-around">
           {
             sections.map((section, i) => (
-              <h5 key={i} className='p-8'>{section.title}</h5>
+              <h5 
+                key={`carousel-section-${i}`}
+                className='cursor-pointer p-8'
+                onClick={() => api?.scrollTo(i * sections[i].cards.length)}
+              >
+                {section.title}
+              </h5>
             ))
           }
         </div>

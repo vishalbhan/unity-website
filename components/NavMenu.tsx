@@ -9,36 +9,52 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { PersonalCurrentAccount, FixedDeposit, Lockers, RecurringDeposit, SavingsAccount, MSMELoans, BusinessCurrentAccount, BusinessOverview, SupplyChainFinancing, DigitalLending, SocialInfrastructure, AboutUnity, TreasuryServices, OurTeam, CommunicationCentre, Careers, PMCBankSchemes, Investors, RegulatoryDisclosures } from "./icons"
+import { PersonalCurrentAccount, FixedDeposit, Lockers, RecurringDeposit, SavingsAccount, MSMELoans, BusinessCurrentAccount, BusinessOverview, SupplyChainFinancing, DigitalLending, SocialInfrastructure, AboutUnity, TreasuryServices, OurTeam, CommunicationCentre, Careers, PMCBankSchemes, Investors, RegulatoryDisclosures, PersonalLoans, PersonalInsurance } from "./icons"
 
 const navItems = {
-  personal: [
-    {
-      title: 'Savings Account',
-      href: '/personal/savings-account',
-      icon: <SavingsAccount />
-    },
-    {
-      title: 'Current Account',
-      href: '/personal/current-account',
-      icon: <PersonalCurrentAccount />
-    },
-    {
-      title: 'Fixed Deposit',
-      href: '/personal/fixed-deposit',
-      icon: <FixedDeposit />
-    },
-    {
-      title: 'Recurring Deposit',
-      href: '/personal/recurring-deposit',
-      icon: <RecurringDeposit />
-    },
-    {
-      title: 'Lockers',
-      href: '/personal/lockers',
-      icon: <Lockers />
-    }
-  ],
+  personal: {
+    save: [
+      {
+        title: 'Savings Account',
+        href: '/personal/savings-account',
+        icon: <SavingsAccount />
+      },
+      {
+        title: 'Current Account',
+        href: '/personal/current-account',
+        icon: <PersonalCurrentAccount />
+      },
+      {
+        title: 'Fixed Deposit',
+        href: '/personal/fixed-deposit',
+        icon: <FixedDeposit />
+      },
+      {
+        title: 'Recurring Deposit',
+        href: '/personal/recurring-deposit',
+        icon: <RecurringDeposit />
+      },
+      {
+        title: 'Lockers',
+        href: '/personal/lockers',
+        icon: <Lockers />
+      }
+    ],
+    borrow: [
+      {
+        title: 'Personal Loan',
+        href: '/personal/loans',
+        icon: <PersonalLoans />
+      }
+    ],
+    invest: [
+      {
+        title: 'General/Health Insurance',
+        href: '/personal/insurance',
+        icon: <PersonalInsurance />
+      },
+    ]
+  },
   business: [
     {
       title: 'Overview',
@@ -116,25 +132,65 @@ const navItems = {
 }
 
 export function NavMenu({ style }: { style: string; }) {
+  const [personalSelectedIndex, setPersonalSelectedIndex] = React.useState(0)
+
   return (
-    <NavigationMenu className="hidden md:block">
+    <NavigationMenu>
       <NavigationMenuList className="gap-2 xl:gap-6">
         <NavigationMenuItem className="relative">
           <NavigationMenuTrigger style={{color: style === "light" ? "#000" : "#FFF"}}>Personal</NavigationMenuTrigger>
           <NavigationMenuContent className="p-10 rounded-xl shadow-lg bg-white">
-            <h6 className="mb-8">Personal banking</h6>
-            <ul className="grid grid-cols-2 w-[600px] gap-6">
-              {navItems.personal.map((item) => (
-                <li key={item.href}>
-                  <NavigationMenuLink asChild href={item.href}>
-                    <a className="flex items-center space-x-6">
-                      {item.icon}
-                      <p className="text-sm font-medium">{item.title}</p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-              ))}
-            </ul>
+            <div className="w-[800px]">
+              <h6 className="mb-8">Personal banking</h6>
+              <div className="grid grid-cols-5 items-start gap-8">
+                <div className="col-span-2">
+                  <div className={`sm rounded-xl mb-4 p-4 ${personalSelectedIndex === 0 ? 'bg-[#F5F4F1]' : ''}`} onMouseEnter={() => setPersonalSelectedIndex(0)}>
+                    <h6 className="">Save</h6>
+                    <p>Grow your savings securely with unity accounts and deposits</p>
+                  </div>
+                  <div className={`sm rounded-xl mb-4 p-4 ${personalSelectedIndex === 1 ? 'bg-[#F5F4F1]' : ''}`} onMouseEnter={() => setPersonalSelectedIndex(1)}>
+                    <h6 className="">Borrow</h6>
+                    <p>Get instant loans with interest rates in your interest</p>
+                  </div>
+                  <div className={`sm rounded-xl mb-4 p-4 ${personalSelectedIndex === 2 ? 'bg-[#F5F4F1]' : ''}`} onMouseEnter={() => setPersonalSelectedIndex(2)}>
+                    <h6 className="">Invest</h6>
+                    <p>Secure your future with health insurance etc</p>
+                  </div>
+                </div>
+                <ul className="col-span-3 grid grid-cols-2 gap-6">
+                  {personalSelectedIndex === 0 && navItems.personal.save.map((item) => (
+                    <li key={item.href}>
+                      <NavigationMenuLink asChild href={item.href}>
+                        <a className="flex items-center space-x-6">
+                          {item.icon}
+                          <p className="text-sm font-medium">{item.title}</p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  ))}
+                  {personalSelectedIndex === 1 && navItems.personal.borrow.map((item) => (
+                    <li key={item.href}>
+                      <NavigationMenuLink asChild href={item.href}>
+                        <a className="flex items-center space-x-6">
+                          {item.icon}
+                          <p className="text-sm font-medium">{item.title}</p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  ))}
+                  {personalSelectedIndex === 2 && navItems.personal.invest.map((item) => (
+                    <li key={item.href} className="col-span-2">
+                      <NavigationMenuLink asChild href={item.href}>
+                        <a className="flex items-center space-x-6">
+                          {item.icon}
+                          <p className="text-sm font-medium">{item.title}</p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem className="relative">

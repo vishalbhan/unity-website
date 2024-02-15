@@ -226,10 +226,10 @@ Builder.registerComponent(
             name: "article",
             type: "reference",
             model: "blog-articles",
-          }
-        ]
-      }
-    ]
+          },
+        ],
+      },
+    ],
   }
 );
 
@@ -431,5 +431,31 @@ Builder.registerComponent(
   dynamic(() => import("./components/MediaCentres")),
   {
     name: "MediaCentres",
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/ImageSwitcher")),
+  {
+    name: "ImageSwitcher",
+    inputs: [
+      {
+        name: "data",
+        type: "list",
+        required: true,
+        subFields: [
+          {
+            name: "title",
+            type: "string",
+            required: true,
+          },
+          {
+            name: "code",
+            type: "code",
+            required: true,
+          },
+        ],
+      },
+    ],
   }
 );
