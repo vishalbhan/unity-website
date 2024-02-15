@@ -215,8 +215,8 @@ export default function MobileNav({
 const MobileMenuContainer = styled.div<{isOpen: boolean;}>`
   position: fixed;
   inset: 0;
-  width: 100lvw;
-  height: 100lvh;
+  width: 100vw;
+  height: 100svh;
   background: #fff;
   z-index: 100;
   transform: ${({isOpen}) => isOpen ? "translateX(0)" : "translateX(100%)"};
