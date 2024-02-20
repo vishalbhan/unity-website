@@ -38,10 +38,10 @@ export default function Footer() {
         </Link>
         <div className='flex flex-col gap-3 mb-6'>
           <Link href="/business/current-account">Current Account</Link>
-          <Link href="/business/loans">Loans</Link>
           <Link href="/business/msme-loans">MSME Loans</Link>
-          <Link href="/business/lockers">Lockers</Link>
-          <Link href="/business/nri-banking">NRI Banking</Link>
+          <Link href="/business/supply-chain-finance">Supply Chain Financing</Link>
+          <Link href="/business/digital-lending">Digital Lending</Link>
+          <Link href="/business/social-infra-finance">Social Infra Finance</Link>
         </div>
         <Link href="/inclusive-banking">
           <div className="text-lg font-semibold text-white mb-6">Inclusive <ChevronRight size={18} className='inline mb-[2px]' /></div>
