@@ -51,9 +51,9 @@ export default function ManagementTeam() {
                 </DialogTrigger>
                 <DialogPortal container={document.querySelector("main")}>
                   <DialogContent className='bg-white' style={{maxWidth:'860px'}}>
-                    <div className="grid grid-cols-3">
-                      <div className='border-r-2 p-6'>
-                        <img src={item.data.image} alt={item.data.name} className='object-cover mb-4' />
+                    <div className="grid grid-cols-1 md:grid-cols-3">
+                      <div className='md:border-r-2 md:p-6'>
+                        <img src={item.data.image} alt={item.data.name} className='w-40 md:w-full object-cover mb-4' />
                         <div className="text-[14px] text-gray-500 mb-4">{item.data.designation}</div>
                         <div className='text-lg font-semibold mb-4'>{item.data.name}</div>
                         {
@@ -68,9 +68,9 @@ export default function ManagementTeam() {
                           </a>
                         }
                       </div>
-                      <div className="col-span-2 p-6 sm">
+                      <div className="col-span-2 md:p-6 sm">
                         <div className='text-lg font-semibold mb-4'>About {item.data.name}</div>
-                        <p>
+                        <p className='max-h-80 overflow-y-scroll md:max-h-none'>
                           {item.data.bio}
                         </p>
                       </div>

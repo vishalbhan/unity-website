@@ -123,7 +123,7 @@ export default function BlogPreview({ blogs }: any) {
           <div>
             <CarouselPrevious className='mr-4' />
             <CarouselNext />
-          </div>"
+          </div>
           <Button
             text="View All"
             href="/blog"
