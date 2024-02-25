@@ -6,6 +6,7 @@ import Button from './Button';
 import { Gift, Menu } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import MobileNav from './MobileNav';
+import AnimatedNavMenu from './AnimatedNavMenu';
 
 const Navbar = ({ color } : { color: string; }) => {
   const pathname = usePathname()
@@ -16,7 +17,7 @@ const Navbar = ({ color } : { color: string; }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-10 xl:space-x-20">
             <Link href="/"><Logo style={color} /></Link>
-            <div className="hidden lg:block"><NavMenu style={color} /></div>
+            <div className="hidden lg:block"><AnimatedNavMenu color={color} /></div>
           </div>
           <div className="flex items-center space-x-4 md:space-x-8">
             <Gift style={{color: color === "light" ? "#000" : "#FFF"}} />

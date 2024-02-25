@@ -80,8 +80,9 @@ export default function Page({ page }: { page: BuilderContent | null }) {
       <Head>
         <title>{page?.data?.title}</title>
       </Head>
-      {/* Render the Builder page */}
+
       <Navbar color={page?.data?.navigationStyle} />
+
       <BuilderComponent 
         model="page"
         content={page || undefined} 
