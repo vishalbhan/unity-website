@@ -24,7 +24,7 @@ const navItems = [
   },
   {
     title: 'Inclusive',
-    href: '/inclusive',
+    href: '/inclusive-banking',
     hasDropdown: false,
   },
   {
@@ -56,7 +56,7 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
 
   return (
     <nav className="z-50 relative" onMouseEnter={() => setHovering(null)}>
-      <div className='flex gap-2'>
+      <div className='flex gap-4'>
         {
           navItems.map((item, index) => (
             <NavMenuItem key={item.title}>
@@ -66,6 +66,7 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
                     href={item.href}
                     onMouseEnter={(e) => handleMouseEnter(index, e.currentTarget)}
                     className='flex items-center'
+                    style={{color: color === "light" ? "#000" : "#fff"}}
                   >
                     {item.title}
                     <ChevronDown size={16} className={clsx('ml-1 transition-all duration-150', hovering === index ? "rotate-180" : "")} />
@@ -74,6 +75,7 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
                   <a 
                     href={item.href}
                     onMouseEnter={() => setHovering(null)}
+                    style={{color: color === "light" ? "#000" : "#fff"}}
                   >
                     {item.title}
                   </a>
