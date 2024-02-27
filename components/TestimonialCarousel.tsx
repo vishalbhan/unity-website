@@ -13,40 +13,40 @@ const testimonialSeed = [
   {
     type: "video",
     videoUrl: "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4",
-    name: "John Doe",
+    videoUserName: "John Doe",
   },
   {
     type: "text",
-    title: "Amazing banking experience",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    name: "Jane Doe",
+    textTitle: "Amazing banking experience",
+    textContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    textUserName: "Jane Doe",
   },
   {
     type: "double",
     textUserImage: "https://picsum.photos/200/200",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
+    textContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
     textUserName: "John Doe",
     videoUrl: "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4",
-    videoName: "Jane Doe",
+    videoUserName: "Jane Doe",
   },
   {
     type: "video",
     videoUrl: "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4",
-    name: "John Doe",
+    videoUserName: "John Doe",
   },
   {
     type: "text",
-    title: "Amazing banking experience",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    name: "Jane Doe",
+    textTitle: "Amazing banking experience",
+    textContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    textUserName: "Jane Doe",
   },
   {
     type: "double",
     textUserImage: "https://picsum.photos/200/200",
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
+    textContent: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.",
     textUserName: "John Doe",
     videoUrl: "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4",
-    videoName: "Jane Doe",
+    videoUserName: "Jane Doe",
   },
 ]
 
@@ -75,15 +75,15 @@ export default function TestimonialCarousel({ testimonials }: any) {
                       <source src={_.videoUrl} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-                    <p className='absolute bottom-4 left-4 font-semibold text-white'>{_.name}</p>
+                    <p className='absolute bottom-4 left-4 font-semibold text-white'>{_.videoUserName}</p>
                   </div>
                 }
                 {
                   _.type === "text" &&
                   <div className="dark-card aspect-[9/16]">
-                    <h6 className='mb-6'>{_.title}</h6>
-                    <div className='text-[rgba(255,255,255,0.8)] mb-6'>{_.text}</div>
-                    <p className='font-semibold text-white'>{_.name}</p>
+                    <h6 className='mb-6'>{_.textTitle}</h6>
+                    <div className='text-[rgba(255,255,255,0.8)] mb-6'>{_.textContent}</div>
+                    <p className='font-semibold text-white'>{_.textUserName}</p>
                   </div>
                 }
                 {
@@ -92,7 +92,7 @@ export default function TestimonialCarousel({ testimonials }: any) {
                     <div className='white-card mb-4 aspect-square grid place-items-center text-center'>
                       <div>
                         <img src={_.textUserImage} className='w-16 h-16 rounded-full mb-6 mx-auto' />
-                        <div className='mb-4'>{_.text}</div>
+                        <div className='mb-4'>{_.textContent}</div>
                         <p className='font-semibold'>{_.textUserName}</p>
                       </div>
                     </div>
@@ -101,7 +101,7 @@ export default function TestimonialCarousel({ testimonials }: any) {
                       <source src={_.videoUrl} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
-                    <p className='absolute bottom-4 left-4 font-semibold text-white'>{_.videoName}</p>
+                    <p className='absolute bottom-4 left-4 font-semibold text-white'>{_.videoUserName}</p>
                   </div>
                   </>
                 }
