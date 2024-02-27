@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { builder } from '@builder.io/react';
 import ReactPaginate from 'react-paginate';
 import { Input } from './ui/input';
+import { format } from 'date-fns';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -70,10 +71,10 @@ function PDFList({ name, hasFilter }: Props) {
           <a href={pdf.file} target="_blank" rel="noopener noreferrer">
             <p>{pdf.title}</p>
             {pdf.description && (
-              <p className="text-gray-500 text-sm mt-4">{pdf.description}</p>
+              <div className="text-gray-500 text-sm mt-4">{pdf.description}</div>
             )}
             {pdf.date && (
-              <p className="text-gray-500 text-sm mt-4">{pdf.date}</p>
+              <div className="text-gray-500 text-sm mt-4">- {format(pdf.date, 'LLLL	do, yyyy')}</div>
             )}
           </a>
         </PDFCard>

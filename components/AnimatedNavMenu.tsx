@@ -90,7 +90,8 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
           style={{ 
             width: hovering === 0 && 900 || 650,
             height: popoverHeight || 0,
-            left: popoverLeft || 0 
+            left: popoverLeft || 0,
+            borderRadius: '24px'
           }}
         >
           <SlideWrapper index={0} hovering={hovering} setHovering={setHovering}>
