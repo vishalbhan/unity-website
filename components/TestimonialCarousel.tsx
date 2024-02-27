@@ -67,7 +67,7 @@ export default function TestimonialCarousel({ testimonials }: any) {
         <CarouselContent className='items-center'>
           {
             testimonialSeed.map((_: any, index: number) => (
-              <CarouselItem key={index} className={`md:basis-1/3`}>
+              <CarouselItem key={index} className={`basis-2/3 md:basis-1/3`}>
                 {
                   _.type === "video" &&
                   <div className="dark-card relative aspect-[9/16]">

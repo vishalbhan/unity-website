@@ -48,7 +48,8 @@ const ColorChangingSectionComponent = ({ beforeColor, bgColor, text, children }:
   return (
     <div className="my-20">
       <div className="relative">
-        <Background 
+        <Background
+          className="absolute inset-0 w-full h-full"
           style={{backgroundColor: bgColor}}
           ref={bgRef}
         />

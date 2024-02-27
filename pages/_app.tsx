@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <main className={archivo.className}>
+      <main id="main" className={archivo.className}>
         <Component {...pageProps} />
         <Footer />
       </main>

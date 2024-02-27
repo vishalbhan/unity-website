@@ -86,7 +86,7 @@ export default function BlogPreview({ blogs }: any) {
         <CarouselContent className='items-stretch'>
           {
             blogsSeed.map((_: any, index: number) => (
-              <CarouselItem key={index} className={`${_.type === 'story' ? 'md:basis-1/2' : 'md:basis-1/3'}`}>
+              <CarouselItem key={index} className={`basis-4/5 ${_.type === 'story' ? 'md:basis-1/2' : 'md:basis-1/3'}`}>
                 <BlogCard className='h-full'>
                   <div 
                     style={{backgroundImage: `url(${_.image})`}}
