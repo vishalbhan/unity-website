@@ -459,3 +459,10 @@ Builder.registerComponent(
     ],
   }
 );
+
+Builder.registerComponent(
+  dynamic(() => import("./components/TestimonialCarousel")),
+  {
+    name: "TestimonialCarousel",
+  }
+);
