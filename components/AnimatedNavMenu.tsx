@@ -69,7 +69,7 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
                     style={{color: color === "light" ? "#000" : "#fff"}}
                   >
                     {item.title}
-                    <ChevronDown size={16} className={clsx('ml-1 transition-all duration-150', hovering === index ? "rotate-180" : "")} />
+                    <ChevronDown size={16} className={clsx('ml-1 transition-all duration-200', hovering === index ? "rotate-180" : "")} />
                   </a>
                 ) : (
                   <a 
@@ -142,7 +142,7 @@ export default AnimatedNavMenu;
 const NavMenuItem = styled.div`
   border-radius: 99px;
   background: transparent;
-  padding: 4px 14px;
+  padding: 6px 14px;
   transition: all 0.3s ease;
 
   a {

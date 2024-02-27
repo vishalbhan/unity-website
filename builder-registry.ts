@@ -251,6 +251,12 @@ Builder.registerComponent(
             defaultValue: "Section Name",
           },
           {
+            name: "startingSlideNumber",
+            type: "number",
+            required: true,
+            defaultValue: 1,
+          },
+          {
             name: "cards",
             type: "list",
             required: true,

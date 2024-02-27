@@ -9,6 +9,7 @@ import {
 
 type Sections = {
   title: string,
+  startingSlideNumber: number,
   cards: {
     content: string,
     illustration: string,
@@ -61,7 +62,7 @@ export default function ProgressCarousel({ sections }: { sections: Sections }) {
               <h5 
                 key={`carousel-section-${i}`}
                 className='cursor-pointer p-8'
-                onClick={() => api?.scrollTo(i * sections[i].cards.length)}
+                onClick={() => api?.scrollTo(section.startingSlideNumber)}
               >
                 {section.title}
               </h5>
@@ -82,7 +83,7 @@ export default function ProgressCarousel({ sections }: { sections: Sections }) {
             sections.map((section, i) => (
               section.cards.map((item, j) => (
                 <CarouselItem key={j} className="md:basis-1/3">
-                  <div className='white-card relative'>
+                  <div className='white-card relative h-full'>
                     <div className="badge mb-4">{section.title}</div>
                     <div className='sm mb-32' dangerouslySetInnerHTML={{__html:item.content}} />
                     <div dangerouslySetInnerHTML={{__html: item.illustration}} className='absolute bottom-6 right-6'/>
