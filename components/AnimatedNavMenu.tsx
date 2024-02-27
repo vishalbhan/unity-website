@@ -59,7 +59,7 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
       <div className='flex gap-4'>
         {
           navItems.map((item, index) => (
-            <NavMenuItem key={item.title}>
+            <NavMenuItem key={item.title} color={color}>
               {
                 item.hasDropdown ? (
                   <a
@@ -153,7 +153,7 @@ const NavMenuItem = styled.div`
   }
 
   &:hover {
-    background: #EFEBDE;
+    background: ${props => props.color === "light" ? "#EFEBDE" : "rgba(255,255,255,0.16)"};
   }
 `
 

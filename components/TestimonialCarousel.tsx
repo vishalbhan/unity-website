@@ -71,7 +71,7 @@ export default function TestimonialCarousel({ testimonials }: any) {
                 {
                   _.type === "video" &&
                   <div className="dark-card relative aspect-[9/16]">
-                    <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted>
+                    <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
                       <source src={_.videoUrl} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
@@ -97,7 +97,7 @@ export default function TestimonialCarousel({ testimonials }: any) {
                       </div>
                     </div>
                     <div className="dark-card relative aspect-square">
-                    <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted>
+                    <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
                       <source src={_.videoUrl} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
