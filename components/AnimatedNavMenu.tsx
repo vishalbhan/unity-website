@@ -60,7 +60,7 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
                 item.hasDropdown ? (
                   <div
                     onMouseEnter={(e) => handleMouseEnter(index, e.currentTarget)}
-                    className='flex items-center cursor-default'
+                    className='flex items-center cursor-default py-2 px-4'
                     style={{color: color === "light" ? "#000" : "#fff"}}
                   >
                     {item.title}
@@ -71,6 +71,7 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
                     href={item.href}
                     onMouseEnter={() => setHovering(null)}
                     style={{color: color === "light" ? "#000" : "#fff"}}
+                    className='py-2 px-4 flex items-center'
                   >
                     {item.title}
                   </a>
@@ -81,7 +82,7 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
         }
         <div
           className={clsx(
-            'z-50 absolute top-12 -ml-24 bg-white shadow-lg rounded-xl transition-all duration-300',
+            'z-50 absolute top-14 -ml-24 bg-white shadow-lg rounded-xl transition-all duration-300',
             hovering !== null ? "transition-all" : "opacity-0 pointer-events-none",
           )}
           style={{ 
@@ -137,7 +138,6 @@ export default AnimatedNavMenu;
 const NavMenuItem = styled.div`
   border-radius: 99px;
   background: transparent;
-  padding: 6px 14px;
   transition: all 0.3s ease;
 
   a, & > div {

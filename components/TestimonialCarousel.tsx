@@ -55,10 +55,6 @@ const testimonialSeed = [
 export default function TestimonialCarousel({ testimonials }: any) {
   return (
     <div className='my-20 max-w-full'>
-      <h2 className='text-center mb-20'>
-        What our customers<br/>
-        say about us
-      </h2>
       <Carousel
         opts={{
           align: "start",

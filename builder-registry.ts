@@ -62,6 +62,7 @@ Builder.registerComponent(
         friendlyName: "Link",
         required: true,
         defaultValue: "/",
+        showIf: (options) => options.get('action') === "link",
       },
       {
         name: "icon",

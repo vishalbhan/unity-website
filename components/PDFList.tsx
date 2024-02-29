@@ -5,6 +5,7 @@ import ReactPaginate from 'react-paginate';
 import { Input } from './ui/input';
 import { format } from 'date-fns';
 import clsx from 'clsx';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -88,15 +89,15 @@ function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
       {
         pageCount > 1 &&
         <ReactPaginate
-          previousLabel={'<'}
-          nextLabel={'>'}
+          previousLabel={<ChevronLeft className='-mr-1'/>}
+          nextLabel={<ChevronRight className='-ml-1' />}
           breakLabel={'...'}
           breakClassName={'break-me'}
           pageCount={pageCount}
           marginPagesDisplayed={2}
           pageRangeDisplayed={4}
           onPageChange={handlePageChange}
-          containerClassName={'flex gap-4 justify-end mt-12'}
+          containerClassName={'flex space-x-4 justify-end mt-12'}
           activeClassName={'active'}
         />
       }
@@ -110,9 +111,14 @@ const PDFCard = styled.div`
   padding: 24px;
   border: 1px solid rgba(0, 0, 0, 0.16);
   border-radius: 16px;
+  transition: all 0.3s ease;
 
   & h6 {
     font-size: 16px;
     font-weight: 500;
+  }
+
+  &:hover {
+    background: white;
   }
 `;

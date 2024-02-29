@@ -58,7 +58,7 @@ export default function Button({ text, type, action = "link", href, icon, width 
                   }
                 </ButtonContainer>      
               </DialogTrigger>
-              <DialogPortal container={containerRef.current}>
+              <DialogPortal container={containerRef?.current}>
                 <DialogContent className='bg-white p-12' style={{maxWidth:'860px'}}>
                   <PopupForm />
                 </DialogContent>

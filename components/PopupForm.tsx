@@ -11,11 +11,12 @@ const PopupForm: React.FC = () => {
     email: '',
     phone: '',
     message: '',
-    termsAgreed: false
+    termsAgreed: true
   });
 
   const handleChange = (event: any) => {
     const { name, value, type, checked } = event.target;
+    console.log(type)
     setFormData(prevData => ({
       ...prevData,
       [name]: type === 'checkbox' ? checked : value
@@ -29,7 +30,7 @@ const PopupForm: React.FC = () => {
 
   return (
     <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
-      <h4>Reach out to us</h4>
+      <h5>Reach out to us</h5>
       <div>
         <Label htmlFor="name">Name</Label>
         <Input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className='max-w-lg' />
@@ -44,16 +45,23 @@ const PopupForm: React.FC = () => {
       </div>
       <div>
         <Label htmlFor="message">Message</Label>
-        <Textarea id="message" rows={5} value={formData.message} onChange={handleChange} />
+        <Textarea name="message" id="message" rows={5} value={formData.message} onChange={handleChange} />
       </div>
-      <div className='flex items-center space-x-2'>
-        {/* @ts-ignore */}
-        <Checkbox id="terms" name="termsAgreed" checked={formData.termsAgreed} onChange={handleChange} />
+      <div className='flex items-center space-x-3'>
+        <Checkbox 
+          checked={formData.termsAgreed}
+          id="termsAgreed"
+          onCheckedChange={(checked) => {
+            return checked
+              ? setFormData(prevData => ({ ...prevData, termsAgreed: true }))
+              : setFormData(prevData => ({ ...prevData, termsAgreed: false }));
+          }}
+        />
         <label
-          htmlFor="terms"
-          className="text-sm leading-none text-gray-400"
+          htmlFor="termsAgreed"
+          className="text-sm leading-relaxed text-gray-400 mt-[4px]"
         >
-          I confirm that above details are accurate and I agree with the <a href="/terms-and-conditions">Terms and Conditions</a>
+          I confirm that the above details are accurate and I agree with the <a href="/terms-and-conditions">Terms and Conditions</a>
         </label>
       </div>
       <div>

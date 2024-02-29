@@ -17,7 +17,7 @@ export default function Footer() {
           <div className='font-semibold'>Save</div>
           <Link href="/personal/savings-account">Savings Account</Link>
           <Link href="/personal/current-account">Current Account</Link>
-          <Link href="/personal/fixed-desosit">Fixed Deposit</Link>
+          <Link href="/personal/fixed-deposit">Fixed Deposit</Link>
           <Link href="/personal/recurring-deposit">Recurring Deposit</Link>
           <Link href="/personal/lockers">Lockers</Link>
           <Link href="/personal/nri-banking">NRI Banking</Link>
