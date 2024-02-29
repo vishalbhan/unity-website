@@ -22,7 +22,6 @@ const ColorChangingSectionComponent = ({ beforeColor, bgColor, text, children }:
         trigger: bgRef.current,
         start: "top 40%",
         end: "bottom 50%",
-        scrub: true,
         onEnter: () => {
           gsap.to(bgRef.current, { width: '100vw', height: '200vh', ease: "power2.inOut", duration: 0.5 })
           setTimeout(() => {

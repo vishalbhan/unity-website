@@ -50,10 +50,6 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
     }
   }
 
-  React.useEffect(() => {
-    console.log(hovering);
-  }, [hovering]);
-
   return (
     <nav className="z-50 relative" onMouseEnter={() => setHovering(null)}>
       <div className='flex gap-4'>
