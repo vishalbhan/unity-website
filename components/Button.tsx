@@ -2,20 +2,25 @@ import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
-import { Dialog } from '@headlessui/react'
 import PopupForm from './PopupForm'
+import {
+  Dialog,
+  DialogContent,
+  DialogPortal,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 type ButtonProps = {
   text: string
   type: "primary" | "secondary" | "tertiary" | "link",
-  action: "link" | "form" | "submit",
+  action?: "link" | "form" | "submit",
   href: string,
   icon?: "arrow-right",
   width?: "full" | "fit"
 }
 
 export default function Button({ text, type, action = "link", href, icon, width = "fit" }: ButtonProps) {
-  let [isOpen, setIsOpen] = React.useState(false)
+  let containerRef = React.useRef(null)
 
   return (
     <>
@@ -38,25 +43,28 @@ export default function Button({ text, type, action = "link", href, icon, width 
       }
       {
         action === "form" && (
-          <>
-            <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`} onClick={() => setIsOpen(true)}>
-              {text}
-              {
-                icon &&
-                <span className='ml-2'>
+          <div ref={containerRef}>
+            <Dialog>
+              <DialogTrigger asChild>
+                <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
+                  {text}
                   {
-                    icon === "arrow-right" && <ArrowRight size={16} />
+                    icon &&
+                    <span className='ml-2'>
+                      {
+                        icon === "arrow-right" && <ArrowRight size={16} />
+                      }
+                    </span>
                   }
-                </span>
-              }
-            </ButtonContainer>
-            <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-              <Dialog.Panel>
-                <Dialog.Title>Reach out to us</Dialog.Title>
-                <PopupForm />
-              </Dialog.Panel>
+                </ButtonContainer>      
+              </DialogTrigger>
+              <DialogPortal container={containerRef.current}>
+                <DialogContent className='bg-white p-12' style={{maxWidth:'860px'}}>
+                  <PopupForm />
+                </DialogContent>
+              </DialogPortal>
             </Dialog>
-          </>
+          </div>
         )
       }
       {

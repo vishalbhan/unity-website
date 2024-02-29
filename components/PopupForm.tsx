@@ -28,19 +28,19 @@ const PopupForm: React.FC = () => {
   };
 
   return (
-    <form className='flex flex-col gap-12' onSubmit={handleSubmit}>
+    <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
       <h4>Reach out to us</h4>
       <div>
         <Label htmlFor="name">Name</Label>
-        <Input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
+        <Input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className='max-w-lg' />
       </div>
       <div>
         <Label htmlFor="email">Email ID</Label>
-        <Input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+        <Input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className='max-w-lg' />
       </div>
       <div>
         <Label htmlFor="phone">Phone Number</Label>
-        <Input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} />
+        <Input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className='max-w-lg' />
       </div>
       <div>
         <Label htmlFor="message">Message</Label>
@@ -53,7 +53,7 @@ const PopupForm: React.FC = () => {
           htmlFor="terms"
           className="text-sm leading-none text-gray-400"
         >
-          I confirm that above details are accurate and I agree with the Terms and Conditions
+          I confirm that above details are accurate and I agree with the <a href="/terms-and-conditions">Terms and Conditions</a>
         </label>
       </div>
       <div>
