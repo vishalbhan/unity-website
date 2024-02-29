@@ -4,11 +4,13 @@ import { builder } from '@builder.io/react';
 import ReactPaginate from 'react-paginate';
 import { Input } from './ui/input';
 import { format } from 'date-fns';
+import clsx from 'clsx';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
 type Props = {
   name: string;
+  searchAlign: "left" | "center";
   hasFilter: boolean;
   pdfs?: {
     title: string;
@@ -18,7 +20,7 @@ type Props = {
   }[];
 };
 
-function PDFList({ name, hasFilter }: Props) {
+function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
   const [data, setData] = React.useState<any>(null);
   const [currentPage, setCurrentPage] = React.useState<number>(0);
   const [searchTerm, setSearchTerm] = useState('');
@@ -63,7 +65,10 @@ function PDFList({ name, hasFilter }: Props) {
         placeholder="Search"
         value={searchTerm}
         onChange={handleSearchChange}
-        className='max-w-lg mx-auto bg-white rounded-full mb-12 p-6'
+        className={clsx(
+          'max-w-lg bg-white rounded-full mb-12 p-6',
+          searchAlign === "center" && "mx-auto",
+        )}
       />
 
       {paginatedData?.map((pdf: any, index: number) => (
@@ -80,18 +85,21 @@ function PDFList({ name, hasFilter }: Props) {
         </PDFCard>
       ))}
 
-      <ReactPaginate
-        previousLabel={'<'}
-        nextLabel={'>'}
-        breakLabel={'...'}
-        breakClassName={'break-me'}
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={4}
-        onPageChange={handlePageChange}
-        containerClassName={'flex gap-4 ml-auto mt-8'}
-        activeClassName={'active'}
-      />
+      {
+        pageCount > 1 &&
+        <ReactPaginate
+          previousLabel={'<'}
+          nextLabel={'>'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={4}
+          onPageChange={handlePageChange}
+          containerClassName={'flex gap-4 justify-end mt-12'}
+          activeClassName={'active'}
+        />
+      }
     </>
   );
 }

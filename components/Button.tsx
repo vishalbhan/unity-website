@@ -2,31 +2,81 @@ import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
+import { Dialog } from '@headlessui/react'
+import PopupForm from './PopupForm'
 
 type ButtonProps = {
   text: string
   type: "primary" | "secondary" | "tertiary" | "link",
+  action: "link" | "form" | "submit",
   href: string,
   icon?: "arrow-right",
   width?: "full" | "fit"
 }
 
-export default function Button({ text, type, href, icon, width = "fit" }: ButtonProps) {
+export default function Button({ text, type, action = "link", href, icon, width = "fit" }: ButtonProps) {
+  let [isOpen, setIsOpen] = React.useState(false)
+
   return (
-    <Link href={href}>
-      <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
-        {text}
-        {
-          icon &&
-          <span className='ml-2'>
-            {
-              icon === "arrow-right" && <ArrowRight size={15} />
-            
-            }
-          </span>
-        }
-      </ButtonContainer>
-    </Link>
+    <>
+      {
+        action === "link" && href && (
+          <Link href={href}>
+            <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
+              {text}
+              {
+                icon &&
+                <span className='ml-2'>
+                  {
+                    icon === "arrow-right" && <ArrowRight size={16} />
+                  }
+                </span>
+              }
+            </ButtonContainer>
+          </Link>
+        )
+      }
+      {
+        action === "form" && (
+          <>
+            <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`} onClick={() => setIsOpen(true)}>
+              {text}
+              {
+                icon &&
+                <span className='ml-2'>
+                  {
+                    icon === "arrow-right" && <ArrowRight size={16} />
+                  }
+                </span>
+              }
+            </ButtonContainer>
+            <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
+              <Dialog.Panel>
+                <Dialog.Title>Reach out to us</Dialog.Title>
+                <PopupForm />
+              </Dialog.Panel>
+            </Dialog>
+          </>
+        )
+      }
+      {
+        action === "submit" && (
+          <>
+            <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
+              {text}
+              {
+                icon &&
+                <span className='ml-2'>
+                  {
+                    icon === "arrow-right" && <ArrowRight size={16} />
+                  }
+                </span>
+              }
+            </ButtonContainer>
+          </>
+        )
+      }
+    </>
   )
 }
 

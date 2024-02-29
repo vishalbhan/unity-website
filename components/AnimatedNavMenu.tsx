@@ -62,15 +62,14 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
             <NavMenuItem key={item.title} color={color}>
               {
                 item.hasDropdown ? (
-                  <a
-                    href={item.href}
+                  <div
                     onMouseEnter={(e) => handleMouseEnter(index, e.currentTarget)}
-                    className='flex items-center'
+                    className='flex items-center cursor-default'
                     style={{color: color === "light" ? "#000" : "#fff"}}
                   >
                     {item.title}
                     <ChevronDown size={16} className={clsx('ml-1 transition-all duration-200', hovering === index ? "rotate-180" : "")} />
-                  </a>
+                  </div>
                 ) : (
                   <a 
                     href={item.href}
@@ -145,7 +144,7 @@ const NavMenuItem = styled.div`
   padding: 6px 14px;
   transition: all 0.3s ease;
 
-  a {
+  a, & > div {
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;

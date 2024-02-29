@@ -46,11 +46,6 @@ export const navItems = {
   },
   business: [
     {
-      title: 'Overview',
-      href: '/business',
-      icon: <BusinessOverview />
-    },
-    {
       title: 'Current Account',
       href: '/business/current-account',
       icon: <BusinessCurrentAccount />

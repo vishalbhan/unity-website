@@ -131,11 +131,25 @@ h6 {
 .badge {
   display: inline-block;
   padding: 6px 12px;
-  border-radius: 48px;
-  background: #E1F1FF;
-  color: #2C9BFC;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.badge.save {
+  background: #E3FCDC;
+  color: #008207;
+}
+
+.badge.borrow {
+  background: #FCEDFF;
+  color: #A127B5;
+}
+
+.badge.insure {
+  background: #E5FCFF;
+  color: #007B89;
 }
 
 .checklist-ul ul {

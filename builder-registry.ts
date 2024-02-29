@@ -40,6 +40,23 @@ Builder.registerComponent(
         ],
       },
       {
+        name: "action",
+        friendlyName: "Action",
+        type: "string",
+        required: true,
+        defaultValue: "link",
+        enum: [
+          {
+            label: "Link",
+            value: "link",
+          },
+          {
+            label: "Pop-up Form",
+            value: "form",
+          },
+        ],
+      },
+      {
         name: "href",
         type: "string",
         friendlyName: "Link",
@@ -268,6 +285,12 @@ Builder.registerComponent(
                 defaultValue: "Card Content",
               },
               {
+                name: "link",
+                type: "string",
+                required: true,
+                defaultValue: "/"
+              },
+              {
                 name: "illustration",
                 type: "code",
                 required: true,
@@ -372,6 +395,22 @@ Builder.registerComponent(
         type: "string",
         required: true,
       },
+      {
+        name: "searchAlign",
+        type: "string",
+        required: true,
+        defaultValue: "left",
+        enum: [
+          {
+            label: "Left",
+            value: "left",
+          },
+          {
+            label: "Center",
+            value: "center",
+          },
+        ],
+      }
     ],
   }
 );

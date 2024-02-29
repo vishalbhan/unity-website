@@ -1,12 +1,18 @@
 import React, { forwardRef, LegacyRef } from 'react';
 import { navItems } from './navItems';
+import { ArrowRight } from 'lucide-react';
 
 export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
   const [personalSelectedIndex, setPersonalSelectedIndex] = React.useState(0);
   
   return (
     <div className="w-[900px] p-8" ref={ref as LegacyRef<HTMLDivElement>}>
-      <h6 className="mb-8">Personal banking</h6>
+      <a href="/">
+        <h6 className="mb-8 flex items-center">
+          Personal banking
+          <ArrowRight className='ml-2' />
+        </h6>
+      </a>
       <div className="grid grid-cols-[250px,1fr] items-start gap-8">
         <div>
           <div className={`sm rounded-xl mb-4 p-4 ${personalSelectedIndex === 0 ? 'bg-[#F5F4F1]' : ''}`} onMouseEnter={() => setPersonalSelectedIndex(0)}>
@@ -18,7 +24,7 @@ export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
             <div className='text-sm'>Get instant loans with interest rates in your interest</div>
           </div>
           <div className={`sm rounded-xl mb-4 p-4 ${personalSelectedIndex === 2 ? 'bg-[#F5F4F1]' : ''}`} onMouseEnter={() => setPersonalSelectedIndex(2)}>
-            <h6 className="">Invest</h6>
+            <h6 className="">Insure</h6>
             <div className='text-sm'>Secure your future with health insurance etc</div>
           </div>
         </div>

@@ -89,6 +89,7 @@ export default function AppreciationForm() {
         <Button
           text="Submit"
           href="#"
+          action="submit"
           type="primary"
           icon="arrow-right"
         />

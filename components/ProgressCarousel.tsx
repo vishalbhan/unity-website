@@ -6,6 +6,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel"
+import Button from './Button';
 
 type Sections = {
   title: string,
@@ -13,6 +14,7 @@ type Sections = {
   cards: {
     content: string,
     illustration: string,
+    link: string,
   }[]
 }[]
 
@@ -82,10 +84,20 @@ export default function ProgressCarousel({ sections }: { sections: Sections }) {
           {
             sections.map((section, i) => (
               section.cards.map((item, j) => (
-                <CarouselItem key={j} className="md:basis-1/3">
+                <CarouselItem key={j} className="md:basis-2/5">
                   <div className='white-card relative h-full'>
-                    <div className="badge mb-4">{section.title}</div>
-                    <div className='sm mb-32' dangerouslySetInnerHTML={{__html:item.content}} />
+                    <div className={`badge rounded-lg mb-4 ${section.title.toLowerCase()}`}>{section.title}</div>
+                    <div className='sm mb-6' dangerouslySetInnerHTML={{__html:item.content}} />
+                    <div className="mb-28">
+                      <Button
+                        text='Open Account'
+                        type='link'
+                        action='link'
+                        href={item.link}
+                        width='fit'
+                        icon="arrow-right"
+                      />
+                    </div>
                     <div dangerouslySetInnerHTML={{__html: item.illustration}} className='absolute bottom-6 right-6'/>
                   </div>
                 </CarouselItem>

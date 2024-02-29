@@ -3,6 +3,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel"
 import styled from 'styled-components'
 import { builder } from '@builder.io/react';
@@ -109,6 +111,12 @@ export default function TestimonialCarousel({ testimonials }: any) {
             ))
           }
         </CarouselContent>
+        <div className="flex items-end justify-between mt-20">
+          <div>
+            <CarouselPrevious className='mr-4' />
+            <CarouselNext />
+          </div>
+        </div>
       </Carousel>
     </div>
   )

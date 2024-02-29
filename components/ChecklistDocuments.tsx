@@ -25,7 +25,7 @@ export default function ChecklistDocuments({
           <Checklist
             key={item.title}
             theme={theme}
-            className={`inline-block w-max py-3 pl-6 pr-10 rounded-lg ${
+            className={`inline-block w-fit max-w-full py-3 pl-6 pr-10 rounded-lg ${
               index === selected ? "active" : ""
             }`}
           >

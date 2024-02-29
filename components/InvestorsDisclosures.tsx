@@ -80,20 +80,14 @@ export default function InvestorsDisclosures() {
           page === 0 && (
             <>
               <h3 className='mb-12'>Shareholders Information</h3>
-              <div className='mb-12'>
-                <p className='font-semibold mb-8'>Annual Reports</p>
-                <PDFList
-                  name="Shareholders - Annual Reports"
-                  hasFilter={false}
-                />
-              </div>
-              <div>
-                <p className='font-semibold mb-8'>Quarterly Financial Results</p>
-                <PDFList
-                  name="Shareholders - Quarterly Financial Results"
-                  hasFilter={false}
-                />
-              </div>
+              {/* <PDFList
+                name="Shareholders - Annual Reports"
+                hasFilter={false}
+              /> */}
+              <PDFList
+                name="Shareholders - Quarterly Financial Results"
+                hasFilter={false}
+              />
             </>
           )
         }
