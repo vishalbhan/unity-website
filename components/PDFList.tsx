@@ -10,7 +10,7 @@ builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
 type Props = {
   name: string;
-  searchAlign: "left" | "center";
+  searchAlign?: "left" | "center";
   hasFilter: boolean;
   pdfs?: {
     title: string;
