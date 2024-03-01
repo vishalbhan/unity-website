@@ -71,7 +71,7 @@ Builder.registerComponent(
             value: "contact",
           },
         ],
-        showIf: (options) => options.get('action') === "form",
+        showIf: (options) => options.get("action") === "form",
       },
       {
         name: "href",
@@ -79,7 +79,7 @@ Builder.registerComponent(
         friendlyName: "Link",
         required: true,
         defaultValue: "/",
-        showIf: (options) => options.get('action') === "link",
+        showIf: (options) => options.get("action") === "link",
       },
       {
         name: "icon",
@@ -306,7 +306,7 @@ Builder.registerComponent(
                 name: "link",
                 type: "string",
                 required: true,
-                defaultValue: "/"
+                defaultValue: "/",
               },
               {
                 name: "illustration",
@@ -428,7 +428,7 @@ Builder.registerComponent(
             value: "center",
           },
         ],
-      }
+      },
     ],
   }
 );
@@ -527,5 +527,63 @@ Builder.registerComponent(
   dynamic(() => import("./components/TestimonialCarousel")),
   {
     name: "TestimonialCarousel",
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/PMCBankSchemes")),
+  {
+    name: "PMCBankSchemes",
+    inputs: [
+      {
+        name: "retailCards",
+        type: "list",
+        required: true,
+        subFields: [
+          {
+            name: "color",
+            type: "color",
+            required: true,
+          },
+          {
+            name: "amount",
+            type: "string",
+          },
+          {
+            name: "content",
+            type: "richText",
+            required: true,
+          },
+          {
+            name: "hasModal",
+            type: "boolean",
+            required: true,
+            defaultValue: false
+          },
+          {
+            name: "reimbursmentSteps",
+            type: "list",
+            required: true,
+            subFields: [
+              {
+                name: "month",
+                type: "string",
+                required: true,
+              },
+              {
+                name: "description",
+                type: "richText",
+                required: true,
+              },
+            ],
+          }
+        ],
+      },
+      {
+        name: "institutionalDepositorsContent",
+        type: "richText",
+        required: true,
+      },
+    ],
   }
 );

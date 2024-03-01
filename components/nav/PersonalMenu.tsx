@@ -53,7 +53,7 @@ export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
           <ArrowRight className='ml-2' />
         </h6>
       </a>
-      <div className="grid grid-cols-[250px,1fr] items-start gap-8">
+      <div className="grid grid-cols-[250px,1fr] items-start gap-6">
         <div>
           <div className={`sm rounded-xl mb-4 p-4 ${personalSelectedIndex === 0 ? 'bg-[#F5F4F1]' : ''}`} onMouseEnter={() => setPersonalSelectedIndex(0)}>
             <h6 className="">Save</h6>

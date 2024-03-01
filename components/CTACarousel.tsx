@@ -35,7 +35,7 @@ export default function CTACarousel({ items }: Props) {
                   </div>
                   <div className='mb-32'>
                     <Button
-                      text="Open Account"
+                      text="Know More"
                       href={item.href}
                       type="link"
                       icon="arrow-right"

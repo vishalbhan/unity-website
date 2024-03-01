@@ -6,7 +6,7 @@ import { ChevronRight } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <FooterContainer className='p-8 md:p-16 grid-cols-2 md:grid-cols-6'>
+    <FooterContainer className='p-8 md:p-16 mt-8 md:mt-16 grid-cols-2 md:grid-cols-6'>
       <div className='col-span-2 md:col-span-1 grid place-items-center md:block mb-8 md:mb-0'>
         <Logo style="dark" />
       </div>
