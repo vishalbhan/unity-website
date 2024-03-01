@@ -14,6 +14,7 @@ type Props = {
 }
 
 const ColorChangingSectionComponent = ({ beforeColor, bgColor, text, children }: Props) => {
+  const containerRef = React.useRef(null);
   const bgRef = React.useRef(null);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const ColorChangingSectionComponent = ({ beforeColor, bgColor, text, children }:
 
   return (
     <div className="my-20">
-      <div className="relative">
+      <div className="relative" ref={containerRef}>
         <Background
           className="absolute inset-0 w-full h-full"
           style={{backgroundColor: bgColor}}

@@ -1,9 +1,49 @@
 import React, { forwardRef, LegacyRef } from 'react';
 import { navItems } from './navItems';
 import { ArrowRight } from 'lucide-react';
+import { builder } from '@builder.io/react';
+
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
 export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
   const [personalSelectedIndex, setPersonalSelectedIndex] = React.useState(0);
+  const [save, setSave] = React.useState<any>([]);
+  const [borrow, setBorrow] = React.useState<any>([]);
+  const [insure, setInsure] = React.useState<any>([]);
+  
+  // fetch save borrow and insure data from builder.get("navigation") in useEffect
+  React.useEffect(() => {
+    builder
+      .get('navigation', {
+        query: {
+          name: 'Save'
+        },
+      })
+      .promise()
+      .then((data: any) => {
+        if (data) setSave(data.data.items);
+        builder
+          .get('navigation', {
+            query: {
+              name: 'Borrow'
+            },
+          })
+          .promise()
+          .then((data: any) => {
+            if (data) setBorrow(data.data.items);
+            builder
+              .get('navigation', {
+                query: {
+                  name: 'Insure'
+                },
+              })
+              .promise()
+              .then((data: any) => {
+                if (data) setInsure(data.data.items);
+              });
+          });
+      });
+  }, [])
   
   return (
     <div className="w-[900px] p-8" ref={ref as LegacyRef<HTMLDivElement>}>
@@ -29,26 +69,26 @@ export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
           </div>
         </div>
         <ul className="grid grid-cols-2 gap-4">
-          {personalSelectedIndex === 0 && navItems.personal.save.map((item: any) => (
-            <li key={item.href}>
-              <a className="flex items-center space-x-6" href={item.href}>
-                {item.icon}
+          {personalSelectedIndex === 0 && save.map((item: any) => (
+            <li key={item.link}>
+              <a className="flex items-center space-x-6" href={item.link}>
+                <div dangerouslySetInnerHTML={{__html:item.icon}} />
                 <p className="text-sm font-medium">{item.title}</p>
               </a>
             </li>
           ))}
-          {personalSelectedIndex === 1 && navItems.personal.borrow.map((item: any) => (
-            <li key={item.href}>
-              <a className="flex items-center space-x-6" href={item.href}>
-                {item.icon}
+          {personalSelectedIndex === 1 && borrow.map((item: any) => (
+            <li key={item.link}>
+              <a className="flex items-center space-x-6" href={item.link}>
+                <div dangerouslySetInnerHTML={{__html:item.icon}} />
                 <p className="text-sm font-medium">{item.title}</p>
               </a>
             </li>
           ))}
-          {personalSelectedIndex === 2 && navItems.personal.invest.map((item: any) => (
-            <li key={item.href} className="col-span-2">
-              <a className="flex items-center space-x-6" href={item.href}>
-                {item.icon}
+          {personalSelectedIndex === 2 && insure.map((item: any) => (
+            <li key={item.link} className="col-span-2">
+              <a className="flex items-center space-x-6" href={item.link}>
+                <div dangerouslySetInnerHTML={{__html:item.icon}} />
                 <p className="text-sm font-medium">{item.title}</p>
               </a>
             </li>

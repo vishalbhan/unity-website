@@ -57,6 +57,23 @@ Builder.registerComponent(
         ],
       },
       {
+        name: "popup",
+        type: "string",
+        friendlyName: "Popup",
+        defaultValue: "contact",
+        enum: [
+          {
+            label: "Interest Rates",
+            value: "interestRates",
+          },
+          {
+            label: "Contact",
+            value: "contact",
+          },
+        ],
+        showIf: (options) => options.get('action') === "form",
+      },
+      {
         name: "href",
         type: "string",
         friendlyName: "Link",

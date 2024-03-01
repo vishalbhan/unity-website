@@ -73,17 +73,17 @@ function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
       />
 
       {paginatedData?.map((pdf: any, index: number) => (
-        <PDFCard key={index} className="sm mb-6">
-          <a href={pdf.file} target="_blank" rel="noopener noreferrer">
-            <p>{pdf.title}</p>
-            {pdf.description && (
-              <div className="text-gray-500 text-sm mt-4">{pdf.description}</div>
-            )}
-            {pdf.date && (
-              <div className="text-gray-500 text-sm mt-4">- {format(pdf.date, 'LLLL	do, yyyy')}</div>
-            )}
-          </a>
-        </PDFCard>
+        <a href={pdf.file} target="_blank" rel="noopener noreferrer" key={`pdf-${index}`}>
+          <PDFCard className="sm mb-6">
+              <p>{pdf.title}</p>
+              {pdf.description && (
+                <div className="text-gray-500 text-sm mt-4">{pdf.description}</div>
+              )}
+              {pdf.date && (
+                <div className="text-gray-500 text-sm mt-4">- {format(pdf.date, 'LLLL	do, yyyy')}</div>
+              )}
+          </PDFCard>
+        </a>
       ))}
 
       {

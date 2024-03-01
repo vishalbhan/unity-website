@@ -9,23 +9,33 @@ import {
   DialogPortal,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  Drawer,
+  DrawerContent,
+  DrawerPortal,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+import useWindowWidth from '@/hooks/useWindowWidth'
+import InterestRatesPopup from './InterestRatesPopup'
 
 type ButtonProps = {
   text: string
   type: "primary" | "secondary" | "tertiary" | "link",
   action?: "link" | "form" | "submit",
+  popup?: "interestRates" | "contact",
   href: string,
   icon?: "arrow-right",
   width?: "full" | "fit"
 }
 
-export default function Button({ text, type, action = "link", href, icon, width = "fit" }: ButtonProps) {
-  let containerRef = React.useRef(null)
+export default function Button({ text, type, action = "link", popup = "contact", href, icon, width = "fit" }: ButtonProps) {
+  const windowWidth = useWindowWidth()
+  const containerRef = React.useRef(null)
 
   return (
     <>
       {
-        action === "link" && href && (
+        action === "link" && (
           <Link href={href}>
             <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
               {text}
@@ -44,26 +54,53 @@ export default function Button({ text, type, action = "link", href, icon, width 
       {
         action === "form" && (
           <div ref={containerRef}>
-            <Dialog>
-              <DialogTrigger asChild>
-                <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
-                  {text}
-                  {
-                    icon &&
-                    <span className='ml-2'>
+            {
+              windowWidth > 768 ? (
+                <Dialog>
+                  <DialogTrigger>
+                    <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
+                      {text}
                       {
-                        icon === "arrow-right" && <ArrowRight size={16} />
+                        icon &&
+                        <span className='ml-2'>
+                          {
+                            icon === "arrow-right" && <ArrowRight size={16} />
+                          }
+                        </span>
                       }
-                    </span>
-                  }
-                </ButtonContainer>      
-              </DialogTrigger>
-              <DialogPortal container={containerRef?.current}>
-                <DialogContent className='bg-white p-12' style={{maxWidth:'860px'}}>
-                  <PopupForm />
-                </DialogContent>
-              </DialogPortal>
-            </Dialog>
+                    </ButtonContainer>
+                  </DialogTrigger>
+                  <DialogContent className='bg-white p-12 max-h-[90%] overflow-auto' style={{maxWidth:'840px'}}>
+                    { popup === "contact" && <PopupForm /> }
+                    { popup === "interestRates" && <InterestRatesPopup /> }
+                  </DialogContent>
+                </Dialog>
+              ) : (
+                <Drawer>
+                  <DrawerTrigger>
+                    <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
+                      {text}
+                      {
+                        icon &&
+                        <span className='ml-2'>
+                          {
+                            icon === "arrow-right" && <ArrowRight size={16} />
+                          }
+                        </span>
+                      }
+                    </ButtonContainer>
+                  </DrawerTrigger>
+                  <DrawerPortal>
+                    <DrawerContent className='bg-white p-6 max-h-[96%]' style={{maxWidth:'860px'}}>
+                      <div className='overflow-auto'>
+                        { popup === "contact" && <PopupForm /> }
+                        { popup === "interestRates" && <InterestRatesPopup /> }
+                      </div>
+                    </DrawerContent>
+                  </DrawerPortal>
+                </Drawer>
+              )
+            }
           </div>
         )
       }

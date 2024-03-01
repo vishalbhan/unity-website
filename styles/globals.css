@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@100..900&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -24,6 +25,7 @@ html, body {
   width: 100vw;
   overflow-x: hidden;
   font-family: "Archivo";
+  font-weight: 400;
 }
 
 body {
@@ -164,6 +166,10 @@ h6 {
   }
 }
 
+div[role="dialog"] {
+  font-family: "Archivo", sans-serif;
+}
+
 table {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -186,6 +192,10 @@ thead th {
   padding: 32px;
 }
 
+table.small thead th {
+  padding: 12px 18px;
+}
+
 tbody tr {
   border-left: 1px solid rgba(0, 0, 0, 0.16);
   border-right: 1px solid rgba(0, 0, 0, 0.16);
@@ -195,6 +205,10 @@ tbody tr {
 
 tbody td {
   padding: 32px;
+}
+
+table.small tbody td {
+  padding: 14px 18px;
 }
 
 tbody td:last-child { 

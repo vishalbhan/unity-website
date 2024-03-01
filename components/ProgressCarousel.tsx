@@ -90,7 +90,7 @@ export default function ProgressCarousel({ sections }: { sections: Sections }) {
                     <div className='sm mb-6' dangerouslySetInnerHTML={{__html:item.content}} />
                     <div className="mb-28">
                       <Button
-                        text='Open Account'
+                        text='Know More'
                         type='link'
                         action='link'
                         href={item.link}

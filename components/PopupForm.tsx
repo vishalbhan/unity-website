@@ -4,6 +4,7 @@ import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Checkbox } from './ui/checkbox';
 import Button from './Button';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 const PopupForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ const PopupForm: React.FC = () => {
   };
 
   return (
-    <form className='flex flex-col gap-8' onSubmit={handleSubmit}>
+    <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
       <h5>Reach out to us</h5>
       <div>
         <Label htmlFor="name">Name</Label>
@@ -42,6 +43,31 @@ const PopupForm: React.FC = () => {
       <div>
         <Label htmlFor="phone">Phone Number</Label>
         <Input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className='max-w-lg' />
+      </div>
+      <div>
+        <Label>Topic</Label>
+        <Select>
+          <SelectTrigger className="max-w-lg">
+            <SelectValue placeholder="Select a topic" />
+          </SelectTrigger>
+          <SelectContent className='bg-white'>
+            <SelectItem value="Personal Banking">Personal Banking</SelectItem>
+            <SelectItem value="Business Banking">Business Banking</SelectItem>
+            <SelectItem value="Inclusive Banking">Inclusive Banking</SelectItem>
+            <SelectItem value="Savings Account">Savings Account</SelectItem>
+            <SelectItem value="Current Account">Current Account</SelectItem>
+            <SelectItem value="Fixed Deposits">Fixed Deposits</SelectItem>
+            <SelectItem value="Recurring Deposit">Recurring Deposit</SelectItem>
+            <SelectItem value="Lockers">Lockers</SelectItem>
+            <SelectItem value="Insurance">Insurance</SelectItem>
+            <SelectItem value="Personal Loans">Personal Loans</SelectItem>
+            <SelectItem value="NRI Banking">NRI Banking</SelectItem>
+            <SelectItem value="MSME Loans">MSME Loans</SelectItem>
+            <SelectItem value="Digital Lending">Digital Lending</SelectItem>
+            <SelectItem value="Supply Chain Finance">Supply Chain Finance</SelectItem>
+            <SelectItem value="Social Infra Finance">Social Infra Finance</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <div>
         <Label htmlFor="message">Message</Label>

@@ -80,6 +80,7 @@ export default function BlogPreview({ blogs }: any) {
       <Carousel
         opts={{
           align: "start",
+          dragFree: true,
         }}
         className="w-full pb-20"
       >
