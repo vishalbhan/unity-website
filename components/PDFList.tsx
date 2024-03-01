@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 import { Input } from './ui/input';
 import { format } from 'date-fns';
 import clsx from 'clsx';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Download } from 'lucide-react';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -74,14 +74,17 @@ function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
 
       {paginatedData?.map((pdf: any, index: number) => (
         <a href={pdf.file} target="_blank" rel="noopener noreferrer" key={`pdf-${index}`}>
-          <PDFCard className="sm mb-6">
-              <p>{pdf.title}</p>
-              {pdf.description && (
-                <div className="text-gray-500 text-sm mt-4">{pdf.description}</div>
-              )}
-              {pdf.date && (
-                <div className="text-gray-500 text-sm mt-4">- {format(pdf.date, 'LLLL	do, yyyy')}</div>
-              )}
+          <PDFCard className="sm relative mb-6">
+            <p>{pdf.title}</p>
+            {pdf.description && (
+              <div className="text-gray-500 text-sm mt-4">{pdf.description}</div>
+            )}
+            {pdf.date && (
+              <div className="text-gray-500 text-sm mt-4">- {format(pdf.date, 'LLLL	do, yyyy')}</div>
+            )}
+            <div className="icon absolute top-1/2 right-8">
+              <Download />
+            </div>
           </PDFCard>
         </a>
       ))}
@@ -120,5 +123,17 @@ const PDFCard = styled.div`
 
   &:hover {
     background: white;
+  }
+
+  & .icon {
+    opacity: 0;
+    translate: 40% -50%;
+    transition: all 0.3s ease;
+  }
+
+  &:hover .icon {
+    opacity: 1;
+    translate: 0 -50%;
+    transition: all 0.3s ease;
   }
 `;

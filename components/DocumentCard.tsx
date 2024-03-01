@@ -23,7 +23,7 @@ const DocumentCard: React.FC<DocumentCardProps> = ({ file, type, link, title, da
           {date && (
             <div className="text-gray-500 text-sm mt-4">- {format(date, 'LLLL	do, yyyy')}</div>
           )}
-          <div className="icon absolute top-50 -translate-y-1/2 right-8">
+          <div className="icon absolute top-1/2 right-8">
             { type === "pdf" && <Download /> }
             { type === "link" && <ArrowRight /> }
           </div>

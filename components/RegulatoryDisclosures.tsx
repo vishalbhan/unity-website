@@ -1,6 +1,9 @@
 import React from 'react'
 import Governance from './Governance'
 import PDFList from './PDFList'
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
+import { ChevronDown } from 'lucide-react';
+import useWindowWidth from '@/hooks/useWindowWidth';
 
 const navItems = [
   {
@@ -19,24 +22,49 @@ const navItems = [
 
 export default function RegulatoryDisclosures() {
   const [page, setPage] = React.useState(0)
+  const width = useWindowWidth()
 
   return (
     <div className='md:grid grid-cols-4 p-10'>
 
       {/* Menu */}
-      <div className='flex flex-col gap-6'>
-        {
-          navItems.map((_, i) => (
-            <a 
-              key={`menu-item-${i}`} 
-              onClick={() => setPage(i)}
-              className={`cursor-pointer w-fit px-5 py-3 rounded-full ${page === i ? 'bg-black text-white' : ''}`}
-            >
-              <div>{_.title}</div>
-            </a>
-          ))
-        }
-      </div>
+      {
+        width > 768 ? (
+          <div className='flex flex-col gap-6'>
+            {
+              navItems.map((_, i) => (
+                <a 
+                  key={`menu-item-${i}`} 
+                  onClick={() => setPage(i)}
+                  className={`cursor-pointer w-fit px-5 py-3 rounded-full ${page === i ? 'bg-black text-white' : ''}`}
+                >
+                  <div>{_.title}</div>
+                </a>
+              ))
+            }
+          </div>
+        ) : (
+          <DropdownMenu>
+            <DropdownMenuTrigger className='bg-black text-white w-full p-3 rounded-full mb-12 relative'>
+              {navItems[page].title}
+              <ChevronDown className='absolute right-4 top-1/2 transform -translate-y-1/2' size={18} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='bg-white w-full'>
+              {
+                navItems.map((_, i) => (
+                  <DropdownMenuItem 
+                    key={`menu-item-${i}`}
+                    onClick={() => setPage(i)}
+                    className='p-3 w-full text-left hover:bg-gray-100 cursor-pointer'
+                  >
+                    {_.title}
+                  </DropdownMenuItem>
+                ))
+              }
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )
+      }
       
       {/* Content */}
       <div className="col-span-3">

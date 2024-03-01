@@ -160,7 +160,7 @@ export default function MobileNav({
             <div className="mb-8"><LogoLarge /></div>
             <NavItem onClick={() => setPage("personal")}>Personal<ChevronRight className="ml-1" /></NavItem>
             <NavItem onClick={() => setPage("business")}>Business<ChevronRight className="ml-1" /></NavItem>
-            <NavItem href="/inclusive">Inclusive</NavItem>
+            <NavItem href="/inclusive-banking">Inclusive</NavItem>
             <NavItem onClick={() => setPage("company")}>Company<ChevronRight className="ml-1" /></NavItem>
             <NavItem href="/contact-us">Contact Us</NavItem>
           </div>

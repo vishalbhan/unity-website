@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import PDFList from './PDFList'
 import { builder } from '@builder.io/react';
+import useWindowWidth from '@/hooks/useWindowWidth';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu';
+import { ChevronDown } from 'lucide-react';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -31,6 +34,7 @@ const navItems = [
 export default function InvestorsDisclosures() {
   const [page, setPage] = React.useState(0)
   const [data, setData] = React.useState<any>([]) 
+  const width = useWindowWidth()
 
   useEffect(() => {
     if (page === 4) {
@@ -55,22 +59,46 @@ export default function InvestorsDisclosures() {
   }, [page])
 
   return (
-    <div className='md:grid grid-cols-3 gap-8 p-14'>
+    <div className='md:grid grid-cols-3 gap-8 p-6 md:p-14'>
 
       {/* Menu */}
-      <div className='flex flex-col gap-6'>
-        {
-          navItems.map((_, i) => (
-            <a 
-              key={`menu-item-${i}`} 
-              onClick={() => setPage(i)}
-              className={`cursor-pointer w-fit px-5 py-3 rounded-full ${page === i ? 'bg-black text-white' : ''}`}
-            >
-              <div>{_.title}</div>
-            </a>
-          ))
-        }
-      </div>
+      {
+        width > 768 ? (
+          <div className='flex flex-col gap-6'>
+            {
+              navItems.map((_, i) => (
+                <a 
+                  key={`menu-item-${i}`} 
+                  onClick={() => setPage(i)}
+                  className={`cursor-pointer w-fit px-5 py-3 rounded-full ${page === i ? 'bg-black text-white' : ''}`}
+                >
+                  <div>{_.title}</div>
+                </a>
+              ))
+            }
+          </div>
+        ) : (
+          <DropdownMenu>
+            <DropdownMenuTrigger className='bg-black text-white w-full p-3 rounded-full mb-12 relative'>
+              {navItems[page].title}
+              <ChevronDown className='absolute right-4 top-1/2 transform -translate-y-1/2' size={18} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className='bg-white w-full'>
+              {
+                navItems.map((_, i) => (
+                  <DropdownMenuItem 
+                    key={`menu-item-${i}`}
+                    onClick={() => setPage(i)}
+                    className='p-3 w-full text-left hover:bg-gray-100 cursor-pointer'
+                  >
+                    {_.title}
+                  </DropdownMenuItem>
+                ))
+              }
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )
+      }
       
       {/* Content */}
       <div className="col-span-2">
