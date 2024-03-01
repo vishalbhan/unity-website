@@ -51,9 +51,9 @@ export default function ManagementTeam() {
                     </TeamItem>
                   </DialogTrigger>
                   <DialogPortal container={containerRef?.current}>
-                    <DialogContent className='bg-white' style={{maxWidth:'860px'}}>
+                    <DialogContent className='bg-white p-6 max-h-[90%] overflow-auto' style={{maxWidth:'860px'}}>
                       <div className="grid grid-cols-1 md:grid-cols-3">
-                        <div className='md:border-r-2 md:p-6'>
+                        <div className='flex flex-col items-center md:items-start border-b-2 md:border-b-0 border-r-0 md:border-r-2 mb-6 md:p-6'>
                           <img src={item.data.image} alt={item.data.name} className='w-40 md:w-full object-cover mb-4' />
                           <div className="text-[14px] text-gray-500 mb-4">{item.data.designation}</div>
                           <div className='text-lg font-semibold mb-4'>{item.data.name}</div>

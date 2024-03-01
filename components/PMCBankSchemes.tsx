@@ -29,7 +29,7 @@ const PMCBankSchemes: React.FC<any> = ({ retailCards, institutionalDepositorsCon
   const width = useWindowWidth()
 
   return (
-    <div className='p-10'>
+    <div className='px-4 py-10'>
 
       {/* Menu */}
       {

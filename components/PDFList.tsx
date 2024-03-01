@@ -25,6 +25,7 @@ function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
   const [data, setData] = React.useState<any>(null);
   const [currentPage, setCurrentPage] = React.useState<number>(0);
   const [searchTerm, setSearchTerm] = useState('');
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
 
   const itemsPerPage = 10; // Number of items to display per page
 
@@ -44,6 +45,7 @@ function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
   }, []);
 
   const handlePageChange = (selectedPage: { selected: number }) => {
+    containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     setCurrentPage(selectedPage.selected);
   };
 
@@ -60,7 +62,7 @@ function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
   const paginatedData = filteredData?.slice(offset, offset + itemsPerPage);
 
   return (
-    <>
+    <div ref={containerRef} className='py-10'>
       <Input
         type="text"
         placeholder="Search"
@@ -104,7 +106,7 @@ function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
           activeClassName={'active'}
         />
       }
-    </>
+    </div>
   );
 }
 
@@ -112,6 +114,7 @@ export default PDFList;
 
 const PDFCard = styled.div`
   padding: 24px;
+  padding-right: 80px;
   border: 1px solid rgba(0, 0, 0, 0.16);
   border-radius: 16px;
   transition: all 0.3s ease;
