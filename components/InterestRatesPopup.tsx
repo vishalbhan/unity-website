@@ -9,7 +9,7 @@ const InterestRatesPopup: React.FC = () => {
         <h5 className='mb-2'>Fixed Deposit Rates</h5>
         <p>The fixed deposit interest rate for retail investors stands revised from 09th Oct, 2023 as follows:</p>
       </div>
-      <table className='small'>
+      <table className='small w-full'>
         <thead>
           <tr>
             <th scope="col">Tenure</th>

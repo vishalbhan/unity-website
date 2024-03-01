@@ -251,3 +251,10 @@ tbody td:last-child {
   }
 }
 
+.show-list ul {
+  list-style: disc;
+}
+
+.show-list ul li {
+  margin-left: 32px;
+}

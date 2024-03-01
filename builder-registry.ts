@@ -558,7 +558,7 @@ Builder.registerComponent(
             name: "hasModal",
             type: "boolean",
             required: true,
-            defaultValue: false
+            defaultValue: false,
           },
           {
             name: "reimbursmentSteps",
@@ -576,13 +576,60 @@ Builder.registerComponent(
                 required: true,
               },
             ],
-          }
+          },
         ],
       },
       {
         name: "institutionalDepositorsContent",
         type: "richText",
         required: true,
+      },
+    ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/DocumentCard")),
+  {
+    name: "DocumentCard",
+    inputs: [
+      {
+        name: "type",
+        type: "string",
+        required: true,
+        enum: [
+          {
+            label: "PDF",
+            value: "pdf",
+          },
+          {
+            label: "Link",
+            value: "link",
+          },
+        ],
+      },
+      {
+        name: "file",
+        type: "file",
+        showIf: (options) => options.get("type") === "pdf",
+      },
+      {
+        name: "link",
+        type: "string",
+        showIf: (options) => options.get("type") === "link",
+      },
+      {
+        name: "title",
+        type: "string",
+        required: true,
+      },
+      {
+        name: "date",
+        type: "string",
+      },
+      {
+        name: "description",
+        type: "string",
       },
     ],
   }

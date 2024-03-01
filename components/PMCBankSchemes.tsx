@@ -5,8 +5,8 @@ import {
   DialogPortal,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import Button from './Button';
 import { ArrowRight } from 'lucide-react';
+import styled from 'styled-components';
 
 const navItems = [
   {
@@ -67,14 +67,14 @@ const PMCBankSchemes: React.FC<any> = ({ retailCards, institutionalDepositorsCon
                               Show Details&nbsp;<ArrowRight className='ml-1' size={16} />
                             </a>
                           </DialogTrigger>
-                          <DialogContent className='bg-white max-h-[80%]' style={{maxWidth:'840px'}}>
-                            <div className="grid grid-cols-5 sm">
-                              <div className="p-6 bg-[#FBFAF4] border border-r-[1px] border-color-red col-span-2 h-full flex flex-col ">
+                          <DialogContent className='bg-white max-h-[80%] overflow-auto' style={{maxWidth:'840px'}}>
+                            <div className="grid grid-cols-5 sm items-stretch">
+                              <div className="p-6 bg-[#FBFAF4] border border-r-[1px] col-span-2 h-full">
                                 <div>
                                   <h5 className='mb-4'>Reimbursment Roadmap</h5>
                                   <p>{_.amount}</p>
                                 </div>
-                                <div className='text-xs mt-auto'>
+                                <div className='text-sm mt-16'>
                                   Based on aggregating your PMC account(s) in the Same capacity and same right as per DICGC settlement procedure, and after adjusting any dues; subject to claim approval by DICGC
                                   <br/><br/>
                                   *  Including interest accrued till 31st March 2021
@@ -82,7 +82,7 @@ const PMCBankSchemes: React.FC<any> = ({ retailCards, institutionalDepositorsCon
                                   ** Subject to claim approval & receipt of funds from DICG
                                 </div>
                               </div>
-                              <div className="col-span-3 p-12 overflow-auto">
+                              <div className="col-span-3 p-12">
                                 <ol className="reimbursment-list mb-6">
                                 {
                                   _.reimbursmentSteps && _.reimbursmentSteps.map((step: any, i: number) => (
@@ -110,11 +110,13 @@ const PMCBankSchemes: React.FC<any> = ({ retailCards, institutionalDepositorsCon
         {
           page === 1 && (
             <>
-              <div className="text-center mb-12">
+              <div className="text-center mb-16">
                 <h2 className='mb-6'>For Institutional Depositors</h2>
                 <p>Eligibility under Amalgamation Scheme</p>
               </div>
-              <div dangerouslySetInnerHTML={{__html:institutionalDepositorsContent}} />
+              <Content>
+                <div dangerouslySetInnerHTML={{__html:institutionalDepositorsContent}} />
+              </Content>
             </>
           )
         }
@@ -125,3 +127,13 @@ const PMCBankSchemes: React.FC<any> = ({ retailCards, institutionalDepositorsCon
 };
 
 export default PMCBankSchemes;
+
+const Content = styled.div`
+  & ul {
+    list-style: disc;
+
+    & li {
+      margin-left: 32px;
+    }
+  }
+`
