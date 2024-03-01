@@ -8,15 +8,10 @@ export const BusinessMenu = forwardRef<HTMLElement>((props, ref) => {
   const [items, setItems] = React.useState<any>([]);
   
   React.useEffect(() => {
-    builder
-      .get('navigation', {
-        query: {
-          name: 'Business'
-        },
-      })
-      .promise()
+    fetch("https://cdn.builder.io/api/v3/content/navigation?apiKey=21b44296fc364461abc19d1d5fa5792d&query.name=Business&limit=1")
+      .then(res => res.json())
       .then((data: any) => {
-        if (data) setItems(data.data.items);
+        if (data.results) setItems(data.results[0].data.items);
       })
   }, [])
 
