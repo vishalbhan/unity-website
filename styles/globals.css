@@ -215,3 +215,39 @@ tbody td:last-child {
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px; 
 }
+
+.reimbursment-list li {
+  position: relative;
+  padding-left: 50px;
+  padding-bottom: 32px;
+
+  &:before {
+    z-index: 2;
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 0;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background: #EFD591;
+    border-radius: 50%;
+  }
+
+  &:after {
+    z-index: 1;
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    top: 12px;
+    left: 8px;
+    background: #00000020;
+    border-radius: 50%;
+  }
+
+  &:last-child:after {
+    display: none;
+  }
+}
+

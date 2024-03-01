@@ -25,7 +25,7 @@ const PMCBankSchemes: React.FC<any> = ({ retailCards, institutionalDepositorsCon
   const [page, setPage] = React.useState(0)
 
   return (
-    <>
+    <div className='p-10'>
 
       {/* Menu */}
       <div className='flex items-center justify-center gap-10'>
@@ -67,14 +67,32 @@ const PMCBankSchemes: React.FC<any> = ({ retailCards, institutionalDepositorsCon
                               Show Details&nbsp;<ArrowRight className='ml-1' size={16} />
                             </a>
                           </DialogTrigger>
-                          <DialogContent className='bg-white max-h-[90%] overflow-auto' style={{maxWidth:'840px'}}>
-                            <div className="grid grid-cols-3">
-                              <div className="p-6 bg-[#FBFAF4] border border-r-[1px] border-color-red">
-                                <h5 className='mb-4'>Reimbursment Roadmap</h5>
-                                <p className='mb-12'>{_.amount}</p>
+                          <DialogContent className='bg-white max-h-[80%]' style={{maxWidth:'840px'}}>
+                            <div className="grid grid-cols-5 sm">
+                              <div className="p-6 bg-[#FBFAF4] border border-r-[1px] border-color-red col-span-2 h-full flex flex-col ">
+                                <div>
+                                  <h5 className='mb-4'>Reimbursment Roadmap</h5>
+                                  <p>{_.amount}</p>
+                                </div>
+                                <div className='text-xs mt-auto'>
+                                  Based on aggregating your PMC account(s) in the Same capacity and same right as per DICGC settlement procedure, and after adjusting any dues; subject to claim approval by DICGC
+                                  <br/><br/>
+                                  *  Including interest accrued till 31st March 2021
+                                  <br/><br/>
+                                  ** Subject to claim approval & receipt of funds from DICG
+                                </div>
                               </div>
-                              <div className="col-span-2 p-6">
-
+                              <div className="col-span-3 p-12 overflow-auto">
+                                <ol className="reimbursment-list mb-6">
+                                {
+                                  _.reimbursmentSteps && _.reimbursmentSteps.map((step: any, i: number) => (
+                                    <li key={`reimbursment-step-${i}`}>
+                                      <h6 className='mb-2'>{step.month}</h6>
+                                      <div dangerouslySetInnerHTML={{__html:step.description}} />
+                                    </li>
+                                  ))
+                                }
+                                </ol>
                               </div>
                             </div>
                           </DialogContent>
@@ -102,7 +120,7 @@ const PMCBankSchemes: React.FC<any> = ({ retailCards, institutionalDepositorsCon
         }
       </div>
       
-    </>
+    </div>
   )
 };
 
