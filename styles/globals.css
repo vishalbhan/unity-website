@@ -166,7 +166,8 @@ h6 {
   }
 }
 
-div[role="dialog"] {
+div[role="dialog"],
+div[data-radix-popper-content-wrapper] {
   font-family: "Archivo", sans-serif;
 }
 

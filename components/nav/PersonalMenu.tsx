@@ -53,7 +53,7 @@ export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
           <ArrowRight className='ml-2' />
         </h6>
       </a>
-      <div className="grid grid-cols-[250px,1fr] items-start gap-6">
+      <div className="grid grid-cols-[250px,1fr] items-start gap-8">
         <div>
           <div className={`sm rounded-xl mb-4 p-4 ${personalSelectedIndex === 0 ? 'bg-[#F5F4F1]' : ''}`} onMouseEnter={() => setPersonalSelectedIndex(0)}>
             <h6 className="">Save</h6>
@@ -68,7 +68,7 @@ export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
             <div className='text-sm'>Secure your future with health insurance etc</div>
           </div>
         </div>
-        <ul className="grid grid-cols-2 gap-4">
+        <ul className="grid grid-cols-2 gap-6">
           {personalSelectedIndex === 0 && save.map((item: any) => (
             <li key={item.link}>
               <a className="flex items-center space-x-6" href={item.link}>
