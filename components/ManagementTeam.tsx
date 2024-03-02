@@ -28,7 +28,7 @@ export default function ManagementTeam() {
             return (
               <>
                 <Dialog key={item.id}>
-                  <DialogTrigger className='cursor-pointer' asChild>
+                  <DialogTrigger className='cursor-pointer overflow-hidden' asChild>
                     <TeamItem>
                       <div className='bg-gray-200'>
                         <img src={item.data.image} alt={item.data.name} className='object-cover' />
@@ -69,7 +69,7 @@ export default function ManagementTeam() {
                             </a>
                           }
                         </div>
-                        <div className="col-span-2 md:p-6 sm">
+                        <div className="col-span-2 md:p-6 sm h-[505px] overflow-auto">
                           <div className='text-lg font-semibold mb-4'>About {item.data.name}</div>
                           <p className='max-h-80 overflow-y-scroll md:max-h-none'>
                             {item.data.bio}

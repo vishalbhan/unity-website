@@ -15,6 +15,7 @@ import Navbar from "@/components/Navbar";
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY);
 
 function BlogArticle({ article }) {
+  console.log(article)
   const router = useRouter()
   const shareUrl = `https://www.sanzu.ch/${router.asPath}`
 
@@ -54,8 +55,16 @@ function BlogArticle({ article }) {
 
                 <div className="grid grid-cols-3 gap-8">
                   <div className="col-span-2">
-                    <h2 className="mb-4">{data?.title}</h2>
-                    <p className='text-gray-500'>{data?.readTime} min read | 1 day ago</p>
+                    <h3 className="mb-4">{data?.title}</h3>
+                    <div className="flex items-center gap-4">
+                      {data?.categories.map((category, index) => (
+                        <p key={category}>
+                          <span className="uppercase bg-[#B97A00]">{category}</span>
+                          {index !== data.categories.length - 1 && <span>,</span>}
+                        </p>
+                      ))}
+                      <p className='text-gray-500'>{data?.readTime} min read | 1 day ago</p>
+                    </div>  
                     <hr className="mt-4 mb-8" />
                     <BlogContent className="mb-12">
                       {/* Render the Builder drag/drop'd content */}
@@ -126,26 +135,5 @@ export async function getStaticPaths() {
 export default BlogArticle;
 
 const BlogContent = styled.div`
-  max-width: 720px;
   margin: 24px auto;
-
-  & :is(h1, h2, h3, h4, h5, h6, p, ol, ul, blockquote, pre) {
-    margin-bottom: 1.2rem !important;
-  }
-
-  & :is(h1, h2) {
-    font-size: 26px;
-  }
-
-  & h3 {
-    font-size: 22px;
-  }
-
-  & h4 {
-    font-size: 20px;
-  }
-
-  & p, ol, ul {
-    font-size: 16px !important;
-  }
 `

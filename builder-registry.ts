@@ -74,6 +74,13 @@ Builder.registerComponent(
         showIf: (options) => options.get("action") === "form",
       },
       {
+        name: "withResume",
+        type: "boolean",
+        friendlyName: "With Resume?",
+        defaultValue: false,
+        showIf: (options) => options.get("action") === "form" && options.get("popup") === "contact",
+      },
+      {
         name: "href",
         type: "string",
         friendlyName: "Link",
@@ -630,6 +637,43 @@ Builder.registerComponent(
       {
         name: "description",
         type: "string",
+      },
+    ],
+  }
+);
+
+// Register Table component
+Builder.registerComponent(
+  dynamic(() => import("./components/Table")),
+  {
+    name: "Table",
+    friendlyName: "Table",
+    inputs: [
+      {
+        name: "headers",
+        type: "list",
+        subFields: [
+          {
+            name: "header",
+            type: "string",
+          },
+        ],
+      },
+      {
+        name: "rows",
+        type: "list",
+        subFields: [
+          {
+            name: "row",
+            type: "list",
+            subFields: [
+              {
+                name: "cell",
+                type: "string",
+              },
+            ],
+          },
+        ],
       },
     ],
   }

@@ -6,11 +6,75 @@ import { Checkbox } from './ui/checkbox';
 import Button from './Button';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
-const PopupForm: React.FC = () => {
+const topicValues = [
+  {
+    title: "Personal Banking",
+    path: "/personal"
+  },
+  {
+    title: "Business Banking",
+    path: "/business"
+  },
+  {
+    title: "Inclusive Banking",
+    path: "/inclusive-banking"
+  },
+  {
+    title: "Savings Account",
+    path: "/peresonal/savings-account"
+  },
+  {
+    title: "Current Account",
+    path: "/business/current-account"
+  },
+  {
+    title: "Fixed Deposits",
+    path: "/personal/fixed-deposits"
+  },
+  {
+    title: "Recurring Deposit",
+    path: "/personal/recurring-deposit"
+  },
+  {
+    title: "Lockers",
+    path: "/personal/lockers"
+  },
+  {
+    title: "Insurance",
+    path: "/personal/insurance"
+  },
+  {
+    title: "Personal Loans",
+    path: "/personal/loans"
+  },
+  {
+    title: "NRI Banking",
+    path: "/personal/nri-banking"
+  },
+  {
+    title: "MSME Loans",
+    path: "/business/msme-loans"
+  },
+  {
+    title: "Digital Lending",
+    path: "/business/digital-lending"
+  },
+  {
+    title: "Supply Chain Finance",
+    path: "/business/supply-chain-finance"
+  },
+  {
+    title: "Social Infra Finance",
+    path: "/business/social-infra-finance"
+  },
+]
+
+const PopupForm: React.FC<any> = ({ withResume }: { withResume: boolean }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
+    topic: '',
     message: '',
     termsAgreed: true
   });
@@ -51,21 +115,11 @@ const PopupForm: React.FC = () => {
             <SelectValue placeholder="Select a topic" />
           </SelectTrigger>
           <SelectContent className='bg-white'>
-            <SelectItem value="Personal Banking">Personal Banking</SelectItem>
-            <SelectItem value="Business Banking">Business Banking</SelectItem>
-            <SelectItem value="Inclusive Banking">Inclusive Banking</SelectItem>
-            <SelectItem value="Savings Account">Savings Account</SelectItem>
-            <SelectItem value="Current Account">Current Account</SelectItem>
-            <SelectItem value="Fixed Deposits">Fixed Deposits</SelectItem>
-            <SelectItem value="Recurring Deposit">Recurring Deposit</SelectItem>
-            <SelectItem value="Lockers">Lockers</SelectItem>
-            <SelectItem value="Insurance">Insurance</SelectItem>
-            <SelectItem value="Personal Loans">Personal Loans</SelectItem>
-            <SelectItem value="NRI Banking">NRI Banking</SelectItem>
-            <SelectItem value="MSME Loans">MSME Loans</SelectItem>
-            <SelectItem value="Digital Lending">Digital Lending</SelectItem>
-            <SelectItem value="Supply Chain Finance">Supply Chain Finance</SelectItem>
-            <SelectItem value="Social Infra Finance">Social Infra Finance</SelectItem>
+            {
+              topicValues.map((topic, index) => (
+                <SelectItem key={index} value={topic.title}>{topic.title}</SelectItem>
+              ))
+            }
           </SelectContent>
         </Select>
       </div>
@@ -73,6 +127,14 @@ const PopupForm: React.FC = () => {
         <Label htmlFor="message">Message</Label>
         <Textarea name="message" id="message" rows={5} value={formData.message} onChange={handleChange} />
       </div>
+      {
+        withResume && (
+          <div>
+            <Label htmlFor="resume">Resume</Label>
+            <Input type="file" id="resume" name="resume" onChange={handleChange} />
+          </div>
+        )
+      }
       <div className='flex items-center space-x-3'>
         <Checkbox 
           checked={formData.termsAgreed}

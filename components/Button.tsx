@@ -23,14 +23,17 @@ type ButtonProps = {
   type: "primary" | "secondary" | "tertiary" | "link",
   action?: "link" | "form" | "submit",
   popup?: "interestRates" | "contact",
+  withResume?: boolean,
   href: string,
   icon?: "arrow-right",
   width?: "full" | "fit"
 }
 
-export default function Button({ text, type, action = "link", popup = "contact", href, icon, width = "fit" }: ButtonProps) {
+export default function Button({ text, type, action = "link", popup = "contact", withResume, href, icon, width = "fit" }: ButtonProps) {
   const windowWidth = useWindowWidth()
   const containerRef = React.useRef(null)
+
+  console.log(withResume)
 
   return (
     <>
@@ -71,7 +74,7 @@ export default function Button({ text, type, action = "link", popup = "contact",
                     </ButtonContainer>
                   </DialogTrigger>
                   <DialogContent className='bg-white p-12 max-h-[90%] overflow-auto' style={{maxWidth:'840px'}}>
-                    { popup === "contact" && <PopupForm /> }
+                    { popup === "contact" && <PopupForm withResume={withResume} /> }
                     { popup === "interestRates" && <InterestRatesPopup /> }
                   </DialogContent>
                 </Dialog>
@@ -93,7 +96,7 @@ export default function Button({ text, type, action = "link", popup = "contact",
                   <DrawerPortal>
                     <DrawerContent className='bg-white p-6 max-h-[96%]' style={{maxWidth:'860px'}}>
                       <div className='overflow-auto'>
-                        { popup === "contact" && <PopupForm /> }
+                        { popup === "contact" && <PopupForm withResume={withResume} /> }
                         { popup === "interestRates" && <InterestRatesPopup /> }
                       </div>
                     </DrawerContent>
@@ -132,6 +135,9 @@ const ButtonContainer = styled.button<{ type: string }>`
     props.type === 'secondary' && '#FFF' ||
     props.type === 'tertiary' && '#F3F3F3' ||
     props.type === 'link' && 'transparent' 
+  )};
+  border: ${props => (
+    props.type === 'secondary' && '1px solid rgba(0, 0, 0, 0.16)'
   )};
   border-radius: 99px;
   font-weight: 600;

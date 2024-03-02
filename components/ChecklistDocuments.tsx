@@ -19,7 +19,7 @@ export default function ChecklistDocuments({
   const [selected, setSelected] = React.useState(0);
 
   return (
-    <Container className="grid grid-cols-1 lg:grid-cols-2 gap-16" theme={theme}>
+    <Container className="grid grid-cols-1 md:grid-cols-2 gap-16" theme={theme}>
       <div className="flex flex-col gap-4">
         {checklistItems.map((item: any, index: number) => (
           <Checklist

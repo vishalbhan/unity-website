@@ -1,6 +1,7 @@
 import React from 'react'
 import { format } from 'date-fns'
 import { builder } from '@builder.io/react';
+import Button from './Button';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -25,9 +26,18 @@ type Article = {
   }[]
 }
 
+type PressKit = {
+  data: {
+    title: string,
+    description: string,
+    file: string
+  }
+}[]
+
 export default function MediaCentres() {
   const [page, setPage] = React.useState(0)
   const [data, setData] = React.useState<Article | null>(null)
+  const [pressKit, setPressKit] = React.useState<PressKit | null>([])
 
   React.useEffect(() => {
     if (page === 0) {
@@ -48,6 +58,14 @@ export default function MediaCentres() {
       }).promise().then(( data: any ) => {
         if (data) setData(data.data)
       })
+    }
+
+    if (page === 2) {
+      builder
+        .getAll('press-kit')
+        .then(( data: any ) => {
+          if (data) setPressKit(data)
+        })
     }
   }, [page])
 
@@ -118,7 +136,29 @@ export default function MediaCentres() {
         {
           page === 2 && (
             <div>
-              Press Kit
+              {
+                pressKit?.map((_, i) => (
+                  <div key={`press-kit-${i}`} className='white-card'>
+                    <div className="grid grid-cols-4 gap-12 items-center p-6">
+                      <div className="col-span-3">
+                        <h5 className="mb-4">{_.data.title}</h5>
+                        <p className="mb-6">{_.data.description}</p>
+                        <Button
+                          text="Download"
+                          href={_.data.file}
+                          type="secondary"
+                          icon="arrow-right"
+                        />
+                      </div>
+                      <div className="col-span-1">
+                        <div className="white-card grid place-items-center">
+                          <img src={_.data.file} alt={_.data.title} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
             </div>
           )
         }
