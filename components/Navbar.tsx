@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Logo } from './icons';
-import { NavMenu } from './NavMenu';
 import Link from 'next/link';
 import Button from './Button';
-import { Gift, Menu } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import MobileNav from './MobileNav';
 import AnimatedNavMenu from './AnimatedNavMenu';
+import WhatsNew from './WhatsNew';
 
 const Navbar = ({ color } : { color: string; }) => {
   const pathname = usePathname()
@@ -20,7 +19,7 @@ const Navbar = ({ color } : { color: string; }) => {
             <div className="hidden lg:block"><AnimatedNavMenu color={color} /></div>
           </div>
           <div className="flex items-center space-x-4 md:space-x-8">
-            <Gift style={{color: color === "light" ? "#000" : "#FFF"}} />
+            <WhatsNew color={color} />
             <div className="hidden lg:block text-right"><Button text="Login" type="tertiary" href="/" /></div>
             <div className='lg:hidden'><MobileNav style={color} /></div>
           </div>

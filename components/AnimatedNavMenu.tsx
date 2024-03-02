@@ -52,7 +52,7 @@ const AnimatedNavMenu: React.FC<{color: string}> = ({ color }) => {
 
   return (
     <nav className="z-50 relative" onMouseEnter={() => setHovering(null)}>
-      <div className='flex gap-4'>
+      <div className='flex gap-3'>
         {
           navItems.map((item, index) => (
             <NavMenuItem key={item.title} color={color}>

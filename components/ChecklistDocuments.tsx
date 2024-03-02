@@ -34,7 +34,7 @@ export default function ChecklistDocuments({
               className="cursor-pointer flex gap-4 -ml-4 md:-ml-0"
               onClick={() => setSelected(index)}
             >
-              <Check color="#008207" className="md:mr-2 mt-1" />
+              <Check color="#008207" className="md:mr-2 mt-1 shrink-0" />
               <p className="text-base md:text-lg font-semibold">
                 {item.title}
               </p>

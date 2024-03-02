@@ -13,7 +13,7 @@ import Button from './Button'
 
 export default function EMICalculator() {
   return (
-    <CalculatorContainer>
+    <CalculatorContainer className='grid md:grid-cols-2'>
       <Controls className='flex flex-col gap-10 p-6 lg:p-14'>
         <div className='text-3xl font-semibold'>EMI Calculator</div>
 
@@ -131,8 +131,6 @@ export default function EMICalculator() {
 }
 
 const CalculatorContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 24px;
