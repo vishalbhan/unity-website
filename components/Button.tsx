@@ -33,8 +33,6 @@ export default function Button({ text, type, action = "link", popup = "contact",
   const windowWidth = useWindowWidth()
   const containerRef = React.useRef(null)
 
-  console.log(withResume)
-
   return (
     <>
       {

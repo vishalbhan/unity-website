@@ -678,3 +678,26 @@ Builder.registerComponent(
     ],
   }
 );
+
+// register DropdownCard component
+Builder.registerComponent(
+  dynamic(() => import("./components/DropdownCard")),
+  {
+    name: "DropdownCard",
+    friendlyName: "Dropdown Card",
+    inputs: [
+      {
+        name: "title",
+        type: "string",
+        friendlyName: "Title",
+        required: true,
+      },
+      {
+        name: "content",
+        type: "richText",
+        friendlyName: "Content",
+        required: true,
+      },
+    ],
+  }
+);
