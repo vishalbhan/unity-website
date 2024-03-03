@@ -9,6 +9,9 @@ import {
 import styled from 'styled-components'
 import Button from './Button'
 import { builder } from '@builder.io/react';
+import clsx from 'clsx';
+import { formatDistanceToNow } from 'date-fns';
+import Link from 'next/link';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -73,7 +76,7 @@ const blogsSeed = [
   },
 ]
 
-export default function BlogPreview({ blogs }: any) {
+export default function BlogPreview({ size = "small", blogs }: any) {
   return (
     <div className='my-20 max-w-full'>
       <h2 className='mb-16'>Our blogs and stories</h2>
@@ -87,18 +90,50 @@ export default function BlogPreview({ blogs }: any) {
         <CarouselContent className='items-stretch'>
           {
             blogsSeed.map((_: any, index: number) => (
-              <CarouselItem key={index} className={`basis-4/5 ${_.type === 'story' ? 'md:basis-1/2' : 'md:basis-1/3'}`}>
+              <CarouselItem key={index} className={clsx(
+                size === "small" && `basis-4/5 ${_.type === 'story' ? 'md:basis-1/2' : 'md:basis-1/3'}`,
+                size === "large" && `basis-full`
+              )}>
                 <BlogCard className='h-full'>
-                  <div 
-                    style={{backgroundImage: `url(${_.image})`}}
-                    className={`relative bg-cover bg-center w-full h-72 ${_.type === 'blog' ? 'aspect-square' : 'aspect-video'}`}
-                  >
-                    <Badge className='absolute top-4 left-4'>{_.type.toUpperCase()}</Badge>
-                  </div>
-                  <div className='p-6'>
-                    <h6 className='mb-6'>{_.title}</h6>
-                    <div className='text-gray-500 mb-6'>{_.readTime} min read | 1 day ago</div>
-                  </div>
+                  {
+                    size === "large" ? (
+                      <div className='card grid grid-cols-7'>
+                        <div className='col-span-4 p-10 my-auto'>
+                          <h4 className='font-semibold mb-4'>{_.title}</h4>
+                          <div className="flex items-center gap-4 mb-6">
+                            <p className='uppercase text-[#B97A00] font-semibold tracking-wider'>{_.type}</p>
+                            <p className='text-gray-500'>{_.readTime} min read&nbsp;&nbsp;|&nbsp;&nbsp;{formatDistanceToNow(_.date, { addSuffix: true })}</p>
+                          </div>
+                          <div className="sm mb-6">
+                            <p>{_.excerpt}</p>
+                          </div>
+                          <Button
+                            text="Read more"
+                            type="link"
+                            href={`/blog/${_.slug}`}
+                            icon="arrow-right"
+                          />
+                        </div>
+                        <div
+                          style={{backgroundImage: `url(${_.image})`}}
+                          className="col-span-3 bg-cover bg-center h-96"
+                        />
+                      </div>
+                    ) : (
+                      <>
+                        <div 
+                          style={{backgroundImage: `url(${_.image})`}}
+                          className={`relative bg-cover bg-center w-full h-72 ${_.type === 'blog' ? 'aspect-square' : 'aspect-video'}`}
+                        >
+                          <Badge className='absolute top-4 left-4'>{_.type.toUpperCase()}</Badge>
+                        </div>
+                        <div className='p-6'>
+                          <h6 className='mb-6'>{_.title}</h6>
+                          <div className='text-gray-500 mb-6'>{_.readTime} min read | 1 day ago</div>
+                        </div>
+                      </>
+                    )
+                  }
                 </BlogCard>
               </CarouselItem>
             ))

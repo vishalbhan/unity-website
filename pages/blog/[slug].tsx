@@ -7,17 +7,17 @@ import {
 import React from 'react';
 import Head from "next/head";
 import DefaultErrorPage from "next/error";
-import { EmailIcon, EmailShareButton, FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from "react-share";
-import { useRouter } from "next/router";
+import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from "react-share";
+import { Facebook, Twitter, Instagram, LinkedIn, Copy } from "@/components/icons";
 import styled from "styled-components";
 import Navbar from "@/components/Navbar";
+import { formatDistanceToNow } from "date-fns";
 
-builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY);
+builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY as string);
 
-function BlogArticle({ article }) {
+function BlogArticle({ article }: { article: any }) {
   console.log(article)
-  const router = useRouter()
-  const shareUrl = `https://www.sanzu.ch/${router.asPath}`
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
   const isPreviewing = useIsPreviewing();
   if (!article && !isPreviewing) {
@@ -29,6 +29,11 @@ function BlogArticle({ article }) {
         <DefaultErrorPage statusCode={404} />
       </>
     );
+  }
+
+  // function to copy the url to clipboard
+  const copyUrl = () => {
+    navigator.clipboard.writeText(shareUrl);
   }
 
   return (
@@ -56,14 +61,14 @@ function BlogArticle({ article }) {
                 <div className="grid grid-cols-3 gap-8">
                   <div className="col-span-2">
                     <h3 className="mb-4">{data?.title}</h3>
-                    <div className="flex items-center gap-4">
-                      {data?.categories.map((category, index) => (
+                    <div className="flex items-center gap-6">
+                      {data?.categories.map((category: any, index: number) => (
                         <p key={category}>
-                          <span className="uppercase bg-[#B97A00]">{category}</span>
+                          <span className="uppercase text-[#B97A00] font-semibold tracking-wider">{category}</span>
                           {index !== data.categories.length - 1 && <span>,</span>}
                         </p>
                       ))}
-                      <p className='text-gray-500'>{data?.readTime} min read | 1 day ago</p>
+                      <p className='text-gray-500'>{data?.readTime} min read&nbsp;&nbsp;|&nbsp;&nbsp;{formatDistanceToNow(data?.date, { addSuffix: true })}</p>
                     </div>  
                     <hr className="mt-4 mb-8" />
                     <BlogContent className="mb-12">
@@ -74,26 +79,38 @@ function BlogArticle({ article }) {
                       />
                     </BlogContent>
                   </div>
+                  
                   {/* Sidebar */}
                   <div>
-                    <h5 className='text-sm mb-6'>Share this article</h5>
-                    <div className="flex flex-wrap gap-2">
-                      <EmailShareButton url={shareUrl}>
-                        <EmailIcon size={32} round />
-                      </EmailShareButton>
-                      <FacebookShareButton url={shareUrl}>
-                        <FacebookIcon size={32} round />
-                      </FacebookShareButton>
-                      <LinkedinShareButton url={shareUrl}>
-                        <LinkedinIcon size={32} round />
-                      </LinkedinShareButton>
-                      <TwitterShareButton url={shareUrl}>
-                        <TwitterIcon size={32} round />
-                      </TwitterShareButton>
-                      <WhatsappShareButton url={shareUrl}>
-                        <WhatsappIcon size={32} round />
-                      </WhatsappShareButton>
+                    <div>
+                      <h6 className='mb-6'>Share this blog</h6>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <FacebookShareButton url={shareUrl}>
+                          <Facebook fill="#6F7276" />
+                        </FacebookShareButton>
+                        <TwitterShareButton url={shareUrl}>
+                          <Twitter fill="#6F7276" />
+                        </TwitterShareButton>
+                        <LinkedinShareButton url={shareUrl}>
+                          <LinkedIn fill="#6F7276" />
+                        </LinkedinShareButton>
+                        <a onClick={copyUrl} className="cursor-pointer px-3">
+                          <Copy fill="#6F7276" />
+                        </a>
+                      </div>
                     </div>
+                    
+                    <hr className="my-10" />
+
+                    <h6 className='mb-6'>Related Blogs</h6>
+                    {
+                      article?.data.related.map((item: any) => (
+                        <div key={item.article.value.data.slug} className="mb-6">
+                          <img src={item.article.value.data.image} alt={item.article.value.data.title} className="w-full h-44 object-cover rounded-xl mb-4" />
+                          <h6 className="mb-2">{item.article.value.data.title}</h6>
+                        </div>
+                      ))
+                    }
                   </div>
                 </div>
 
@@ -107,7 +124,7 @@ function BlogArticle({ article }) {
   );
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: { params: any }) {
   const article = await builder
     .get("blog-articles", {
       query: {

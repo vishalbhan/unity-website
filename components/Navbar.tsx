@@ -12,7 +12,7 @@ const Navbar = ({ color } : { color: string; }) => {
 
   return (
     <nav id="nav" className='px-6 py-4 md:py-6' style={{background: pathname === '/business' ? '#080808' : 'transparent'}}>
-      <div className="container mx-auto">
+      <div className="md:container mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-10 xl:space-x-20">
             <Link href="/"><Logo style={color} /></Link>
