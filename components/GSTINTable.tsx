@@ -13,15 +13,13 @@ export default function GSTINTable() {
   }, []);
 
   return (
-    <div className="overflow-hidden">
+    <div className="table-border overflow-hidden">
       <table>
         <thead>
-          <tr>
-            <th>No.</th>
-            <th>State</th>
-            <th>GSTIN</th>
-            <th>Principal of Business</th>
-          </tr>
+          <th>No.</th>
+          <th>State</th>
+          <th>GSTIN</th>
+          <th>Principal of Business</th>
         </thead>
         <tbody>
           {data?.map((item: any, index: number) => (
