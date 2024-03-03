@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Textarea } from './ui/textarea';
 import { Label } from './ui/label';
 import { Input } from './ui/input';
 import { Checkbox } from './ui/checkbox';
 import Button from './Button';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
+import { usePathname } from 'next/navigation';
 
 const topicValues = [
   {
     title: "Personal Banking",
-    path: "/personal"
+    path: "/"
   },
   {
     title: "Business Banking",
@@ -21,11 +22,7 @@ const topicValues = [
   },
   {
     title: "Savings Account",
-    path: "/peresonal/savings-account"
-  },
-  {
-    title: "Current Account",
-    path: "/business/current-account"
+    path: "/personal/savings-account"
   },
   {
     title: "Fixed Deposits",
@@ -52,6 +49,10 @@ const topicValues = [
     path: "/personal/nri-banking"
   },
   {
+    title: "Current Account",
+    path: "/business/current-account"
+  },
+  {
     title: "MSME Loans",
     path: "/business/msme-loans"
   },
@@ -74,10 +75,19 @@ const PopupForm: React.FC<any> = ({ withResume }: { withResume: boolean }) => {
     name: '',
     email: '',
     phone: '',
-    topic: '',
     message: '',
     termsAgreed: true
   });
+  const [topic, setTopic] = useState('');
+  const pathname = usePathname()
+
+  // in useEffect, setTopic to the title if current pathname matches the path
+  useEffect(() => {
+    const currentTopic = topicValues.find((topic) => topic.path === pathname);
+    if (currentTopic) {
+      setTopic(currentTopic.title);
+    }
+  }, [pathname]);
 
   const handleChange = (event: any) => {
     const { name, value, type, checked } = event.target;
@@ -110,7 +120,7 @@ const PopupForm: React.FC<any> = ({ withResume }: { withResume: boolean }) => {
       </div>
       <div>
         <Label>Topic</Label>
-        <Select>
+        <Select value={topic} onValueChange={(value: any) => setTopic(value)}>
           <SelectTrigger className="max-w-lg">
             <SelectValue placeholder="Select a topic" />
           </SelectTrigger>
