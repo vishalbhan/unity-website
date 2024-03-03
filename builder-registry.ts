@@ -717,3 +717,26 @@ Builder.registerComponent(
     ],
   }
 );
+
+// register CuratedProductCard component
+Builder.registerComponent(
+  dynamic(() => import("./components/CuratedProductCard")),
+  {
+    name: "CuratedProductCard",
+    friendlyName: "Curated Product Card",
+    inputs: [
+      {
+        name: "title",
+        type: "string",
+        friendlyName: "Title",
+        required: true,
+      },
+      {
+        name: "content",
+        type: "richText",
+        friendlyName: "Content",
+        required: true,
+      },
+    ],
+  }
+);
