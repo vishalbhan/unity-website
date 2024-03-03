@@ -102,7 +102,7 @@ function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
           marginPagesDisplayed={2}
           pageRangeDisplayed={4}
           onPageChange={handlePageChange}
-          containerClassName={'flex space-x-4 justify-end mt-12'}
+          containerClassName={'flex space-x-2 justify-end mt-12'}
           activeClassName={'active'}
         />
       }
