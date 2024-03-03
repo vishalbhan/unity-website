@@ -15,12 +15,12 @@ const DropdownCard: React.FC<DropdownCardProps> = ({ title, content }) => {
   };
 
   return (
-    <Dropdown>
+    <Dropdown className='p-3 md:p-7'>
       <Trigger className='text-left' onClick={toggleContent}>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Info size={28} className='mr-8' />
-            <p className='text-xl pr-8'>{title}</p>
+            <Info size={28} className='hidden md:block mr-8 shrink-0' />
+            <div className='text-xl pr-8'>{title}</div>
           </div>
           <div>
             <ChevronDown size={28} className={`transition-all duration-200 ${isExpanded ? 'rotate-180' : ''}`}/>
@@ -40,7 +40,6 @@ export default DropdownCard;
 
 const Dropdown = styled.div`
   border: 1px solid #00000016;
-  padding: 28px 28px 28px 32px;
   border-radius: 16px;
   transition: all 0.3s ease;
 
