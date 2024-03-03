@@ -96,9 +96,9 @@ export default function Footer() {
 
       </div>
 
-      <div className="flex items-center justify-between">
-        <div className='text-neutral-300 opacity-50'>&copy; {new Date().getFullYear()} Unity Bank</div>
-        <div className="flex items-center justify-end gap-12">
+      <div className="flex flex-col-reverse md:flex-row items-center justify-between">
+        <div className='mt-10 md:mt-0 text-neutral-300 opacity-50'>&copy; {new Date().getFullYear()} Unity Bank</div>
+        <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-12">
           <div className="flex items-center space-x-4">
             <Facebook fill="#B5B5B5" />
             <Twitter fill="#B5B5B5" />
