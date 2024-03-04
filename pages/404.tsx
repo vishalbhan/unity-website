@@ -1,13 +1,12 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 
 const Custom404 = () => {
   return (
     <>
       <Navbar color="light" />
-      <div className='grid place-items-center'>
+      <div className='grid place-items-center py-8'>
         <div className="mb-8">
           <svg width="900" height="414" viewBox="0 0 900 414" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M452.918 183.19H438.666V196.865H452.918V183.19Z" fill="#1F1F1F" stroke="#1F1F1F" stroke-width="0.862069" stroke-linecap="round" stroke-linejoin="round"/>
@@ -152,7 +151,7 @@ const Custom404 = () => {
         </div>
         <h3 className='text-center mb-4'>Sorry, page is not found!</h3>
         <p className='text-center mb-8'>The page you are looking for does not seem to exist.</p>
-        <div className="text-center">
+        <div className="text-center mb-10">
           <Button
             href='/'
             type="primary"
@@ -161,7 +160,6 @@ const Custom404 = () => {
           />
         </div>
       </div>
-      <Footer />
     </>
   );
 };

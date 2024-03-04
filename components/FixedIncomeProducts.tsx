@@ -35,7 +35,9 @@ export default function FixedIncomeProducts() {
               <Button
                 text="Reach out to us"
                 type="link"
-                href="/contact-us"
+                href=""
+                action="form"
+                popup="contact"
                 icon="arrow-right"
               />
             </div>

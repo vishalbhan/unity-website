@@ -8,6 +8,7 @@ import "../builder-registry";
 import Navbar from "@/components/Navbar";
 import { usePathname } from "next/navigation";
 import '@builder.io/widgets';
+import Custom404 from "./404";
 
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
@@ -70,7 +71,7 @@ export default function Page({ page }: { page: BuilderContent | null }) {
   // If the page content is not available
   // and not in preview mode, show a 404 error page
   if (!page && !isPreviewing) {
-    return <DefaultErrorPage statusCode={404} />;
+    return <Custom404 />;
   }
 
   // If the page content is available, render
