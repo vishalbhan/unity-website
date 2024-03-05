@@ -169,6 +169,13 @@ Builder.registerComponent(
         defaultValue: "light",
       },
       {
+        name: "hasSameDocuments",
+        type: "boolean",
+        friendlyName: "Same documents for all?",
+        required: true,
+        defaultValue: false,
+      },
+      {
         name: "checklistItems",
         type: "list",
         required: true,
