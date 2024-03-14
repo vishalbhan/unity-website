@@ -22,20 +22,37 @@ const navItems = [
 
 export default function RegulatoryDisclosures() {
   const [page, setPage] = React.useState(0)
+  const containerRef = React.useRef<HTMLDivElement | null>(null)
   const width = useWindowWidth()
 
+  React.useEffect(() => {
+    const htmlElement = document.querySelector('html');
+    if (htmlElement) {
+      htmlElement.style.overflowX = 'auto';
+    }
+
+    return () => {
+      if (htmlElement) {
+        htmlElement.style.overflowX = 'hidden';
+      }
+    }
+  }, [])
+
   return (
-    <div className='md:grid grid-cols-4 p-10'>
+    <div className='md:grid grid-cols-4 items-start p-10' ref={containerRef}>
 
       {/* Menu */}
       {
         width > 768 ? (
-          <div className='flex flex-col gap-6'>
+          <div className='flex flex-col gap-6 sticky top-10'>
             {
               navItems.map((_, i) => (
                 <a 
                   key={`menu-item-${i}`} 
-                  onClick={() => setPage(i)}
+                  onClick={() => {
+                    containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setPage(i)
+                  }}
                   className={`cursor-pointer w-fit px-5 py-3 rounded-full ${page === i ? 'bg-black text-white' : ''}`}
                 >
                   <div>{_.title}</div>

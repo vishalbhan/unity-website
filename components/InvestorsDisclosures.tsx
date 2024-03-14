@@ -33,8 +33,22 @@ const navItems = [
 
 export default function InvestorsDisclosures() {
   const [page, setPage] = React.useState(0)
-  const [data, setData] = React.useState<any>([]) 
+  const [data, setData] = React.useState<any>([])
+  const containerRef = React.useRef<HTMLDivElement | null>(null)
   const width = useWindowWidth()
+
+  React.useEffect(() => {
+    const htmlElement = document.querySelector('html');
+    if (htmlElement) {
+      htmlElement.style.overflowX = 'auto';
+    }
+
+    return () => {
+      if (htmlElement) {
+        htmlElement.style.overflowX = 'hidden';
+      }
+    }
+  }, [])
 
   useEffect(() => {
     if (page === 4) {
@@ -59,17 +73,20 @@ export default function InvestorsDisclosures() {
   }, [page])
 
   return (
-    <div className='md:grid grid-cols-3 gap-8 p-6 md:p-14'>
+    <div className='md:grid grid-cols-3 gap-8 p-6 md:p-14 items-start' ref={containerRef}>
 
       {/* Menu */}
       {
         width > 768 ? (
-          <div className='flex flex-col gap-6'>
+          <div className='flex flex-col gap-6 sticky top-10'>
             {
               navItems.map((_, i) => (
                 <a 
                   key={`menu-item-${i}`} 
-                  onClick={() => setPage(i)}
+                  onClick={() => {
+                    containerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setPage(i)
+                  }}
                   className={`cursor-pointer w-fit px-5 py-3 rounded-full ${page === i ? 'bg-black text-white' : ''}`}
                 >
                   <div>{_.title}</div>
