@@ -78,7 +78,9 @@ Builder.registerComponent(
         type: "boolean",
         friendlyName: "With Resume?",
         defaultValue: false,
-        showIf: (options) => options.get("action") === "form" && options.get("popup") === "contact",
+        showIf: (options) =>
+          options.get("action") === "form" &&
+          options.get("popup") === "contact",
       },
       {
         name: "href",
@@ -664,8 +666,8 @@ Builder.registerComponent(
     ],
   }
 );
-
 // Register Table component
+
 Builder.registerComponent(
   dynamic(() => import("./components/Table")),
   {
@@ -701,8 +703,8 @@ Builder.registerComponent(
     ],
   }
 );
-
 // register DropdownCard component
+
 Builder.registerComponent(
   dynamic(() => import("./components/DropdownCard")),
   {
@@ -724,8 +726,8 @@ Builder.registerComponent(
     ],
   }
 );
-
 // register CuratedProductCard component
+
 Builder.registerComponent(
   dynamic(() => import("./components/CuratedProductCard")),
   {
@@ -742,6 +744,25 @@ Builder.registerComponent(
         name: "content",
         type: "richText",
         friendlyName: "Content",
+        required: true,
+      },
+    ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/BlogCategoryCarousel")),
+  {
+    name: "BlogCategoryCarousel",
+    inputs: [
+      {
+        name: "category",
+        type: "string",
+        required: true,
+      },
+      {
+        name: "count",
+        type: "number",
         required: true,
       },
     ],

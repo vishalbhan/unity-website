@@ -46,9 +46,9 @@ function BlogArticle({ article }: { article: any }) {
           <React.Fragment>
             <Head>
               {/* Render meta tags from custom field */}
-              <title>{data?.title}</title>
-              <meta name="description" content={data?.excerpt} />
-              <meta name="og:image" content={data?.image} />
+              <title>{article?.data?.title}</title>
+              <meta name="description" content={article?.data?.excerpt} />
+              <meta name="og:image" content={article?.data?.image} />
             </Head>
 
             <Navbar color="light" />
@@ -56,19 +56,20 @@ function BlogArticle({ article }: { article: any }) {
             <section>
               <div className="container mx-auto">
 
-                <img src={data?.image} alt={data?.title} className="w-full object-cover rounded-x mb-12" />
+                <img src={article?.data?.image} alt={article?.data?.title} className="w-full object-cover rounded-x mb-12" />
 
                 <div className="grid grid-cols-3 gap-8">
                   <div className="col-span-2">
-                    <h3 className="mb-4">{data?.title}</h3>
+                    <h3 className="mb-4">{article?.data?.title}</h3>
                     <div className="flex items-center gap-6">
-                      {data?.categories.map((category: any, index: number) => (
+                      {/* {article?.data?.categories.map((category: any, index: number) => (
                         <p key={category}>
                           <span className="uppercase text-[#B97A00] font-semibold tracking-wider">{category}</span>
                           {index !== data.categories.length - 1 && <span>,</span>}
                         </p>
-                      ))}
-                      <p className='text-gray-500'>{data?.readTime} min read&nbsp;&nbsp;|&nbsp;&nbsp;{formatDistanceToNow(data?.date, { addSuffix: true })}</p>
+                      ))} */}
+                      <span className="uppercase text-[#B97A00] font-semibold tracking-wider">{article?.data?.primaryCategory}</span>
+                      <p className='text-gray-500'>{article?.data?.readTime} min read&nbsp;&nbsp;|&nbsp;&nbsp;{formatDistanceToNow(article?.data?.date, { addSuffix: true })}</p>
                     </div>  
                     <hr className="mt-4 mb-8" />
                     <BlogContent className="mb-12">
