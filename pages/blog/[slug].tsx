@@ -69,7 +69,7 @@ function BlogArticle({ article }: { article: any }) {
                         </p>
                       ))} */}
                       <span className="uppercase text-[#B97A00] font-semibold tracking-wider">{article?.data?.primaryCategory}</span>
-                      <p className='text-gray-500'>{article?.data?.readTime} min read&nbsp;&nbsp;|&nbsp;&nbsp;{formatDistanceToNow(article?.data?.date, { addSuffix: true })}</p>
+                      {/* <p className='text-gray-500'>{article?.data?.readTime} min read&nbsp;&nbsp;|&nbsp;&nbsp;{formatDistanceToNow(article?.data?.date, { addSuffix: true })}</p> */}
                     </div>  
                     <hr className="mt-4 mb-8" />
                     <BlogContent className="mb-12">

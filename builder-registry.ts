@@ -768,3 +768,24 @@ Builder.registerComponent(
     ],
   }
 );
+
+Builder.registerComponent(
+  dynamic(() => import("./components/FeaturedBlogCarousel")),
+  {
+    name: "FeaturedBlogCarousel",
+    inputs: [
+      {
+        name: 'blogs',
+        type: 'list',
+        required: true,
+        subFields: [
+          {
+            name: "article",
+            type: "reference",
+            model: "blog-articles",
+          },
+        ],
+      }
+    ]
+  }
+);
