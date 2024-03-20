@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { builder } from '@builder.io/react';
 import ReactPaginate from 'react-paginate';
 import { Input } from './ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { format } from 'date-fns';
 import clsx from 'clsx';
 import { ChevronLeft, ChevronRight, Download } from 'lucide-react';
@@ -25,9 +26,11 @@ function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
   const [data, setData] = React.useState<any>(null);
   const [currentPage, setCurrentPage] = React.useState<number>(0);
   const [searchTerm, setSearchTerm] = useState('');
+  const [yearFilter, setYearFilter] = useState('');
   const containerRef = React.useRef<HTMLDivElement | null>(null);
 
   const itemsPerPage = 10; // Number of items to display per page
+  const years = Array.from({ length: new Date().getFullYear() - 1999 }, (_, index) => (new Date().getFullYear() - index).toString());
 
   React.useEffect(() => {
     builder
@@ -53,6 +56,53 @@ function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
     setSearchTerm(event.target.value);
   };
 
+  const handleFilterChange = (value: string) => {
+    setYearFilter(value); 
+  }
+
+  const resetData = () => {
+    builder
+    .get('pdf-list', {
+      query: {
+        data: {
+          listName: name,
+        },
+      },
+    })
+    .promise()
+    .then((data: any) => {
+      if (data.data) setData(data.data);
+    });
+  }
+
+  React.useEffect(() => {
+    if (yearFilter) {
+      builder
+      .get('pdf-list', {
+        query: {
+          data: {
+            listName: name,
+          },
+        },
+      })
+      .promise()
+      .then((data: any) => {
+        if (data.data) {
+          const filteredData = data?.data?.pdfs?.filter((pdf: any) => {
+            const pdfYear = new Date(pdf.date).getFullYear().toString();
+            console.log('pdfYear', pdfYear)
+            console.log('yearFilter', yearFilter)
+            return pdf.date && pdfYear === yearFilter;
+          })
+          setData({...data, pdfs: filteredData});
+        };
+      });
+    } else {
+      setYearFilter('')
+      resetData()
+    }
+  }, [yearFilter])
+
   const filteredData = data?.pdfs?.filter((pdf: any) =>
     pdf.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -63,33 +113,57 @@ function PDFList({ name, searchAlign = "left", hasFilter }: Props) {
 
   return (
     <div ref={containerRef} className='py-10'>
-      <Input
-        type="text"
-        placeholder="Search"
-        value={searchTerm}
-        onChange={handleSearchChange}
-        className={clsx(
-          'max-w-lg bg-white rounded-full mb-12 p-6',
-          searchAlign === "center" && "mx-auto",
+      <div className="flex items-center justify-between mb-12">
+        <Input
+          type="text"
+          placeholder="Search"
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className={clsx(
+            'max-w-lg bg-white rounded-full p-6',
+            searchAlign === "center" && "mx-auto",
+          )}
+        />
+        {hasFilter && (
+          <div>
+            <Select value={yearFilter} onValueChange={(value) => handleFilterChange(value)}>
+              <SelectTrigger className="max-w-lg p-0 border-0">
+                <SelectValue placeholder="Select a year" />
+              </SelectTrigger>
+              <SelectContent className='bg-white'>
+                {
+                  years.map((year, index) => (
+                    <SelectItem key={index} value={year}>{year}</SelectItem>
+                  ))
+                }
+              </SelectContent>
+            </Select>
+          </div>
         )}
-      />
+      </div>
 
-      {paginatedData?.map((pdf: any, index: number) => (
-        <a href={pdf.file} target="_blank" rel="noopener noreferrer" key={`pdf-${index}`}>
-          <PDFCard className="sm relative mb-6">
-            <p>{pdf.title}</p>
-            {pdf.description && (
-              <div className="text-gray-500 text-sm mt-4">{pdf.description}</div>
-            )}
-            {pdf.date && (
-              <div className="text-gray-500 text-sm mt-4">- {format(pdf.date, 'LLLL	do, yyyy')}</div>
-            )}
-            <div className="icon absolute top-1/2 right-8">
-              <Download />
-            </div>
-          </PDFCard>
-        </a>
-      ))}
+      {
+        paginatedData?.length > 0 ? (
+          paginatedData?.map((pdf: any, index: number) => (
+            <a href={pdf.file} target="_blank" rel="noopener noreferrer" key={`pdf-${index}`}>
+              <PDFCard className="sm relative mb-6">
+                <p>{pdf.title}</p>
+                {pdf.description && (
+                  <div className="text-gray-500 text-sm mt-4">{pdf.description}</div>
+                )}
+                {pdf.date && (
+                  <div className="text-gray-500 text-sm mt-4">- {format(pdf.date, 'LLLL	do, yyyy')}</div>
+                )}
+                <div className="icon absolute top-1/2 right-8">
+                  <Download />
+                </div>
+              </PDFCard>
+            </a>
+          ))
+        ) : (
+          <div className="text-center my-16 text-gray-400">No results found.</div>
+        )
+      }
 
       {
         pageCount > 1 &&

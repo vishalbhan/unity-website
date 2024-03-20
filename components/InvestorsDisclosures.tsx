@@ -131,7 +131,7 @@ export default function InvestorsDisclosures() {
               /> */}
               <PDFList
                 name="Shareholders - Quarterly Financial Results"
-                hasFilter={false}
+                hasFilter={true}
               />
             </>
           )
