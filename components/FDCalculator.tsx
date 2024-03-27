@@ -47,6 +47,12 @@ export default function FDCalculator() {
     return '₹ ' + num.toLocaleString('en-IN', { maximumFractionDigits: 0 });
   }
 
+  // log days when it changes
+  React.useEffect(() => {
+    console.log('days changed', days);
+    console.log(((years * 365) + (months * 30) + +days))
+  }, [days, months, years]);
+
   return (
     <CalculatorContainer className='grid md:grid-cols-2'>
       <Controls className='flex flex-col gap-10 p-6 lg:p-14'>
@@ -259,7 +265,7 @@ export default function FDCalculator() {
         <div className="flex items-center justify-between mb-6">
           <p>Maturity Date</p>
           <div className='text-xl font-bold'>
-            {String(format(addDays(date, ((years * 365) + (months * 30) + days)), "PPP"))}
+            {format(addDays(date, ((years * 365) + (months * 30) + +days)), "PPP")}
           </div>
         </div>
 
