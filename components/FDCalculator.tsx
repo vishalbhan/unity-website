@@ -49,11 +49,13 @@ export default function FDCalculator() {
           <p className="text-lg">Type of Deposit</p>
           <Select>
             <SelectTrigger className="w-60">
-              <SelectValue placeholder="Select loan type" />
+              <SelectValue placeholder="Select deposit type" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="1">Re-investment Plan</SelectItem>
-              <SelectItem value="2"></SelectItem>
+              <SelectItem value="2">Short Term</SelectItem>
+              <SelectItem value="3">Monthly Interest</SelectItem>
+              <SelectItem value="4">Quarterly Interest</SelectItem>
             </SelectContent>
           </Select>
         </div>
