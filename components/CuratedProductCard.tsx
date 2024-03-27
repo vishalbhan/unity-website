@@ -5,8 +5,8 @@ import styled from 'styled-components';
 interface DropdownCardProps {
   title: string;
   content: string;
-  headers: string[];
-  rows: string[][];
+  headers?: string[];
+  rows?: string[][];
 }
 
 const DropdownCard: React.FC<DropdownCardProps> = ({ title, content, headers, rows }) => {
