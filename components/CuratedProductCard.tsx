@@ -30,7 +30,7 @@ const DropdownCard: React.FC<DropdownCardProps> = ({ title, content, headers, ro
         <div className="px-4 py-8">
           <div className="mb-8" dangerouslySetInnerHTML={{ __html: content }}></div>
           {
-            headers?.length > 0 && rows?.length > 0 && (
+            headers && rows && headers?.length > 0 && rows?.length > 0 && (
               <table>
                 <thead>
                   <tr>
