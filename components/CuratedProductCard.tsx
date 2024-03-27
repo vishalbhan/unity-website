@@ -29,24 +29,28 @@ const DropdownCard: React.FC<DropdownCardProps> = ({ title, content, headers, ro
       <Content isExpanded={isExpanded}>
         <div className="px-4 py-8">
           <div className="mb-8" dangerouslySetInnerHTML={{ __html: content }}></div>
-          <table>
-            <thead>
-              <tr>
-                {headers.map((header, index) => (
-                  <th key={index}>{header}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row, rowIndex) => (
-                <tr key={rowIndex}>
-                  {row.map((cell, cellIndex) => (
-                    <td key={cellIndex}>{cell}</td>
+          {
+            headers.length > 0 && rows.length > 0 && (
+              <table>
+                <thead>
+                  <tr>
+                    {headers.map((header, index) => (
+                      <th key={index}>{header}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                      {row.map((cell, cellIndex) => (
+                        <td key={cellIndex}>{cell}</td>
+                      ))}
+                    </tr>
                   ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                </tbody>
+              </table>
+            )
+          }
         </div>
       </Content>
     </Dropdown>
