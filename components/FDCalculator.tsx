@@ -9,22 +9,29 @@ import {
 } from "@/components/ui/select"
 import { Input } from './ui/input'
 import { Slider } from './ui/slider'
-import Button from './Button'
+import { Button } from './ui/button'
+import CustomButton from './Button'
 import { Switch } from './ui/switch'
+import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
+import clsx from 'clsx'
+import { CalendarIcon } from 'lucide-react'
+import { addDays, addYears, format } from 'date-fns'
+import { Calendar } from './ui/calendar'
 
 export default function FDCalculator() {
   const [depositAmount, setDepositAmount] = React.useState(10000)
   const [years, setYears] = React.useState(1)
-  const [months, setMonths] = React.useState(1)
-  const [days, setDays] = React.useState(1)
-  const [tenure, setTenure] = React.useState(1)
+  const [months, setMonths] = React.useState(0)
+  const [days, setDays] = React.useState(0)
+  const [tenure, setTenure] = React.useState((years * 365 + months * 30 + days) / 365)
+  const [date, setDate] = React.useState<Date>(new Date())
   const [isSeniorCitizen, setIsSeniorCitizen] = React.useState(false)
   const [returnAmount, setReturnAmount] = React.useState(0)
   const interestRate = isSeniorCitizen ? 10 : 9
 
   React.useEffect(() => {
-    const totalDays = (years * 365 + months * 30 + days) / 365;
-    setTenure(totalDays);
+    const tenureInYears = (years * 365 + months * 30 + days) / 365;
+    setTenure(tenureInYears);
   }, [years, months, days]);
 
   React.useEffect(() => {
@@ -94,81 +101,109 @@ export default function FDCalculator() {
             <div className="flex gap-3">
               <Select onValueChange={(e: any) => setYears(e)}>
                 <SelectTrigger>
-                  <SelectValue placeholder={years + " years"} />
+                  <SelectValue placeholder={years + " Y"} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="1">1 Year</SelectItem>
-                  <SelectItem value="2">2 Years</SelectItem>
-                  <SelectItem value="3">3 Years</SelectItem>
-                  <SelectItem value="4">4 Years</SelectItem>
-                  <SelectItem value="5">5 Years</SelectItem>
-                  <SelectItem value="6">6 Years</SelectItem>
-                  <SelectItem value="7">7 Years</SelectItem>
-                  <SelectItem value="8">8 Years</SelectItem>
-                  <SelectItem value="9">9 Years</SelectItem>
-                  <SelectItem value="10">10 Years</SelectItem>
+                  <SelectItem value="1">1 Y</SelectItem>
+                  <SelectItem value="2">2 Y</SelectItem>
+                  <SelectItem value="3">3 Y</SelectItem>
+                  <SelectItem value="4">4 Y</SelectItem>
+                  <SelectItem value="5">5 Y</SelectItem>
+                  <SelectItem value="6">6 Y</SelectItem>
+                  <SelectItem value="7">7 Y</SelectItem>
+                  <SelectItem value="8">8 Y</SelectItem>
+                  <SelectItem value="9">9 Y</SelectItem>
+                  <SelectItem value="10">10 Y</SelectItem>
                 </SelectContent>
               </Select>
               <Select onValueChange={(e: any) => setMonths(e)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Month" />
+                  <SelectValue placeholder={months + " M"} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="0">0 Months</SelectItem>
-                  <SelectItem value="1">1 Month</SelectItem>
-                  <SelectItem value="2">2 Months</SelectItem>
-                  <SelectItem value="3">3 Months</SelectItem>
-                  <SelectItem value="4">4 Months</SelectItem>
-                  <SelectItem value="5">5 Months</SelectItem>
-                  <SelectItem value="6">6 Months</SelectItem>
-                  <SelectItem value="7">7 Months</SelectItem>
-                  <SelectItem value="8">8 Months</SelectItem>
-                  <SelectItem value="9">9 Months</SelectItem>
-                  <SelectItem value="10">10 Months</SelectItem>
-                  <SelectItem value="11">11 Months</SelectItem>
+                  <SelectItem value="0">0 M</SelectItem>
+                  <SelectItem value="1">1 M</SelectItem>
+                  <SelectItem value="2">2 M</SelectItem>
+                  <SelectItem value="3">3 M</SelectItem>
+                  <SelectItem value="4">4 M</SelectItem>
+                  <SelectItem value="5">5 M</SelectItem>
+                  <SelectItem value="6">6 M</SelectItem>
+                  <SelectItem value="7">7 M</SelectItem>
+                  <SelectItem value="8">8 M</SelectItem>
+                  <SelectItem value="9">9 M</SelectItem>
+                  <SelectItem value="10">10 M</SelectItem>
+                  <SelectItem value="11">11 M</SelectItem>
                 </SelectContent>
               </Select>
               <Select onValueChange={(e: any) => setDays(e)}>
                 <SelectTrigger>
-                  <SelectValue placeholder="Day" />
+                  <SelectValue placeholder={days + " D"} />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="0">0 Days</SelectItem>
-                  <SelectItem value="1">1 Day</SelectItem>
-                  <SelectItem value="2">2 Days</SelectItem>
-                  <SelectItem value="3">3 Days</SelectItem>
-                  <SelectItem value="4">4 Days</SelectItem>
-                  <SelectItem value="5">5 Days</SelectItem>
-                  <SelectItem value="6">6 Days</SelectItem>
-                  <SelectItem value="7">7 Days</SelectItem>
-                  <SelectItem value="8">8 Days</SelectItem>
-                  <SelectItem value="9">9 Days</SelectItem>
-                  <SelectItem value="10">10 Days</SelectItem>
-                  <SelectItem value="11">11 Days</SelectItem>
-                  <SelectItem value="12">12 Days</SelectItem>
-                  <SelectItem value="13">13 Days</SelectItem>
-                  <SelectItem value="14">14 Days</SelectItem>
-                  <SelectItem value="15">15 Days</SelectItem>
-                  <SelectItem value="16">16 Days</SelectItem>
-                  <SelectItem value="17">17 Days</SelectItem>
-                  <SelectItem value="18">18 Days</SelectItem>
-                  <SelectItem value="19">19 Days</SelectItem>
-                  <SelectItem value="20">20 Days</SelectItem>
-                  <SelectItem value="21">21 Days</SelectItem>
-                  <SelectItem value="22">22 Days</SelectItem>
-                  <SelectItem value="23">23 Days</SelectItem>
-                  <SelectItem value="24">24 Days</SelectItem>
-                  <SelectItem value="25">25 Days</SelectItem>
-                  <SelectItem value="26">26 Days</SelectItem>
-                  <SelectItem value="27">27 Days</SelectItem>
-                  <SelectItem value="28">28 Days</SelectItem>
-                  <SelectItem value="29">29 Days</SelectItem>
-                  <SelectItem value="30">30 Days</SelectItem>
-                  <SelectItem value="31">31 Days</SelectItem>
+                  <SelectItem value="0">0 D</SelectItem>
+                  <SelectItem value="1">1 D</SelectItem>
+                  <SelectItem value="2">2 D</SelectItem>
+                  <SelectItem value="3">3 D</SelectItem>
+                  <SelectItem value="4">4 D</SelectItem>
+                  <SelectItem value="5">5 D</SelectItem>
+                  <SelectItem value="6">6 D</SelectItem>
+                  <SelectItem value="7">7 D</SelectItem>
+                  <SelectItem value="8">8 D</SelectItem>
+                  <SelectItem value="9">9 D</SelectItem>
+                  <SelectItem value="10">10 D</SelectItem>
+                  <SelectItem value="11">11 D</SelectItem>
+                  <SelectItem value="12">12 D</SelectItem>
+                  <SelectItem value="13">13 D</SelectItem>
+                  <SelectItem value="14">14 D</SelectItem>
+                  <SelectItem value="15">15 D</SelectItem>
+                  <SelectItem value="16">16 D</SelectItem>
+                  <SelectItem value="17">17 D</SelectItem>
+                  <SelectItem value="18">18 D</SelectItem>
+                  <SelectItem value="19">19 D</SelectItem>
+                  <SelectItem value="20">20 D</SelectItem>
+                  <SelectItem value="21">21 D</SelectItem>
+                  <SelectItem value="22">22 D</SelectItem>
+                  <SelectItem value="23">23 D</SelectItem>
+                  <SelectItem value="24">24 D</SelectItem>
+                  <SelectItem value="25">25 D</SelectItem>
+                  <SelectItem value="26">26 D</SelectItem>
+                  <SelectItem value="27">27 D</SelectItem>
+                  <SelectItem value="28">28 D</SelectItem>
+                  <SelectItem value="29">29 D</SelectItem>
+                  <SelectItem value="30">30 D</SelectItem>
+                  <SelectItem value="31">31 D</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <p className="text-lg">Start Date</p>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant={"outline"}
+                className={clsx(
+                  "justify-start text-left font-normal",
+                  !date && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, "PPP") : <span>Pick a date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-full bg-white p-0">
+              <Calendar
+                mode="single"
+                selected={date}
+                // @ts-ignore
+                onSelect={setDate}
+                initialFocus
+                className='w-auto'
+              />
+            </PopoverContent>
+          </Popover>
         </div>
 
         <div className="flex items-center justify-between">
@@ -214,15 +249,22 @@ export default function FDCalculator() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-3">
           <p>Total earnings</p>
           <div className='text-xl font-bold'>
             {formatToIndianCurrency(returnAmount)}
           </div>
         </div>
 
-        <Button
-          text="Apply for a loan"
+        <div className="flex items-center justify-between mb-6">
+          <p>Maturity Date</p>
+          <div className='text-xl font-bold'>
+            {String(format(addDays(date, ((years * 365) + (months * 30) + days)), "PPP"))}
+          </div>
+        </div>
+
+        <CustomButton
+          text="Create your account"
           type="primary"
           href="/"
           icon="arrow-right"

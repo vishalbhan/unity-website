@@ -175,23 +175,23 @@ div[data-radix-popper-content-wrapper] {
   font-family: "Archivo", sans-serif;
 }
 
-.table-border {
+main .table-border {
   border: 1px solid #00000029;
   border-radius: 16px;
 }
 
-table {
+main table {
   border-radius: 16px;
   overflow: hidden;
   border-collapse: collapse;
 }
 
-thead {
+main thead {
   background: #EFEEE5;
   border: none;
 }
 
-thead th {
+main thead th {
   text-align: left;
   font-weight: 700;
   color: #000;
@@ -199,23 +199,23 @@ thead th {
   border: 0;
 }
 
-table.small thead th {
+main table.small thead th {
   padding: 12px 18px;
 }
 
-tbody tr:not(:last-child) {
+main tbody tr:not(:last-child) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.16);
 }
 
-tbody td {
+main tbody td {
   padding: 32px;
 }
 
-table.small tbody td {
+main table.small tbody td {
   padding: 14px 18px;
 }
 
-tbody td:last-child { 
+main tbody td:last-child { 
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px; 
 }
