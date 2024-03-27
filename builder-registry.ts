@@ -803,8 +803,8 @@ Builder.registerComponent(
     name: "FeaturedBlogCarousel",
     inputs: [
       {
-        name: 'blogs',
-        type: 'list',
+        name: "blogs",
+        type: "list",
         required: true,
         subFields: [
           {
@@ -813,7 +813,14 @@ Builder.registerComponent(
             model: "blog-articles",
           },
         ],
-      }
-    ]
+      },
+    ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/FDCalculator")),
+  {
+    name: "FDCalculator",
   }
 );

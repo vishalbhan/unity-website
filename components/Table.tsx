@@ -7,24 +7,30 @@ type TableProps = {
 
 const Table: React.FC<TableProps> = ({ headers, rows }) => {
   return (
-    <table>
-      <thead>
-        <tr>
-          {headers.map((header, index) => (
-            <th key={index}>{header}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row, rowIndex) => (
-          <tr key={rowIndex}>
-            {row.map((cell, cellIndex) => (
-              <td key={cellIndex}>{cell}</td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <>
+      {
+        headers && rows && headers.length > 0 && rows.length > 0 && (
+          <table>
+            <thead>
+              <tr>
+                {headers.map((header: any, index: number) => (
+                  <th key={index}>{header.header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((item: any, rowIndex: number) => (
+                <tr key={rowIndex}>
+                  {item.row?.map((cell: any, cellIndex: number) => (
+                    <td key={cellIndex}>{cell.cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )
+      }
+    </>
   );
 };
 
