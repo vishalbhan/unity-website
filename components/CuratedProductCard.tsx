@@ -5,9 +5,11 @@ import styled from 'styled-components';
 interface DropdownCardProps {
   title: string;
   content: string;
+  headers: string[];
+  rows: string[][];
 }
 
-const DropdownCard: React.FC<DropdownCardProps> = ({ title, content }) => {
+const DropdownCard: React.FC<DropdownCardProps> = ({ title, content, headers, rows }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleContent = () => {
@@ -26,7 +28,25 @@ const DropdownCard: React.FC<DropdownCardProps> = ({ title, content }) => {
       </Trigger>
       <Content isExpanded={isExpanded}>
         <div className="px-4 py-8">
-          <div dangerouslySetInnerHTML={{ __html: content }}></div>
+          <div className="mb-8" dangerouslySetInnerHTML={{ __html: content }}></div>
+          <table>
+            <thead>
+              <tr>
+                {headers.map((header, index) => (
+                  <th key={index}>{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, rowIndex) => (
+                <tr key={rowIndex}>
+                  {row.map((cell, cellIndex) => (
+                    <td key={cellIndex}>{cell}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </Content>
     </Dropdown>

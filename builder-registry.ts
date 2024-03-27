@@ -746,6 +746,34 @@ Builder.registerComponent(
         friendlyName: "Content",
         required: true,
       },
+      {
+        name: "headers",
+        friendlyName: "Table Headers",
+        type: "list",
+        subFields: [
+          {
+            name: "header",
+            type: "string",
+          },
+        ],
+      },
+      {
+        name: "rows",
+        friendlyName: "Table Rows",
+        type: "list",
+        subFields: [
+          {
+            name: "row",
+            type: "list",
+            subFields: [
+              {
+                name: "cell",
+                type: "string",
+              },
+            ],
+          },
+        ],
+      },
     ],
   }
 );

@@ -2,6 +2,7 @@ import { formatDistanceToNow } from 'date-fns';
 import React, { useState } from 'react';
 import Button from './Button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import styled from 'styled-components';
 
 const FeaturedBlogCarousel: React.FC = ({ blogs }: any) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -28,7 +29,7 @@ const FeaturedBlogCarousel: React.FC = ({ blogs }: any) => {
           className='relative bg-cover rounded-xl h-96'
           style={{ backgroundImage: `url(${blogs[currentSlide].article.value.data.image})` }}
         >
-
+          <Badge className='absolute top-4 left-4'>Featured</Badge>
         </div>
         <div>
           <h4 className='font-semibold mb-4'>{blogs[currentSlide].article.value.data.title}</h4>
@@ -60,3 +61,18 @@ const FeaturedBlogCarousel: React.FC = ({ blogs }: any) => {
 };
 
 export default FeaturedBlogCarousel;
+
+const Badge = styled.div`
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: rgba(30, 30, 30, 0.50);
+  color: #fff;
+  font-family: 'Archivo', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.12px;
+  text-transform: uppercase;
+`
