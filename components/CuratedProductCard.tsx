@@ -9,7 +9,7 @@ interface DropdownCardProps {
   rows?: string[][];
 }
 
-const DropdownCard: React.FC<DropdownCardProps> = ({ title, content, headers, rows }) => {
+const DropdownCard: React.FC<any> = ({ title, content, headers, rows }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleContent = () => {
@@ -30,20 +30,20 @@ const DropdownCard: React.FC<DropdownCardProps> = ({ title, content, headers, ro
         <div className="px-4 py-8">
           <div className="mb-8" dangerouslySetInnerHTML={{ __html: content }}></div>
           {
-            headers && rows && headers?.length > 0 && rows?.length > 0 && (
+            headers && rows && headers.length > 0 && rows.length > 0 && (
               <table>
                 <thead>
                   <tr>
-                    {headers.map((header, index) => (
-                      <th key={index}>{header}</th>
+                    {headers.map((header: any, index: number) => (
+                      <th key={index}>{header.header}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {rows.map((row, rowIndex) => (
+                  {rows.map((item: any, rowIndex: number) => (
                     <tr key={rowIndex}>
-                      {row.map((cell, cellIndex) => (
-                        <td key={cellIndex}>{cell}</td>
+                      {item.row?.map((cell: any, cellIndex: number) => (
+                        <td key={cellIndex}>{cell.cell}</td>
                       ))}
                     </tr>
                   ))}
