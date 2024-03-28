@@ -27,7 +27,7 @@ export default function FDCalculator() {
   const [date, setDate] = React.useState<Date>(new Date())
   const [isSeniorCitizen, setIsSeniorCitizen] = React.useState(false)
   const [returnAmount, setReturnAmount] = React.useState(0)
-  const interestRate = isSeniorCitizen ? 10 : 9
+  const interestRate = isSeniorCitizen ? 9 : 8.5
 
   React.useEffect(() => {
     const tenureInYears = (years * 365 + months * 30 + days) / 365;
