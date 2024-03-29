@@ -824,3 +824,10 @@ Builder.registerComponent(
     name: "FDCalculator",
   }
 );
+
+Builder.registerComponent(
+  dynamic(() => import("./components/RDCalculator")),
+  {
+    name: "RDCalculator",
+  }
+);

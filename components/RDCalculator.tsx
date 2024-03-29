@@ -15,29 +15,29 @@ import { Switch } from './ui/switch'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
 import clsx from 'clsx'
 import { CalendarIcon } from 'lucide-react'
-import { addDays, addYears, format } from 'date-fns'
+import { addDays, addMonths, addYears, format } from 'date-fns'
 import { Calendar } from './ui/calendar'
 
-export default function FDCalculator() {
-  const [depositAmount, setDepositAmount] = React.useState(10000)
-  const [years, setYears] = React.useState(1)
-  const [months, setMonths] = React.useState(0)
-  const [days, setDays] = React.useState(0)
-  const [tenure, setTenure] = React.useState((years * 365 + months * 30 + days) / 365)
+export default function RDCalculator() {
+  const [depositAmount, setDepositAmount] = React.useState(1000)
+  const [tenure, setTenure] = React.useState(6)
   const [date, setDate] = React.useState<Date>(new Date())
   const [isSeniorCitizen, setIsSeniorCitizen] = React.useState(false)
   const [returnAmount, setReturnAmount] = React.useState(0)
   const interestRate = isSeniorCitizen ? 9 : 8.5
 
-  React.useEffect(() => {
-    const tenureInYears = (years * 365 + months * 30 + days) / 365;
-    setTenure(tenureInYears);
-  }, [years, months, days]);
+  function calculateRDReturns(P: number, r: number, n: number, t: number) {
+    let totalMonths = n * t;
+    let monthlyInterestRate = r / (12 * 100);
+    let amount = P * (((Math.pow((1 + monthlyInterestRate), totalMonths)) - 1) / monthlyInterestRate) * (1 + monthlyInterestRate);
+    return amount.toFixed(2);
+  }
+
 
   React.useEffect(() => {
     const calculateReturnAmount = () => {
-      const returnAmount = depositAmount * tenure * (interestRate / 100);
-      setReturnAmount(returnAmount);
+      const returnAmount = calculateRDReturns(depositAmount, interestRate, 4, tenure/12);
+      setReturnAmount(+returnAmount);
     };
 
     calculateReturnAmount();
@@ -50,26 +50,11 @@ export default function FDCalculator() {
   return (
     <CalculatorContainer className='grid md:grid-cols-2'>
       <Controls className='flex flex-col gap-10 p-6 lg:p-14'>
-        <div className='text-3xl font-semibold'>FD Calculator</div>
-
-        <div className="flex items-center justify-between">
-          <p className="text-lg">Type of Deposit</p>
-          <Select>
-            <SelectTrigger className="w-60">
-              <SelectValue placeholder="Select deposit type" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1">Re-investment Plan</SelectItem>
-              <SelectItem value="2">Short Term</SelectItem>
-              <SelectItem value="3">Monthly Interest</SelectItem>
-              <SelectItem value="4">Quarterly Interest</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+        <div className='text-3xl font-semibold'>RD Calculator</div>
 
         <div>
           <div className="flex items-center justify-between">
-            <p className="text-lg">Deposit amount</p>
+            <p className="text-lg">Installment amount</p>
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-lg">₹</span>
               <Input 
@@ -78,23 +63,24 @@ export default function FDCalculator() {
                 onChange={(e: any) => setDepositAmount(e.target.value)}
                 placeholder=""
                 className='w-40 pl-8'
+                pattern="^\d{1,3}(,\d{3})*(\.\d+)"
               />
             </div>
           </div>
           <div className='py-4'>
             <div className="mb-2">
               <Slider 
-                defaultValue={[10000]}
+                defaultValue={[depositAmount]}
                 value={[depositAmount]}
-                min={10000}
-                max={20000000}
+                min={1000}
+                max={1000000}
                 step={500}
-                onValueChange={(e: any) => setDepositAmount(e[0])}
+                onValueChange={(e: any) => setDepositAmount(e)}
               />
             </div>
             <div className="flex items-center justify-between text-gray-500">
-              <div className="text-xs">₹ 10,000</div>
-              <div className="text-xs">₹ 2 Crores</div>
+              <div className="text-xs">₹ 1,000</div>
+              <div className="text-xs">₹ 10 Lakh</div>
             </div>
           </div>
         </div>
@@ -102,43 +88,28 @@ export default function FDCalculator() {
         <div>
           <div className="flex items-center justify-between">
             <p className="text-lg">Tenure</p>
-            <div className="flex gap-3">
-              <Select onValueChange={(e: any) => setYears(e)}>
-                <SelectTrigger>
-                  <SelectValue placeholder={years + " Y"} />
-                </SelectTrigger>
-                <SelectContent>
-                  {
-                    Array.from({ length: 10 }, (_, i) => (
-                      <SelectItem key={i} value={String(i + 1)}>{i + 1} Y</SelectItem>
-                    ))
-                  }
-                </SelectContent>
-              </Select>
-              <Select onValueChange={(e: any) => setMonths(e)}>
-                <SelectTrigger>
-                  <SelectValue placeholder={months + " M"} />
-                </SelectTrigger>
-                <SelectContent>
-                  {
-                    Array.from({ length: 12 }, (_, i) => (
-                      <SelectItem key={i} value={String(i)}>{i} M</SelectItem>
-                    ))
-                  }
-                </SelectContent>
-              </Select>
-              <Select onValueChange={(e: any) => setDays(e)}>
-                <SelectTrigger>
-                  <SelectValue placeholder={days + " D"} />
-                </SelectTrigger>
-                <SelectContent>
-                  {
-                    Array.from({ length: 31 }, (_, i) => (
-                      <SelectItem key={i} value={String(i)}>{i} D</SelectItem>
-                    ))
-                  }
-                </SelectContent>
-              </Select>
+            <Input 
+              type="text"
+              value={tenure}
+              onChange={(e: any) => setTenure(e.target.value)}
+              placeholder=""
+              className='w-40'
+            />
+          </div>
+          <div className='py-4'>
+            <div className="mb-2">
+              <Slider 
+                defaultValue={[6]}
+                value={[tenure]}
+                min={6}
+                max={120}
+                step={3}
+                onValueChange={(e: any) => setTenure(e[0])}
+              />
+            </div>
+            <div className="flex items-center justify-between text-gray-500">
+              <div className="text-xs">6 Months</div>
+              <div className="text-xs">120 Months</div>
             </div>
           </div>
         </div>
@@ -224,7 +195,7 @@ export default function FDCalculator() {
         <div className="flex items-center justify-between mb-10">
           <p>Maturity Date</p>
           <div className='text-xl font-bold'>
-            {format(addDays(date, ((years * 365) + (months * 30) + +days)), "PPP")}
+            {format(addMonths(date, tenure), "PPP")}
           </div>
         </div>
 
