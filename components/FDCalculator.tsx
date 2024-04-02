@@ -19,7 +19,7 @@ import { addDays, addYears, format } from 'date-fns'
 import { Calendar } from './ui/calendar'
 
 export default function FDCalculator() {
-  const [depositType, setDepositType] = React.useState('re-investment')
+  const [depositType, setDepositType] = React.useState('fd-monthly-interest')
   const [depositAmount, setDepositAmount] = React.useState(10000)
   const [years, setYears] = React.useState(1)
   const [months, setMonths] = React.useState(0)
@@ -28,34 +28,132 @@ export default function FDCalculator() {
   const [date, setDate] = React.useState<Date>(new Date())
   const [isSeniorCitizen, setIsSeniorCitizen] = React.useState(false)
   const [returnAmount, setReturnAmount] = React.useState(0)
-  const interestRate = isSeniorCitizen ? 9 : 8.5
+  const [interestRateMap, setInterestRateMap] = React.useState([])
+  const [interestRate, setInterestRate] = React.useState(8.5)
 
+  // Calculate tenure in years
   React.useEffect(() => {
     const tenureInYears = (years * 365 + months * 30 + days) / 365;
     setTenure(tenureInYears);
   }, [years, months, days]);
 
+  // Fetch interest rates based on deposit type
+  React.useEffect(() => {
+    resetValues(depositType)
+    fetch(`https://cdn.builder.io/api/v3/content/interest-rates?apiKey=21b44296fc364461abc19d1d5fa5792d&query.data.reference=${depositType}&limit=1`)
+      .then(res => res.json())
+      .then((data: any) => {
+        if (data.results) {
+          setInterestRateMap(data.results[0].data.tenures)
+        }
+      })
+  }, [depositType])
+
+  // Calculate interest rate based on tenure
+  React.useEffect(() => {
+    const tenureInDays = tenure * 365;
+    const interestRate: any = interestRateMap.find((rate: any) => {
+      return tenureInDays >= rate.minDays && tenureInDays <= rate.maxDays;
+    });
+
+    if (interestRate) {
+      isSeniorCitizen ? setInterestRate(interestRate.seniorRate) : setInterestRate(interestRate.generalRate)
+    } else {
+      isSeniorCitizen ? setInterestRate(9) : setInterestRate(8.5)
+    }
+  }, [tenure, interestRateMap, isSeniorCitizen]);
+
   React.useEffect(() => {
     const calculateReturnAmount = () => {
-      const returnAmount = depositAmount * tenure * (interestRate / 100);
+      let returnAmount
+      switch (depositType) {
+        case 'fd-monthly-interest':
+          returnAmount = depositAmount * tenure * (interestRate / 100);
+          break;
+        case 'fd-quarterly-interest':
+          returnAmount = depositAmount * tenure * (interestRate / 100);
+          break;
+        case 'fd-short-term':
+          returnAmount = depositAmount * tenure * (interestRate / 100);
+          break;
+        case 'fd-reinvestment':
+          returnAmount = depositAmount * Math.pow(1 + (interestRate / 400), tenure * 4);
+          break;
+        default:
+          // Fallback to simple interest
+          returnAmount = depositAmount * tenure * (interestRate / 100);
+          break;
+      }
+      
+      // Quarterly compounding
+      // returnAmount = depositAmount * Math.pow(1 + (interestRate / 400), tenure * 4);
+
+      // Simple Interest
+      // returnAmount = depositAmount * tenure * (interestRate / 100);
+
       setReturnAmount(returnAmount);
     };
 
     calculateReturnAmount();
   }, [depositAmount, tenure, interestRate]);
 
-  React.useEffect(() => {
-    fetch("https://cdn.builder.io/api/v3/content/interest-rates?apiKey=21b44296fc364461abc19d1d5fa5792d&query.data.reference=fd-monthly-interest&limit=1")
-      .then(res => res.json())
-      .then((data: any) => {
-        if (data.results) {
-          console.log(data.results[0].data.tenures)
-        }
-      })
-  }, [])
-
   function formatToIndianCurrency(num: number) {
     return num.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+  }
+
+
+  const resetValues = (depositType: string) => {
+    switch (depositType) {
+      case 'fd-monthly-interest':
+        setDepositAmount(10000);
+        setYears(1);
+        setMonths(0);
+        setDays(0);
+        break;
+      case 'fd-quarterly-interest':
+        setDepositAmount(10000);
+        setYears(1);
+        setMonths(0);
+        setDays(0);
+        break;
+      case 'fd-short-term':
+        setDepositAmount(10000);
+        setYears(0);
+        setMonths(6);
+        setDays(0);
+        break;
+      case 'fd-reinvestment':
+        setDepositAmount(10000);
+        setYears(1);
+        setMonths(0);
+        setDays(0);
+        break;
+      default:
+        break;
+    }
+  }
+
+  // TEST - To be removed
+  function formatCurrency(inputField: any) {
+    // Get the entered value
+    let value = inputField.value;
+  
+    // Remove all non-numeric characters
+    value = value.replace(/[^0-9.]/g, '');
+  
+    // Split the value into whole and decimal parts
+    const parts = value.split('.');
+  
+    // Format the whole number part with commas
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  
+    // Limit decimal part to 2 digits (optional)
+    if (parts.length > 1) {
+      parts[1] = parts[1].substring(0, 2);
+    }
+  
+    // Combine the formatted parts and set the input value
+    inputField.value = parts.join('.');
   }
 
   return (
@@ -65,15 +163,15 @@ export default function FDCalculator() {
 
         <div className="flex items-center justify-between">
           <p className="text-lg">Type of Deposit</p>
-          <Select onValueChange={(val) => setDepositType(val)} >
+          <Select onValueChange={(val) => setDepositType(val)} value={depositType}>
             <SelectTrigger className="w-60">
               <SelectValue placeholder="Select deposit type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="re-investment">Re-investment Plan</SelectItem>
-              <SelectItem value="short-term">Short Term</SelectItem>
-              <SelectItem value="monthly-interest">Monthly Interest</SelectItem>
-              <SelectItem value="quarterly-interest">Quarterly Interest</SelectItem>
+              <SelectItem value="fd-monthly-interest">Monthly Interest</SelectItem>
+              <SelectItem value="fd-quarterly-interest">Quarterly Interest</SelectItem>
+              <SelectItem value="fd-short-term">Short Term</SelectItem>
+              <SelectItem value="fd-reinvestment">Re-investment Plan</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -115,19 +213,22 @@ export default function FDCalculator() {
           <div className="flex items-center justify-between">
             <p className="text-lg">Tenure</p>
             <div className="flex gap-3">
-              <Select onValueChange={(e: any) => setYears(e)}>
-                <SelectTrigger>
-                  <SelectValue placeholder={years + " Y"} />
-                </SelectTrigger>
-                <SelectContent>
-                  {
-                    Array.from({ length: 10 }, (_, i) => (
-                      <SelectItem key={i} value={String(i + 1)}>{i + 1} Y</SelectItem>
-                    ))
-                  }
-                </SelectContent>
-              </Select>
-              <Select onValueChange={(e: any) => setMonths(e)}>
+              {
+                depositType !== "fd-short-term" && 
+                <Select onValueChange={(e: any) => setYears(e)} value={String(years)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder={years + " Y"} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {
+                      Array.from({ length: 10 }, (_, i) => (
+                        <SelectItem key={i} value={String(i + 1)}>{i + 1} Y</SelectItem>
+                      ))
+                    }
+                  </SelectContent>
+                </Select>
+              }
+              <Select onValueChange={(e: any) => setMonths(e)} value={String(months)}>
                 <SelectTrigger>
                   <SelectValue placeholder={months + " M"} />
                 </SelectTrigger>
@@ -139,7 +240,7 @@ export default function FDCalculator() {
                   }
                 </SelectContent>
               </Select>
-              <Select onValueChange={(e: any) => setDays(e)}>
+              <Select onValueChange={(e: any) => setDays(e)} value={String(days)}>
                 <SelectTrigger>
                   <SelectValue placeholder={days + " D"} />
                 </SelectTrigger>
