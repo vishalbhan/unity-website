@@ -19,6 +19,7 @@ import { addDays, addYears, format } from 'date-fns'
 import { Calendar } from './ui/calendar'
 
 export default function FDCalculator() {
+  const [depositType, setDepositType] = React.useState('re-investment')
   const [depositAmount, setDepositAmount] = React.useState(10000)
   const [years, setYears] = React.useState(1)
   const [months, setMonths] = React.useState(0)
@@ -43,6 +44,16 @@ export default function FDCalculator() {
     calculateReturnAmount();
   }, [depositAmount, tenure, interestRate]);
 
+  React.useEffect(() => {
+    fetch("https://cdn.builder.io/api/v3/content/interest-rates?apiKey=21b44296fc364461abc19d1d5fa5792d&query.data.reference=fd-monthly-interest&limit=1")
+      .then(res => res.json())
+      .then((data: any) => {
+        if (data.results) {
+          console.log(data.results[0].data.tenures)
+        }
+      })
+  }, [])
+
   function formatToIndianCurrency(num: number) {
     return num.toLocaleString('en-IN', { maximumFractionDigits: 0 });
   }
@@ -54,15 +65,15 @@ export default function FDCalculator() {
 
         <div className="flex items-center justify-between">
           <p className="text-lg">Type of Deposit</p>
-          <Select>
+          <Select onValueChange={(val) => setDepositType(val)} >
             <SelectTrigger className="w-60">
               <SelectValue placeholder="Select deposit type" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="1">Re-investment Plan</SelectItem>
-              <SelectItem value="2">Short Term</SelectItem>
-              <SelectItem value="3">Monthly Interest</SelectItem>
-              <SelectItem value="4">Quarterly Interest</SelectItem>
+              <SelectItem value="re-investment">Re-investment Plan</SelectItem>
+              <SelectItem value="short-term">Short Term</SelectItem>
+              <SelectItem value="monthly-interest">Monthly Interest</SelectItem>
+              <SelectItem value="quarterly-interest">Quarterly Interest</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -73,7 +84,7 @@ export default function FDCalculator() {
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-lg">₹</span>
               <Input 
-                type="number"
+                type="text"
                 value={formatToIndianCurrency(depositAmount)}
                 onChange={(e: any) => setDepositAmount(e.target.value)}
                 placeholder=""
