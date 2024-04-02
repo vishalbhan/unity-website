@@ -31,24 +31,26 @@ const DropdownCard: React.FC<any> = ({ title, content, headers, rows }) => {
           <div className="mb-8" dangerouslySetInnerHTML={{ __html: content }}></div>
           {
             headers && rows && headers.length > 0 && rows.length > 0 && (
-              <table>
-                <thead>
-                  <tr>
-                    {headers.map((header: any, index: number) => (
-                      <th key={index}>{header.header}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((item: any, rowIndex: number) => (
-                    <tr key={rowIndex}>
-                      {item.row?.map((cell: any, cellIndex: number) => (
-                        <td key={cellIndex}>{cell.cell}</td>
+              <div className="table-border w-fit">
+                <table>
+                  <thead>
+                    <tr>
+                      {headers.map((header: any, index: number) => (
+                        <th key={index}>{header.header}</th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {rows.map((item: any, rowIndex: number) => (
+                      <tr key={rowIndex}>
+                        {item.row?.map((cell: any, cellIndex: number) => (
+                          <td key={cellIndex}>{cell.cell}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )
           }
         </div>

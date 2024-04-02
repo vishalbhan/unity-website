@@ -4,7 +4,7 @@ const InterestRatesPopup: React.FC = () => {
   // Your component logic here
 
   return (
-    <div>
+    <>
       <div className='sm mb-8'>
         <h5 className='mb-2'>Fixed Deposit Rates</h5>
         <p>The fixed deposit interest rate for retail investors stands revised from 09th Oct, 2023 as follows:</p>
@@ -129,7 +129,7 @@ const InterestRatesPopup: React.FC = () => {
         <li className='text-sm mb-1 pl-3'>For premature withdrawal of fixed deposit and recurring deposits, a premature penalty of 1.00% shall be charged to the rate applicable for the period the deposit has remained with the bank, or the contracted rate, whichever is lower.</li>
         <li className='text-sm mb-1 pl-3'>We hereby offer 1% more over Card Rates to Unity SFB employees.</li>
       </ol>
-    </div>
+    </>
   );
 };
 

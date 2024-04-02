@@ -47,6 +47,11 @@ export default function RDCalculator() {
     return num.toLocaleString('en-IN', { maximumFractionDigits: 0 });
   }
 
+  // log tenure when it changes
+  React.useEffect(() => {
+    console.log(tenure);
+  }, [tenure]);
+
   return (
     <CalculatorContainer className='grid md:grid-cols-2'>
       <Controls className='flex flex-col gap-10 p-6 lg:p-14'>
@@ -63,7 +68,8 @@ export default function RDCalculator() {
                 onChange={(e: any) => setDepositAmount(e.target.value)}
                 placeholder=""
                 className='w-40 pl-8'
-                pattern="^\d{1,3}(,\d{3})*(\.\d+)"
+                inputMode='numeric'
+                onKeyDown={(e: any) => (e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode === 8 ? null : e.preventDefault()}
               />
             </div>
           </div>
@@ -89,11 +95,13 @@ export default function RDCalculator() {
           <div className="flex items-center justify-between">
             <p className="text-lg">Tenure</p>
             <Input 
-              type="text"
+              type="number"
               value={tenure}
+              min={6}
               onChange={(e: any) => setTenure(e.target.value)}
               placeholder=""
               className='w-40'
+              onKeyDown={(e: any) => e.keyCode === 32 && e.preventDefault()}
             />
           </div>
           <div className='py-4'>
@@ -179,7 +187,7 @@ export default function RDCalculator() {
         </div>
 
         <div className="flex items-center justify-between mb-3">
-          <p>Invested amount</p>
+          <p>Installment amount</p>
           <div className='text-xl font-bold'>
             ₹ {formatToIndianCurrency(depositAmount)}
           </div>
@@ -195,7 +203,7 @@ export default function RDCalculator() {
         <div className="flex items-center justify-between mb-10">
           <p>Maturity Date</p>
           <div className='text-xl font-bold'>
-            {format(addMonths(date, tenure), "PPP")}
+            {format(addMonths(new Date(date), tenure), "PPP")}
           </div>
         </div>
 

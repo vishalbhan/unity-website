@@ -73,11 +73,12 @@ export default function FDCalculator() {
             <div className="relative">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-lg">₹</span>
               <Input 
-                type="text"
+                type="number"
                 value={formatToIndianCurrency(depositAmount)}
                 onChange={(e: any) => setDepositAmount(e.target.value)}
                 placeholder=""
                 className='w-40 pl-8'
+                onKeyDown={(e: any) => (e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode === 8 ? null : e.preventDefault()}
               />
             </div>
           </div>
