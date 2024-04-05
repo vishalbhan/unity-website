@@ -33,7 +33,8 @@ export default function FDCalculator() {
 
   // Calculate tenure in years
   React.useEffect(() => {
-    const tenureInYears = (years * 365 + months * 30 + days) / 365;
+    const tenureInYears = (years * 365 + months * 30 + +days) / 365;
+    console.log(tenureInYears)
     setTenure(tenureInYears);
   }, [years, months, days]);
 
@@ -305,6 +306,8 @@ export default function FDCalculator() {
             <path d="M107.596 199.192C104.505 199.192 102 196.686 102 193.596C102 190.505 104.505 188 107.596 188C110.686 188 113.191 190.505 113.191 193.596C113.191 196.686 110.686 199.192 107.596 199.192Z" fill="#88D38F" />
           </svg>
         </div>
+
+        
 
         <div className="sm text-center mb-8">
           <div className='text-4xl font-extrabold mb-3'>
