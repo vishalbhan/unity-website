@@ -1,17 +1,13 @@
 const BASE_URL = 'https://unity-bank.vercel.app';
 
 function generateSiteMap(pages, posts, categories) {
-  return `
-    <?xml version="1.0" encoding="UTF-8"?>
+  return `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-      <url>
-        <loc>${`${BASE_URL}`}</loc>
-      </url>
-      ${pages
+      ${pages.results
         .map((page) => {
           return `
             <url>
-                <loc>${`${BASE_URL}/${page.data.url}`}</loc>
+                <loc>${`${BASE_URL}${page.data.url}`}</loc>
             </url>
           `;
         })
@@ -47,7 +43,7 @@ function SiteMap() {
 
 export async function getServerSideProps({ res }) {
   // We make an API call to gather the URLs for our site
-  const pages = await fetch('https://cdn.builder.io/api/v2/content/page?apiKey=21b44296fc364461abc19d1d5fa5792d&fields=data.url&query.data.includeInSitemap.$ne=false').then(res => res.json());
+  const pages = await fetch('https://cdn.builder.io/api/v3/content/page?apiKey=21b44296fc364461abc19d1d5fa5792d&limit=100&fields=data.url&query.data.includeInSitemap.$ne=false').then(res => res.json());
   const posts = await fetch('https://cdn.builder.io/api/v3/content/blog-articles?apiKey=21b44296fc364461abc19d1d5fa5792d&limit=0&fields=data.slug,data.primaryCategory').then(res => res.json());
   const categories = [...new Set(posts.results.map(post => post.data.primaryCategory))];
 
