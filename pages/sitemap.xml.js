@@ -1,4 +1,7 @@
-const BASE_URL = window.location.origin || 'https://unity-bank.vercel.app';
+import { usePathname } from "next/navigation";
+
+const pathname = usePathname();
+const BASE_URL = pathname.split('/')[0];
 
 function generateSiteMap(pages, posts, categories) {
   return `
