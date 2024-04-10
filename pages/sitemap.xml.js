@@ -51,11 +51,9 @@ export async function getServerSideProps({ res }) {
   const posts = await fetch('https://cdn.builder.io/api/v3/content/blog-articles?apiKey=21b44296fc364461abc19d1d5fa5792d&limit=0&fields=data.slug,data.primaryCategory').then(res => res.json());
   const categories = [...new Set(posts.results.map(post => post.data.primaryCategory))];
 
-  // We generate the XML sitemap with the posts data
   const sitemap = generateSiteMap(pages, posts, categories);
 
   res.setHeader('Content-Type', 'text/xml');
-  // we send the XML to the browser
   res.write(sitemap);
   res.end();
 
