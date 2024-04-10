@@ -30,11 +30,11 @@ export default function FDCalculator() {
   const [returnAmount, setReturnAmount] = React.useState(0)
   const [interestRateMap, setInterestRateMap] = React.useState([])
   const [interestRate, setInterestRate] = React.useState(8.5)
+  const videoRef = React.useRef<HTMLVideoElement>(null)
 
   // Calculate tenure in years
   React.useEffect(() => {
     const tenureInYears = (years * 365 + months * 30 + +days) / 365;
-    console.log(tenureInYears)
     setTenure(tenureInYears);
   }, [years, months, days]);
 
@@ -157,6 +157,13 @@ export default function FDCalculator() {
     inputField.value = parts.join('.');
   }
 
+  const handleDepositSlider = (e: number[]) => {
+    setDepositAmount(e[0])
+    if (videoRef.current) {
+      videoRef.current.currentTime = e[0] / 20000000 * videoRef.current.duration
+    }
+  }
+
   return (
     <CalculatorContainer className='grid md:grid-cols-2'>
       <Controls className='flex flex-col gap-10 p-6 lg:p-14'>
@@ -200,7 +207,7 @@ export default function FDCalculator() {
                 min={10000}
                 max={20000000}
                 step={500}
-                onValueChange={(e: any) => setDepositAmount(e[0])}
+                onValueChange={handleDepositSlider}
               />
             </div>
             <div className="flex items-center justify-between text-gray-500">
@@ -307,9 +314,12 @@ export default function FDCalculator() {
           </svg>
         </div>
 
-        
+        <video ref={videoRef} width="100%" height="auto" playsInline className='-mt-24'>
+          <source src="/calculator-animation.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-        <div className="sm text-center mb-8">
+        <div className="sm text-center mb-6">
           <div className='text-4xl font-extrabold mb-3'>
             {/* <span className='text-3xl mr-3'>₹</span> */}
             ₹ {formatToIndianCurrency(+depositAmount + +returnAmount)}
@@ -317,7 +327,7 @@ export default function FDCalculator() {
           <p className='text-gray-500'>Amount on maturity</p>
         </div>
 
-        <div className="w-max mx-auto rounded-xl flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 mb-32">
+        <div className="w-max mx-auto rounded-xl flex items-center justify-center gap-2 px-6 py-3 bg-gray-100 mb-16">
           <p>@</p>
           <div className='font-semibold text-2xl'>{interestRate}%</div>
           <p>Interest rate</p>
