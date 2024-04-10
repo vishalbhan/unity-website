@@ -1,7 +1,4 @@
-import { usePathname } from "next/navigation";
-
-const pathname = usePathname();
-const BASE_URL = pathname.split('/')[0];
+const BASE_URL = 'https://unity-bank.vercel.app';
 
 function generateSiteMap(pages, posts, categories) {
   return `
