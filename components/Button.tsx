@@ -26,10 +26,11 @@ type ButtonProps = {
   withResume?: boolean,
   href: string,
   icon?: "arrow-right",
-  width?: "full" | "fit"
+  width?: "full" | "fit",
+  linkType?: "internal" | "external"
 }
 
-export default function Button({ text, type, action = "link", popup = "contact", withResume, href, icon, width = "fit" }: ButtonProps) {
+export default function Button({ text, type, action = "link", popup = "contact", withResume, href, linkType = "internal", icon, width = "fit" }: ButtonProps) {
   const windowWidth = useWindowWidth()
   const containerRef = React.useRef(null)
 
@@ -37,19 +38,39 @@ export default function Button({ text, type, action = "link", popup = "contact",
     <>
       {
         action === "link" && (
-          <Link href={href}>
-            <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
-              {text}
-              {
-                icon &&
-                <span className='ml-2'>
+          <>
+          {
+            linkType === "external" ? (
+              <a href={href} target="_blank" rel="noreferrer">
+                <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
+                  {text}
                   {
-                    icon === "arrow-right" && <ArrowRight size={16} />
+                    icon &&
+                    <span className='ml-2'>
+                      {
+                        icon === "arrow-right" && <ArrowRight size={16} />
+                      }
+                    </span>
                   }
-                </span>
-              }
-            </ButtonContainer>
-          </Link>
+                </ButtonContainer>
+              </a>
+            ) : (
+              <Link href={href}>
+                <ButtonContainer type={type} className={`flex items-center justify-center ${width === "full" ? 'w-full' : 'w-fit'}`}>
+                  {text}
+                  {
+                    icon &&
+                    <span className='ml-2'>
+                      {
+                        icon === "arrow-right" && <ArrowRight size={16} />
+                      }
+                    </span>
+                  }
+                </ButtonContainer>
+              </Link>
+            )
+          }
+          </>
         )
       }
       {

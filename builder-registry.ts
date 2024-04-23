@@ -91,6 +91,23 @@ Builder.registerComponent(
         showIf: (options) => options.get("action") === "link",
       },
       {
+        name: "linkType",
+        type: "string",
+        friendlyName: "Link Type",
+        required: true,
+        defaultValue: "internal",
+        enum: [
+          {
+            label: "Internal",
+            value: "internal",
+          },
+          {
+            label: "External",
+            value: "external",
+          },
+        ],
+      },
+      {
         name: "icon",
         type: "string",
         friendlyName: "Icon",
