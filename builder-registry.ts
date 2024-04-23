@@ -359,6 +359,20 @@ Builder.registerComponent(
   {
     name: "Typewriter",
     friendlyName: "Typewriter",
+    inputs: [
+      {
+        name: "strings",
+        type: "list",
+        required: true,
+        subFields: [
+          {
+            name: "string",
+            type: "string",
+            required: true,
+          },
+        ],
+      },
+    ],
   }
 );
 
