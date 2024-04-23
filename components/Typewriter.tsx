@@ -2,7 +2,9 @@ import React from 'react'
 import Typewriter from 'typewriter-effect';
 
 type TypewriterComponentProps = {
-  strings: string[]
+  strings: {
+    string: string
+  }[]
 }
 
 export default function TypewriterComponent({ strings } : TypewriterComponentProps) {
@@ -10,7 +12,7 @@ export default function TypewriterComponent({ strings } : TypewriterComponentPro
     <h2 className='text-white text-center'>
       <Typewriter
         options={{
-          strings: strings,
+          strings: strings.map(item => item.string),
           autoStart: true,
           loop: true,
         }}
