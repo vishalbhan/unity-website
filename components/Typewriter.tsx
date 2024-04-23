@@ -12,7 +12,7 @@ export default function TypewriterComponent({ strings } : TypewriterComponentPro
     <h2 className='text-white text-center'>
       <Typewriter
         options={{
-          strings: strings.map(item => item.string),
+          strings: strings?.map(item => item.string) || ["Test"],
           autoStart: true,
           loop: true,
         }}
