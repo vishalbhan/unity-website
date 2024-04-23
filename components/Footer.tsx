@@ -100,10 +100,10 @@ export default function Footer() {
         <div className='mt-10 md:mt-0 text-neutral-300 opacity-50'>&copy; {new Date().getFullYear()} Unity Bank</div>
         <div className="flex flex-col-reverse sm:flex-row items-center justify-end gap-12">
           <div className="flex items-center space-x-4">
-            <Facebook fill="#B5B5B5" />
-            <Twitter fill="#B5B5B5" />
-            <Instagram fill="#B5B5B5" />
-            <LinkedIn fill="#B5B5B5" />
+            <a href="https://www.facebook.com/UnitySFB" target="_blank" rel="noreferrer"><Facebook fill="#B5B5B5" /></a>
+            <a href="https://twitter.com/UnitySFBank" target="_blank" rel="noreferrer"><Twitter fill="#B5B5B5" /></a>
+            <a href="https://www.instagram.com/unity_small_finance_bank/" target="_blank" rel="noreferrer"><Instagram fill="#B5B5B5" /></a>
+            <a href="https://www.linkedin.com/company/unity-small-finance-bank/" target="_blank" rel="noreferrer"><LinkedIn fill="#B5B5B5" /></a>
           </div>
           <div className="flex items-center space-x-6">
             <AppStore />
