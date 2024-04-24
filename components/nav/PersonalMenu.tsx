@@ -69,7 +69,7 @@ export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
           </div>
         </div>
         <ul className="grid grid-cols-2 gap-6">
-          {personalSelectedIndex === 0 && save.map((item: any) => (
+          {personalSelectedIndex === 0 && save?.map((item: any) => (
             <li key={item.link}>
               <a className="flex items-center space-x-6" href={item.link}>
                 <div dangerouslySetInnerHTML={{__html:item.icon}} />
@@ -77,7 +77,7 @@ export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
               </a>
             </li>
           ))}
-          {personalSelectedIndex === 1 && borrow.map((item: any) => (
+          {personalSelectedIndex === 1 && borrow?.map((item: any) => (
             <li key={item.link}>
               <a className="flex items-center space-x-6" href={item.link}>
                 <div dangerouslySetInnerHTML={{__html:item.icon}} />
@@ -85,7 +85,7 @@ export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
               </a>
             </li>
           ))}
-          {personalSelectedIndex === 2 && insure.map((item: any) => (
+          {personalSelectedIndex === 2 && insure?.map((item: any) => (
             <li key={item.link} className="col-span-2">
               <a className="flex items-center space-x-6" href={item.link}>
                 <div dangerouslySetInnerHTML={{__html:item.icon}} />
