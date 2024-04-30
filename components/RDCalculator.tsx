@@ -18,7 +18,7 @@ import { CalendarIcon } from 'lucide-react'
 import { addDays, addMonths, addYears, format } from 'date-fns'
 import { Calendar } from './ui/calendar'
 
-export default function RDCalculator() {
+export default function RDCalculator({ title, cta }: { title: string, cta: string }) {
   const [depositAmount, setDepositAmount] = React.useState(1000)
   const [tenure, setTenure] = React.useState(6)
   const [date, setDate] = React.useState<Date>(new Date())
@@ -55,7 +55,7 @@ export default function RDCalculator() {
   return (
     <CalculatorContainer className='grid md:grid-cols-2'>
       <Controls className='flex flex-col gap-10 p-6 lg:p-14'>
-        <div className='text-3xl font-semibold'>RD Calculator</div>
+        <div className='text-3xl font-semibold'>{title}</div>
 
         <div>
           <div className="flex items-center justify-between">
@@ -208,7 +208,7 @@ export default function RDCalculator() {
         </div>
 
         <CustomButton
-          text="Create your account"
+          text={cta}
           type="primary"
           href="/"
           icon="arrow-right"

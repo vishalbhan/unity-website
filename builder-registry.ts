@@ -394,14 +394,6 @@ Builder.registerComponent(
 );
 
 Builder.registerComponent(
-  dynamic(() => import("./components/EMICalculator")),
-  {
-    name: "EMICalculator",
-    friendlyName: "EMI Calculator",
-  }
-);
-
-Builder.registerComponent(
   dynamic(() => import("./components/BoardOfDirectors")),
   {
     name: "BoardOfDirectors",
@@ -853,6 +845,20 @@ Builder.registerComponent(
   dynamic(() => import("./components/FDCalculator")),
   {
     name: "FDCalculator",
+    inputs: [
+      {
+        name: "title",
+        friendlyName: "Card Title",
+        type: "string",
+        required: true,
+      },
+      {
+        name: "cta",
+        friendlyName: "CTA Text",
+        type: "string",
+        required: true,
+      },
+    ]
   }
 );
 
@@ -860,5 +866,19 @@ Builder.registerComponent(
   dynamic(() => import("./components/RDCalculator")),
   {
     name: "RDCalculator",
+    inputs: [
+      {
+        name: "title",
+        friendlyName: "Card Title",
+        type: "string",
+        required: true,
+      },
+      {
+        name: "cta",
+        friendlyName: "CTA Text",
+        type: "string",
+        required: true,
+      },
+    ]
   }
 );
