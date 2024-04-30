@@ -858,6 +858,12 @@ Builder.registerComponent(
         type: "string",
         required: true,
       },
+      {
+        name: "ctaLink",
+        friendlyName: "CTA Link",
+        type: "string",
+        required: true,
+      }
     ]
   }
 );
@@ -879,6 +885,12 @@ Builder.registerComponent(
         type: "string",
         required: true,
       },
+      {
+        name: "ctaLink",
+        friendlyName: "CTA Link",
+        type: "string",
+        required: true,
+      }
     ]
   }
 );

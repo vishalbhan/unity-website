@@ -18,7 +18,7 @@ import { CalendarIcon } from 'lucide-react'
 import { addDays, addMonths, addYears, format } from 'date-fns'
 import { Calendar } from './ui/calendar'
 
-export default function RDCalculator({ title, cta }: { title: string, cta: string }) {
+export default function RDCalculator({ title, cta, ctaLink }: { title: string, cta: string, ctaLink: string}) {
   const [depositAmount, setDepositAmount] = React.useState(1000)
   const [tenure, setTenure] = React.useState(6)
   const [date, setDate] = React.useState<Date>(new Date())
@@ -210,7 +210,7 @@ export default function RDCalculator({ title, cta }: { title: string, cta: strin
         <CustomButton
           text={cta}
           type="primary"
-          href="/"
+          href={ctaLink}
           icon="arrow-right"
           width="full"
         />

@@ -18,7 +18,7 @@ import { CalendarIcon } from 'lucide-react'
 import { addDays, addYears, format } from 'date-fns'
 import { Calendar } from './ui/calendar'
 
-export default function FDCalculator({ title, cta }: { title: string, cta: string}) {
+export default function FDCalculator({ title, cta, ctaLink }: { title: string, cta: string, ctaLink: string}) {
   const [depositType, setDepositType] = React.useState('fd-monthly-interest')
   const [depositAmount, setDepositAmount] = React.useState(10000)
   const [years, setYears] = React.useState(1)
@@ -357,7 +357,7 @@ export default function FDCalculator({ title, cta }: { title: string, cta: strin
         <CustomButton
           text={cta}
           type="primary"
-          href="/"
+          href={ctaLink}
           icon="arrow-right"
           width="full"
         />
