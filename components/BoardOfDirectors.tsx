@@ -33,7 +33,7 @@ export default function BoardOfDirectors() {
                     <div className='p-6'>
                       <div className="text-[14px] text-gray-500 mb-4">{item.data.designation}</div>
                       <div className='text-lg font-semibold mb-4'>{item.data.name}</div>
-                      {
+                      {/* {
                         item.data.linkedin &&
                         <a href={item.data.linkedin} target='_blank' className='block mb-4'>
                           <svg width={76} height={24} viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@ export default function BoardOfDirectors() {
                             </g>
                           </svg>
                         </a>
-                      }
+                      } */}
                     </div>
                   </TeamItem>
                 </DialogTrigger>
@@ -53,7 +53,7 @@ export default function BoardOfDirectors() {
                       <img src={item.data.image} alt={item.data.name} className='w-40 md:w-full object-cover mb-4' />
                       <div className="text-[14px] text-gray-500 mb-4">{item.data.designation}</div>
                       <div className='text-lg font-semibold mb-4'>{item.data.name}</div>
-                      {
+                      {/* {
                         item.data.linkedin &&
                         <a href={item.data.linkedin} target='_blank' className='block mb-4'>
                           <svg width={76} height={24} viewBox="0 0 76 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +63,7 @@ export default function BoardOfDirectors() {
                             </g>
                           </svg>
                         </a>
-                      }
+                      } */}
                     </div>
                     <div className="col-span-2 md:p-6 sm h-[505px] overflow-auto">
                       <div className='text-lg font-semibold mb-4'>About {item.data.name}</div>
