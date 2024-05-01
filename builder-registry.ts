@@ -863,8 +863,8 @@ Builder.registerComponent(
         friendlyName: "CTA Link",
         type: "string",
         required: true,
-      }
-    ]
+      },
+    ],
   }
 );
 
@@ -890,7 +890,14 @@ Builder.registerComponent(
         friendlyName: "CTA Link",
         type: "string",
         required: true,
-      }
-    ]
+      },
+    ],
+  }
+);
+
+Builder.registerComponent(
+  dynamic(() => import("./components/HeroSection")),
+  {
+    name: "HeroSection",
   }
 );

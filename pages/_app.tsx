@@ -34,7 +34,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <main id="main" className={archivo.className}>
-        <Component {...pageProps} />
+        <div className="pt-24">
+          <Component {...pageProps} />
+        </div>
         <Footer />
       </main>
     </>
