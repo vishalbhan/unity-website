@@ -8,44 +8,44 @@ const HeroSection: React.FC = () => {
   return (
     <>
       <div className='hidden lg:flex items-center'>
-        <Link href="/personal/lockers">
-          <HoverCard className='h-60 -mr-8 z-10'>
+        <Link href="/personal/lockers" className='w-full -mr-4 z-10'>
+          <HoverCard className='h-60'>
             <Lockers />
             <div className="text">Lockers</div>
             <div className="arrow"><ArrowRight size={16} /></div>
           </HoverCard>
         </Link>
-        <Link href="/personal/current-account">
-          <HoverCard className='h-80 -mr-8 z-20'>
+        <Link href="/personal/current-account" className='w-full -mr-4 z-20'>
+          <HoverCard className='h-80'>
             <CurrentAccount />
             <div className="text">Current<br/>Account</div>
             <div className="arrow"><ArrowRight size={16} /></div>
           </HoverCard>
         </Link>
-        <Link href="/personal/savings-account">
-          <HoverCard className='h-96 -mr-8 z-30'>
+        <Link href="/personal/savings-account" className='w-full -mr-4 z-30'>
+          <HoverCard className='h-96'>
             <SavingsAccount />
             <div className="text">Savings<br/>Account</div>
             <div className="arrow"><ArrowRight size={16} /></div>
           </HoverCard>
         </Link>
         <img src="/images/hero-desktop.png" alt="Image of phone with Unity Bank app" className='w-72 z-40' />
-        <Link href="/personal/fixed-deposit">
-          <HoverCard className='h-96 -ml-8 z-30'>
+        <Link href="/personal/fixed-deposit" className='w-full -ml-4 z-30'>
+          <HoverCard className='h-96'>
             <FixedDeposit />
             <div className="text">Fixed<br/>Deposit</div>
             <div className="arrow"><ArrowRight size={16} /></div>
           </HoverCard>
         </Link>
-        <Link href="/personal/recurring-deposit">
-          <HoverCard className='h-80 -ml-8 z-20'>
+        <Link href="/personal/recurring-deposit" className='w-full -ml-4 z-20'>
+          <HoverCard className='h-80'>
             <RecurringDeposit />
             <div className="text">Recurring<br/>Deposit</div>
             <div className="arrow"><ArrowRight size={16} /></div>
           </HoverCard>
         </Link>
-        <Link href="/personal/loans">
-          <HoverCard className='h-60 -ml-8 z-10'>
+        <Link href="/personal/loans" className='w-full -ml-4 z-10'>
+          <HoverCard className='h-60'>
             <PersonalLoans />
             <div className="text">Loans</div>
             <div className="arrow"><ArrowRight size={16} /></div>

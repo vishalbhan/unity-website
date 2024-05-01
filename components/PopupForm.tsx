@@ -6,6 +6,8 @@ import { Checkbox } from './ui/checkbox';
 import Button from './Button';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 import { usePathname } from 'next/navigation';
+import { cities } from '@/utils/cities';
+import { states } from '@/utils/states';
 
 const topicValues = [
   {
@@ -79,9 +81,13 @@ const PopupForm: React.FC<any> = ({ withResume }: { withResume: boolean }) => {
     name: '',
     email: '',
     phone: '',
+    pincode: '',
     message: '',
     termsAgreed: true
   });
+  const [pincodeError, setPincodeError] = useState(false);
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
   const [topic, setTopic] = useState('');
   const pathname = usePathname()
 
@@ -102,6 +108,16 @@ const PopupForm: React.FC<any> = ({ withResume }: { withResume: boolean }) => {
     }));
   };
 
+  const validatePIN = (event: any) => {
+    const regex = /^\d{6}$/;
+    const { value } = event.target;
+    if (!regex.test(value)) {
+      setPincodeError(true);
+    } else {
+      setPincodeError(false);
+    }
+  };
+
   const handleSubmit = (event: any) => {
     event.preventDefault();
     // Handle form submission logic here
@@ -110,22 +126,63 @@ const PopupForm: React.FC<any> = ({ withResume }: { withResume: boolean }) => {
   return (
     <form className='flex flex-col gap-6' onSubmit={handleSubmit}>
       <h5>Reach out to us</h5>
-      <div>
-        <Label htmlFor="name">Name</Label>
-        <Input type="text" id="name" name="name" value={formData.name} onChange={handleChange} className='max-w-lg' />
+      <div className="grid md:grid-cols-2 gap-10">
+        <div>
+          <Label htmlFor="name">Name</Label>
+          <Input type="text" id="name" name="name" value={formData.name} onChange={handleChange} />
+        </div>
+        <div>
+          <Label htmlFor="email">Email ID</Label>
+          <Input type="email" id="email" name="email" value={formData.email} onChange={handleChange} />
+        </div>
       </div>
-      <div>
-        <Label htmlFor="email">Email ID</Label>
-        <Input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className='max-w-lg' />
+      <div className="grid md:grid-cols-2 gap-10">
+        <div>
+          <Label htmlFor="phone">Phone Number</Label>
+          <Input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} />
+        </div>
+        <div>
+          <Label htmlFor="pincode">Pincode</Label>
+          <Input type="text" maxLength={6} onKeyUp={validatePIN} id="pincode" name="pincode" value={formData.pincode} onChange={handleChange} />
+          {pincodeError && <span className="text-red-500 text-xs">Please enter a valid pincode</span>}
+        </div>
       </div>
-      <div>
-        <Label htmlFor="phone">Phone Number</Label>
-        <Input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className='max-w-lg' />
+      <div className="grid md:grid-cols-2 gap-10">
+        <div>
+          <Label>City/Town</Label>
+          <Select value={city} onValueChange={(value: any) => setCity(value)}>
+            <SelectTrigger className="max-w-lg">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className='bg-white'>
+              {
+                cities.map((city, index) => (
+                  <SelectItem key={index} value={city}>{city}</SelectItem>
+                ))
+              }
+            </SelectContent>
+          </Select>
+        </div>
+        <div>
+          <Label>State</Label>
+          <Select value={state} onValueChange={(value: any) => setState(value)}>
+            <SelectTrigger className="max-w-lg">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className='bg-white'>
+              {
+                states.map((state, index) => (
+                  <SelectItem key={index} value={state.label}>{state.label}</SelectItem>
+                ))
+              }
+            </SelectContent>
+          </Select>
+        </div>
       </div>
       <div>
         <Label>Topic</Label>
         <Select value={topic} onValueChange={(value: any) => setTopic(value)}>
-          <SelectTrigger className="max-w-lg">
+          <SelectTrigger>
             <SelectValue placeholder="Select a topic" />
           </SelectTrigger>
           <SelectContent className='bg-white'>
