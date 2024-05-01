@@ -1,5 +1,4 @@
 import React, { forwardRef, LegacyRef } from 'react';
-import { navItems } from './navItems';
 import { ArrowRight } from 'lucide-react';
 import { builder } from '@builder.io/react';
 
