@@ -358,6 +358,7 @@ export default function FDCalculator({ title, cta, ctaLink }: { title: string, c
           text={cta}
           type="primary"
           href={ctaLink}
+          linkType='external'
           icon="arrow-right"
           width="full"
         />
