@@ -80,6 +80,7 @@ export default function Page({ page }: { page: BuilderContent | null }) {
     <>
       <Head>
         <title>{page?.data?.title}</title>
+        {/* TODO Add meta */}
       </Head>
 
       <Navbar color={page?.data?.navigationStyle} />

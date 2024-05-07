@@ -70,6 +70,7 @@ export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
         <ul className="grid grid-cols-2 gap-6">
           {personalSelectedIndex === 0 && save?.map((item: any) => (
             <li key={item.link}>
+              {/* // TODO: add hover effect */}
               <a className="flex items-center space-x-6" href={item.link}>
                 <div dangerouslySetInnerHTML={{__html:item.icon}} />
                 <p className="text-sm font-medium">{item.title}</p>
@@ -78,6 +79,7 @@ export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
           ))}
           {personalSelectedIndex === 1 && borrow?.map((item: any) => (
             <li key={item.link}>
+              {/* // TODO: add hover effect */}
               <a className="flex items-center space-x-6" href={item.link}>
                 <div dangerouslySetInnerHTML={{__html:item.icon}} />
                 <p className="text-sm font-medium">{item.title}</p>
@@ -86,6 +88,7 @@ export const PersonalMenu = forwardRef<HTMLElement>((props, ref) => {
           ))}
           {personalSelectedIndex === 2 && insure?.map((item: any) => (
             <li key={item.link} className="col-span-2">
+              {/* // TODO: add hover effect */}
               <a className="flex items-center space-x-6" href={item.link}>
                 <div dangerouslySetInnerHTML={{__html:item.icon}} />
                 <p className="text-sm font-medium">{item.title}</p>
